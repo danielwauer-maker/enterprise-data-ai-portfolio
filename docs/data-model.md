@@ -23,6 +23,8 @@ The portfolio uses structured repository data as the technical source of truth. 
 
 ## Project schema
 
+The formal validation contract is `schemas/project.schema.json`. YAML project files can be validated against this JSON Schema because YAML maps to the same data model.
+
 Every file under `data/projects/` follows the same conceptual shape:
 
 - identity
