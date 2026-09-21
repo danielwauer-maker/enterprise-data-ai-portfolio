@@ -1,0 +1,56 @@
+schema_version: 1
+website:
+  id: enterprise-data-ai-portfolio-web
+  name: Enterprise Data & AI Portfolio 2027
+  status: foundation_in_progress
+  implementation:
+    repository: danielwauer-maker/enterprise-data-ai-portfolio
+    path: site
+    framework: Next.js
+    language: TypeScript
+    styling: Tailwind CSS
+    rendering: static_export
+    hosting: GitHub Pages
+    backend_required: false
+
+  principles:
+    - Recruiter and technical decision-maker first.
+    - Professional enterprise visual language rather than playful developer portfolio styling.
+    - GitHub structured data is the source of truth.
+    - Important metrics are generated or derived, never manually duplicated in UI code.
+    - Progressive enhancement: the site becomes useful early and gains project depth over time.
+
+  canonical_data_sources:
+    portfolio: data/portfolio.yaml
+    roadmap: data/roadmap.yaml
+    metrics: data/metrics.json
+    projects: data/projects/
+    certifications: data/certifications.yaml
+    business_impact: data/business-impact.yaml
+    delivery_efficiency: data/delivery-efficiency.yaml
+    effort_log: data/effort-log.yaml
+    company_context: data/companies/nordwerk.yaml
+
+  initial_vertical_slice:
+    - hero
+    - portfolio_control_center
+    - ai_assisted_delivery_efficiency
+    - featured_projects
+    - eoip_architecture
+    - roadmap_timeline
+
+  sections:
+    - {id: hero, name: Hero & Positioning, source: data/portfolio.yaml}
+    - {id: control-center, name: Portfolio Control Center, source: data/metrics.json}
+    - {id: delivery-efficiency, name: AI-Assisted Delivery Efficiency, source: data/metrics.json}
+    - {id: featured-projects, name: Featured Projects, source: data/projects/}
+    - {id: eoip-architecture, name: EOIP Architecture, source: data/projects/eoip.yaml}
+    - {id: roadmap, name: Roadmap & Plan vs Actual, source: data/roadmap.yaml}
+    - {id: business-impact, name: Business Impact, source: data/business-impact.yaml}
+    - {id: certifications, name: Certifications, source: data/certifications.yaml}
+
+  delivery_rules:
+    - WEB-01 may start before its baseline date; the baseline dates remain frozen for plan-vs-actual evidence.
+    - Website development must not block EOIP analytics delivery.
+    - Initial slice should consume real data before visual polish expands.
+    - No website-only copy of progress percentages, milestone dates or project statuses.
