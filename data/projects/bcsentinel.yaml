@@ -1,0 +1,95 @@
+schema_version: 1
+project:
+  id: bcsentinel
+  name: BCSentinel
+  full_name: BCSentinel
+  project_type: real_saas_product
+  environment: real_product
+  company_context: null
+
+  portfolio:
+    workstream_id: bcsentinel
+    featured: true
+    display_order: 2
+    mandatory_for_application: true
+    role: Demonstrates production-oriented SaaS and software engineering in the Microsoft Dynamics 365 Business Central ecosystem.
+
+  positioning:
+    target_roles:
+      - Data & AI Solutions Consultant
+      - BI & Data Platform Engineer
+      - Data & Analytics Consultant
+    capabilities:
+      - Microsoft Dynamics 365 Business Central
+      - SaaS Architecture
+      - Backend Engineering
+      - APIs
+      - Databases
+      - Monitoring
+      - Testing
+      - CI/CD
+      - Security
+      - Release Management
+      - Production Readiness
+
+  business:
+    problem: Business Central environments need reliable operational monitoring, analysis and quality assurance without manual inspection of every relevant condition.
+    decision_questions:
+      - Which monitored conditions require operational attention?
+      - Which findings create recurring quality or reliability risk?
+      - How can monitoring evidence be made repeatable and supportable?
+    impact_categories: []
+    operational_outcomes:
+      - operational_reliability
+      - quality_assurance
+      - monitoring_efficiency
+      - reduced_manual_effort
+
+  solution:
+    summary: A real SaaS-oriented monitoring and analysis product for Microsoft Dynamics 365 Business Central.
+    v1_portfolio_scope:
+      - Product problem and business story
+      - Architecture and technical story
+      - Demo screenshots and release evidence
+      - Testing and CI/CD evidence
+      - Security and production-readiness narrative
+      - Portfolio documentation and readiness release
+    exclusions:
+      - Commercial completion of the full SaaS roadmap
+      - Artificial integration into the NordWerk fictional environment
+
+  technology:
+    core:
+      - Microsoft Dynamics 365 Business Central
+      - APIs
+      - Backend
+      - Database
+      - Git
+      - CI/CD
+    portfolio_evidence_may_include:
+      - Python
+      - FastAPI
+      - Docker
+
+  dependencies:
+    project_ids: []
+    shared_data: []
+
+  links:
+    repository_full_name: danielwauer-maker/bcsentinel
+    demo_url: null
+    documentation_url: null
+
+  evidence:
+    expected:
+      - architecture
+      - screenshots_or_demo
+      - tests
+      - ci_cd
+      - release_history
+      - security_considerations
+      - production_readiness
+
+  source_of_truth:
+    delivery: data/roadmap.yaml
+    project_metadata: data/projects/bcsentinel.yaml
