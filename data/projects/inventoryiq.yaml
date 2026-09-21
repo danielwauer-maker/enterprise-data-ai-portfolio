@@ -1,0 +1,99 @@
+schema_version: 1
+project:
+  id: inventoryiq
+  name: InventoryIQ
+  full_name: Inventory & Working Capital Intelligence
+  project_type: decision_intelligence_extension
+  environment: fictional_enterprise
+  company_context: nordwerk-distribution
+
+  portfolio:
+    workstream_id: inventoryiq
+    featured: true
+    display_order: 3
+    mandatory_for_application: true
+    role: Extends EOIP inventory analytics into deeper inventory policy, optimization and working-capital decision support.
+
+  positioning:
+    target_roles:
+      - Analytics Engineer
+      - Data & Analytics Consultant
+      - Decision Intelligence / Business Analytics
+      - Microsoft Fabric / Power BI Consultant
+    capabilities:
+      - Inventory Analytics
+      - Working Capital Analysis
+      - ABC/XYZ Segmentation
+      - Demand Variability
+      - Safety Stock
+      - Reorder Point
+      - Optimization Logic
+      - Python
+      - Advanced Analytics
+
+  business:
+    problem: Excess stock ties up capital while insufficient stock creates service risk; static inventory reporting does not identify the appropriate policy by item behavior.
+    decision_questions:
+      - Which inventory segments consume disproportionate working capital?
+      - Which items require differentiated inventory policies?
+      - Where can inventory be reduced without creating unacceptable service risk?
+    impact_categories:
+      - working_capital_release
+      - cost_savings
+    operational_outcomes:
+      - inventory_policy_improvement
+      - service_risk_visibility
+      - stock_segmentation
+
+  solution:
+    summary: An advanced inventory decision-support layer using the shared EOIP/NordWerk data foundation.
+    v1_portfolio_scope:
+      - Inventory analytical dataset
+      - ABC/XYZ segmentation
+      - Demand variability
+      - Safety stock and reorder logic
+      - Working-capital opportunity model
+      - Professional reporting and documentation
+    exclusions:
+      - Fully autonomous replenishment
+      - Production optimization engine
+      - Real-time warehouse control
+
+  technology:
+    core:
+      - SQL
+      - Python
+      - Power BI
+      - Git
+    analytical_methods:
+      - ABC Analysis
+      - XYZ Analysis
+      - Safety Stock
+      - Reorder Point
+      - Scenario Modeling
+
+  dependencies:
+    project_ids:
+      - eoip
+    shared_data:
+      - nordwerk-distribution
+
+  links:
+    repository_full_name: null
+    demo_url: null
+    documentation_url: null
+
+  evidence:
+    expected:
+      - segmentation
+      - inventory_features
+      - optimization_logic
+      - working_capital_business_case
+      - reporting
+      - documented_assumptions
+
+  source_of_truth:
+    delivery: data/roadmap.yaml
+    company: data/companies/nordwerk.yaml
+    business_impact: data/business-impact.yaml
+    project_metadata: data/projects/inventoryiq.yaml
