@@ -28,6 +28,15 @@
 - Milestone Reliability: **100.0%**
 - Current Milestone: **M04 — EOIP Analytics Core Complete**
 
+## AI-Assisted Delivery Efficiency
+
+- Baseline Delivery Window: **159 elapsed calendar days**
+- Forecast Delivery Window: **124 elapsed calendar days**
+- Forecast Schedule Compression: **+35 days / +22.01%**
+- Actual Delivery Window: **pending — M11 not complete**
+- Observed Human Effort: **not yet tracked**
+- Cost Scenario: **awaiting_benchmark_and_effort_data**
+
 ## Risk & Critical Path
 
 - Active Blockers: **0**
@@ -39,5 +48,7 @@
 
 - `data/roadmap.yaml`
 - `data/control-center.yaml`
+- `data/delivery-efficiency.yaml`
+- `data/effort-log.yaml`
 - `data/risks.yaml`
 - generated `data/metrics.json`
