@@ -3,40 +3,40 @@
   "as_of": "2026-09-22",
   "baseline_id": "baseline-v1.0",
   "progress": {
-    "portfolio_scope_completed_weight": 25,
-    "portfolio_scope_pct": 25,
-    "application_readiness_completed_weight": 25,
-    "application_readiness_pct": 26.32,
+    "portfolio_scope_completed_weight": 30,
+    "portfolio_scope_pct": 30,
+    "application_readiness_completed_weight": 30,
+    "application_readiness_pct": 31.58,
     "planned_portfolio_weight": 4,
     "planned_portfolio_pct": 4,
     "planned_application_weight": 4,
     "planned_application_readiness_pct": 4.21
   },
   "schedule": {
-    "variance_percentage_points": 22.11,
-    "performance_index": 6.25,
-    "schedule_equivalent_date": "2026-10-20",
-    "schedule_delta_days": 28,
-    "forecast_completion_date": "2027-01-31",
+    "variance_percentage_points": 27.37,
+    "performance_index": 7.5,
+    "schedule_equivalent_date": "2026-10-27",
+    "schedule_delta_days": 35,
+    "forecast_completion_date": "2027-01-24",
     "forecast_method": "schedule_equivalent_projection",
     "forecast_confidence": "low",
     "target_date": "2027-02-28",
-    "schedule_buffer_days": 28
+    "schedule_buffer_days": 35
   },
   "throughput": {
     "window_days": 14,
-    "completed_packages": 9,
-    "completed_weight": 25
+    "completed_packages": 10,
+    "completed_weight": 30
   },
   "cycle_time": {
-    "sample_size": 9,
+    "sample_size": 10,
     "average_days": 1,
     "median_days": 1
   },
   "milestones": {
     "reliability_pct": 100,
-    "considered_count": 2,
-    "on_time_count": 2,
+    "considered_count": 3,
+    "on_time_count": 3,
     "overdue_incomplete_count": 0,
     "items": [
       {
@@ -59,9 +59,9 @@
         "id": "M03",
         "name": "EOIP Data Foundation Complete",
         "target": "2026-10-31",
-        "complete": false,
-        "actual_completion": null,
-        "on_time": false
+        "complete": true,
+        "actual_completion": "2026-09-22",
+        "on_time": true
       },
       {
         "id": "M04",
@@ -143,10 +143,10 @@
   },
   "critical_path": {
     "total_count": 31,
-    "completed_count": 8,
-    "remaining_count": 23,
+    "completed_count": 9,
+    "remaining_count": 22,
     "blocked_count": 0,
     "blocked_ids": [],
-    "first_unresolved": "EOIP-05"
+    "first_unresolved": "EOIP-06"
   }
 }
