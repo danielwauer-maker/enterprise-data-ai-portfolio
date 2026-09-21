@@ -3,33 +3,33 @@
   "as_of": "2026-09-22",
   "baseline_id": "baseline-v1.0",
   "progress": {
-    "portfolio_scope_completed_weight": 21,
-    "portfolio_scope_pct": 21,
-    "application_readiness_completed_weight": 21,
-    "application_readiness_pct": 22.11,
+    "portfolio_scope_completed_weight": 25,
+    "portfolio_scope_pct": 25,
+    "application_readiness_completed_weight": 25,
+    "application_readiness_pct": 26.32,
     "planned_portfolio_weight": 4,
     "planned_portfolio_pct": 4,
     "planned_application_weight": 4,
     "planned_application_readiness_pct": 4.21
   },
   "schedule": {
-    "variance_percentage_points": 17.89,
-    "performance_index": 5.25,
-    "schedule_equivalent_date": "2026-10-15",
-    "schedule_delta_days": 23,
-    "forecast_completion_date": "2027-02-05",
+    "variance_percentage_points": 22.11,
+    "performance_index": 6.25,
+    "schedule_equivalent_date": "2026-10-20",
+    "schedule_delta_days": 28,
+    "forecast_completion_date": "2027-01-31",
     "forecast_method": "schedule_equivalent_projection",
     "forecast_confidence": "low",
     "target_date": "2027-02-28",
-    "schedule_buffer_days": 23
+    "schedule_buffer_days": 28
   },
   "throughput": {
     "window_days": 14,
-    "completed_packages": 8,
-    "completed_weight": 21
+    "completed_packages": 9,
+    "completed_weight": 25
   },
   "cycle_time": {
-    "sample_size": 8,
+    "sample_size": 9,
     "average_days": 1,
     "median_days": 1
   },
@@ -143,10 +143,10 @@
   },
   "critical_path": {
     "total_count": 31,
-    "completed_count": 7,
-    "remaining_count": 24,
+    "completed_count": 8,
+    "remaining_count": 23,
     "blocked_count": 0,
     "blocked_ids": [],
-    "first_unresolved": "EOIP-04"
+    "first_unresolved": "EOIP-05"
   }
 }
