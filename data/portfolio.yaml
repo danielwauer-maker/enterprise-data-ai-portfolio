@@ -1,0 +1,28 @@
+schema_version: 1
+portfolio:
+  id: enterprise-data-ai-portfolio-2027
+  name: Enterprise Data & AI Portfolio 2027
+  repository: enterprise-data-ai-portfolio
+  owner: danielwauer-maker
+  baseline_version: v1.0
+  baseline_date: 2026-09-22
+  application_ready_target: 2027-02-28
+  positioning:
+    - Data & AI Solutions Consultant
+    - Analytics Engineer
+    - Data & Analytics Consultant
+    - BI & Data Platform Engineer
+    - Microsoft Fabric / Power BI Consultant
+    - Decision Intelligence / Business Analytics
+  principles:
+    - Business value before technical novelty
+    - Measurable impact before feature count
+    - Quality and traceability before maximum scope
+    - GitHub is the technical source of truth
+    - Structured data powers documentation, roadmap, status and website
+  flagship_projects:
+    - bcsentinel
+    - eoip
+    - inventoryiq
+    - marginguard
+    - procureguard
