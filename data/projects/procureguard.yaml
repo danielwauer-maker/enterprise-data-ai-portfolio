@@ -1,0 +1,90 @@
+schema_version: 1
+project:
+  id: procureguard
+  name: ProcureGuard
+  full_name: Procurement Cost Leakage & Supplier Intelligence
+  project_type: optional_decision_intelligence_mvp
+  environment: fictional_enterprise
+  company_context: nordwerk-distribution
+
+  portfolio:
+    workstream_id: procureguard
+    featured: true
+    display_order: 5
+    mandatory_for_application: false
+    role: Optional V1 extension demonstrating supplier, spend and purchase-price intelligence without blocking Application Readiness.
+
+  positioning:
+    target_roles:
+      - Analytics Engineer
+      - Data & Analytics Consultant
+      - Decision Intelligence / Business Analytics
+      - Microsoft Fabric / Power BI Consultant
+    capabilities:
+      - Procurement Analytics
+      - Spend Analysis
+      - Supplier Performance
+      - Purchase Price Variance
+      - Lead-Time Analysis
+      - Cost Leakage
+      - SQL
+      - Power BI
+
+  business:
+    problem: Procurement cost leakage can remain hidden across price variance, supplier behavior, lead times, MOQ effects and fragmented spend visibility.
+    decision_questions:
+      - Where is procurement cost leaking?
+      - Which suppliers or categories create unfavorable price or lead-time variance?
+      - Which identified opportunities can be translated into supportable savings cases?
+    impact_categories:
+      - cost_savings
+      - profit
+    operational_outcomes:
+      - supplier_transparency
+      - spend_visibility
+      - procurement_decision_support
+
+  solution:
+    summary: An optional procurement intelligence MVP based on the shared NordWerk data foundation.
+    v1_portfolio_scope:
+      - Spend and supplier analysis
+      - Purchase price variance
+      - Lead-time intelligence
+      - Procurement savings business case
+      - MVP documentation and release
+    exclusions:
+      - Mandatory Application Readiness dependency
+      - Full sourcing optimization platform
+      - Contract-management application
+
+  technology:
+    core:
+      - SQL
+      - Power BI
+      - Git
+
+  dependencies:
+    project_ids:
+      - eoip
+    shared_data:
+      - nordwerk-distribution
+
+  links:
+    repository_full_name: null
+    demo_url: null
+    documentation_url: null
+
+  evidence:
+    expected:
+      - spend_analysis
+      - supplier_analysis
+      - purchase_price_variance
+      - lead_time_analysis
+      - procurement_savings_case
+      - documentation
+
+  source_of_truth:
+    delivery: data/roadmap.yaml
+    company: data/companies/nordwerk.yaml
+    business_impact: data/business-impact.yaml
+    project_metadata: data/projects/procureguard.yaml
