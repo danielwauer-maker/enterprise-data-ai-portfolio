@@ -351,10 +351,27 @@ def main():
     status_path = ROOT / "STATUS.md"
 
     if args.check:
-        expected_metrics = metrics_path.read_text(encoding="utf-8") if metrics_path.exists() else ""
+        expected_metrics_text = metrics_path.read_text(encoding="utf-8") if metrics_path.exists() else ""
         expected_status = status_path.read_text(encoding="utf-8") if status_path.exists() else ""
-        if expected_metrics != metrics_text or expected_status != status_text:
-            raise SystemExit("Generated Control Center outputs are out of date.")
+
+        try:
+            expected_metrics = json.loads(expected_metrics_text) if expected_metrics_text else None
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"Committed data/metrics.json is invalid JSON: {exc}") from exc
+
+        generated_metrics = json.loads(metrics_text)
+        metrics_match = expected_metrics == generated_metrics
+        status_match = expected_status == status_text
+
+        if not metrics_match or not status_match:
+            stale = []
+            if not metrics_match:
+                stale.append("data/metrics.json")
+            if not status_match:
+                stale.append("STATUS.md")
+            raise SystemExit(
+                "Generated Control Center outputs are out of date: " + ", ".join(stale)
+            )
         return
 
     metrics_path.write_text(metrics_text, encoding="utf-8")
