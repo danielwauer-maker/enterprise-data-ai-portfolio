@@ -1,37 +1,43 @@
 # Portfolio Status
 
-**As of:** 22 September 2026  
-**Baseline:** v1.0  
-**Application-ready target:** 28 February 2027
+**As of:** 2026-09-22  
+**Baseline:** baseline-v1.0  
+**Application-ready target:** 2027-02-28
 
-> This file is currently a human-readable status view. FND-05 will establish deterministic generation of metrics and status views from canonical delivery data.
+> Generated from canonical structured data by `scripts/generate_metrics.py`. Do not edit calculated values manually.
 
-## Current state
+## Progress
 
-- Portfolio Master Specification v1.0: Done
-- Baseline Roadmap v1.0: Done
-- Central GitHub Portfolio Repository: Done
-- Structured Portfolio Data Model: Done
-- Control Center Metrics Baseline: Ready / next action
-- EOIP Requirements & Scope Specification: Planned
+- Portfolio Scope Progress: **10.00%**
+- Application Readiness: **10.53%**
+- Planned Application Readiness: **4.21%**
+- Schedule Variance: **+6.32 percentage points**
+- Schedule Position: **7 days ahead**
 
-## Current weighted progress
+## Forecast
 
-- Portfolio Scope Progress: **8.0%** (8 / 100 weighted points)
-- Mandatory Application Readiness Progress: **8.42%** (8 / 95 mandatory weighted points)
-- Current milestone: **M01 — Portfolio Baseline Established**
-- M01 target: **30 September 2026**
-- M01 completion condition remaining: **FND-05 — Control Center Metrics Baseline**
+- Forecast Completion Date: **2027-02-21**
+- Forecast Method: **schedule_equivalent_projection**
+- Forecast Confidence: **low**
+- Schedule Buffer: **+7 days**
 
-## Structured source of truth
+## Delivery
 
-- Delivery baseline: `data/roadmap.yaml`
-- Portfolio metadata: `data/portfolio.yaml`
-- Project metadata: `data/projects/*.yaml`
-- Shared NordWerk context: `data/companies/nordwerk.yaml`
-- Certification metadata: `data/certifications.yaml`
-- Business-impact framework: `data/business-impact.yaml`
+- Rolling Throughput: **5 packages / 10.00 weighted points**
+- Average Cycle Time: **1.0 days**
+- Milestone Reliability: **100.0%**
+- Current Milestone: **M02 — EOIP Architecture & Data Specification**
 
-## Next focus
+## Risk & Critical Path
 
-Complete FND-05 and establish automatically calculated portfolio metrics. Once M01 is complete, EOIP-01 becomes the primary delivery focus.
+- Active Blockers: **0**
+- Active Critical Risks: **2**
+- Critical Path Completed: **4/31**
+- First Unresolved Critical Package: **EOIP-01**
+
+## Source of truth
+
+- `data/roadmap.yaml`
+- `data/control-center.yaml`
+- `data/risks.yaml`
+- generated `data/metrics.json`
