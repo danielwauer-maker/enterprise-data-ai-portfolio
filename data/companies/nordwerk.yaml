@@ -1,0 +1,26 @@
+schema_version: 1
+company:
+  id: nordwerk-distribution
+  name: NordWerk Distribution GmbH
+  type: fictional_enterprise
+  purpose: Shared realistic enterprise context for EOIP, InventoryIQ, MarginGuard and ProcureGuard.
+  profile:
+    industry: Wholesale distribution
+    employees: 240
+    annual_revenue_eur: 62000000
+    products: 18500
+    customers: 4200
+    suppliers: 310
+    warehouse_locations: 4
+    inventory_value_eur: 8400000
+    annual_procurement_volume_eur: 31000000
+  modeling_principles:
+    - ERP-style operational source data
+    - Shared master data across analytical projects
+    - Financial effects must be traceable to generated data
+    - Revenue, profit, cost savings and working capital are distinct impact categories
+  consumers:
+    - eoip
+    - inventoryiq
+    - marginguard
+    - procureguard
