@@ -1,0 +1,30 @@
+schema_version: 1
+control_center:
+  snapshot_date: 2026-09-22
+  throughput_window_days: 14
+  forecast:
+    minimum_elapsed_days_for_velocity: 14
+    minimum_mandatory_completed_weight_for_velocity: 15
+    default_method_before_maturity: schedule_equivalent_projection
+  milestone_completion:
+    M01: [FND-01, FND-02, FND-03, FND-04, FND-05]
+    M02: [EOIP-01, EOIP-02]
+    M03: [EOIP-03, EOIP-04, EOIP-05]
+    M04: [EOIP-06, EOIP-07, EOIP-08, EOIP-09]
+    M05: [EOIP-10, EOIP-11]
+    M06: [INV-01, INV-02, INV-03, INV-04, INV-05, INV-06]
+    M07: [BC-01, BC-02, BC-03, BC-04, BC-05, BC-06]
+    M08: [MG-01, MG-02, MG-03, MG-04, MG-05, MG-06]
+    M09: [EOIP-11, INV-06, BC-06, MG-06, WEB-05]
+    M10: [WEB-06]
+    M11: [WEB-06, CAR-01, CAR-02, CAR-03, CAR-04, CAR-05]
+  status_rules:
+    completed: done
+    blocked: blocked
+    earned_credit:
+      done: 1.0
+      planned: 0.0
+      ready: 0.0
+      in_progress: 0.0
+      blocked: 0.0
+      review: 0.0

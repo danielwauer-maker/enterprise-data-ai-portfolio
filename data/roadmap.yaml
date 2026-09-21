@@ -107,13 +107,13 @@ milestones:
     mandatory: true
 
 work_packages:
-  - {id: FND-01, workstream: foundation, name: Portfolio Master Specification v1.0, weight: 2.0, start: 2026-09-22, end: 2026-09-22, mandatory: true, critical: true, depends_on: [], status: done}
-  - {id: FND-02, workstream: foundation, name: Baseline Roadmap v1.0, weight: 2.0, start: 2026-09-22, end: 2026-09-22, mandatory: true, critical: true, depends_on: [FND-01], status: done}
-  - {id: FND-03, workstream: foundation, name: Central GitHub Portfolio Repository, weight: 2.0, start: 2026-09-22, end: 2026-09-24, mandatory: true, critical: true, depends_on: [FND-02], status: done}
-  - {id: FND-04, workstream: foundation, name: Structured Portfolio Data Model, weight: 2.0, start: 2026-09-24, end: 2026-09-27, mandatory: true, critical: true, depends_on: [FND-03], status: done}
-  - {id: FND-05, workstream: foundation, name: Control Center Metrics Baseline, weight: 2.0, start: 2026-09-27, end: 2026-09-30, mandatory: true, critical: true, depends_on: [FND-04], status: ready}
+  - {id: FND-01, workstream: foundation, name: Portfolio Master Specification v1.0, weight: 2.0, start: 2026-09-22, end: 2026-09-22, mandatory: true, critical: true, depends_on: [], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: FND-02, workstream: foundation, name: Baseline Roadmap v1.0, weight: 2.0, start: 2026-09-22, end: 2026-09-22, mandatory: true, critical: true, depends_on: [FND-01], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: FND-03, workstream: foundation, name: Central GitHub Portfolio Repository, weight: 2.0, start: 2026-09-22, end: 2026-09-24, mandatory: true, critical: true, depends_on: [FND-02], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: FND-04, workstream: foundation, name: Structured Portfolio Data Model, weight: 2.0, start: 2026-09-24, end: 2026-09-27, mandatory: true, critical: true, depends_on: [FND-03], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: FND-05, workstream: foundation, name: Control Center Metrics Baseline, weight: 2.0, start: 2026-09-27, end: 2026-09-30, mandatory: true, critical: true, depends_on: [FND-04], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
 
-  - {id: EOIP-01, workstream: eoip, name: EOIP Requirements & Scope Specification, weight: 3.0, start: 2026-09-28, end: 2026-10-04, mandatory: true, critical: true, depends_on: [FND-04], status: planned}
+  - {id: EOIP-01, workstream: eoip, name: EOIP Requirements & Scope Specification, weight: 3.0, start: 2026-09-28, end: 2026-10-04, mandatory: true, critical: true, depends_on: [FND-04], status: ready}
   - {id: EOIP-02, workstream: eoip, name: NordWerk Domain & ERP Source Model, weight: 4.0, start: 2026-10-01, end: 2026-10-11, mandatory: true, critical: true, depends_on: [EOIP-01], status: planned}
   - {id: EOIP-03, workstream: eoip, name: Reproducible Synthetic ERP Data Generation, weight: 4.0, start: 2026-10-08, end: 2026-10-18, mandatory: true, critical: true, depends_on: [EOIP-02], status: planned}
   - {id: EOIP-04, workstream: eoip, name: SQL Raw & Staging Layer, weight: 4.0, start: 2026-10-15, end: 2026-10-24, mandatory: true, critical: true, depends_on: [EOIP-03], status: planned}
@@ -165,7 +165,7 @@ work_packages:
   - {id: CAR-04, workstream: career, name: Interview Stories & Case Narratives, weight: 1.0, start: 2027-02-20, end: 2027-02-25, mandatory: true, critical: true, depends_on: [CAR-01], status: planned}
   - {id: CAR-05, workstream: career, name: Final Application Readiness Review, weight: 1.0, start: 2027-02-25, end: 2027-02-28, mandatory: true, critical: true, depends_on: [CAR-02, CAR-03, CAR-04, WEB-06], status: planned}
 
-  - {id: CERT-01, workstream: certifications, name: MB-800 Certification, weight: 2.5, start: 2026-09-22, end: 2026-10-31, mandatory: true, critical: false, depends_on: [], status: in_progress}
+  - {id: CERT-01, workstream: certifications, name: MB-800 Certification, weight: 2.5, start: 2026-09-22, end: 2026-10-31, mandatory: true, critical: false, depends_on: [], status: in_progress, actual_start: 2026-09-22}
   - {id: CERT-02, workstream: certifications, name: PL-300 Certification, weight: 2.5, start: 2026-11-01, end: 2026-12-31, mandatory: true, critical: false, depends_on: [EOIP-06], status: planned}
 
 stretch_scope:

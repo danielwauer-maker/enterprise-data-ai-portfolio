@@ -1,0 +1,27 @@
+name: Control Center Validation
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "scripts/generate_metrics.py"
+      - "requirements-control-center.txt"
+      - "STATUS.md"
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/generate_metrics.py"
+      - "requirements-control-center.txt"
+      - "STATUS.md"
+
+jobs:
+  validate-control-center:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-control-center.txt
+      - run: python scripts/generate_metrics.py --check
