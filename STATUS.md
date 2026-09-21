@@ -8,22 +8,22 @@
 
 ## Progress
 
-- Portfolio Scope Progress: **10.00%**
-- Application Readiness: **10.53%**
+- Portfolio Scope Progress: **13.00%**
+- Application Readiness: **13.68%**
 - Planned Application Readiness: **4.21%**
-- Schedule Variance: **+6.32 percentage points**
-- Schedule Position: **7 days ahead**
+- Schedule Variance: **+9.47 percentage points**
+- Schedule Position: **10 days ahead**
 
 ## Forecast
 
-- Forecast Completion Date: **2027-02-21**
+- Forecast Completion Date: **2027-02-18**
 - Forecast Method: **schedule_equivalent_projection**
 - Forecast Confidence: **low**
-- Schedule Buffer: **+7 days**
+- Schedule Buffer: **+10 days**
 
 ## Delivery
 
-- Rolling Throughput: **5 packages / 10.00 weighted points**
+- Rolling Throughput: **6 packages / 13.00 weighted points**
 - Average Cycle Time: **1.0 days**
 - Milestone Reliability: **100.0%**
 - Current Milestone: **M02 — EOIP Architecture & Data Specification**
@@ -32,8 +32,8 @@
 
 - Active Blockers: **0**
 - Active Critical Risks: **2**
-- Critical Path Completed: **4/31**
-- First Unresolved Critical Package: **EOIP-01**
+- Critical Path Completed: **5/31**
+- First Unresolved Critical Package: **EOIP-02**
 
 ## Source of truth
 
