@@ -1,0 +1,526 @@
+schema_version: 1
+eoip_domain_model:
+  id: nordwerk-erp-source-v1
+  owner_project_id: eoip
+  company_context: nordwerk-distribution
+  status: proposed_v1_source_model
+  history:
+    analytical_history_months: 36
+    currency: EUR
+    calendar: Gregorian
+    timezone: Europe/Berlin
+    generation_principle: Generate transaction-level operational history and derive analytical structures later; do not generate pre-aggregated BI facts.
+
+  modeling_principles:
+    - Operational source entities must resemble an ERP system rather than a star schema.
+    - Master data and transactions are separated.
+    - Posted documents are immutable source records once generated.
+    - Inventory quantity and value movements are represented independently enough to reconcile stock and gross margin.
+    - Business Central concepts may inspire the model, but the fictional dataset is not a clone of proprietary table structures.
+    - Downstream analytical metrics are derived from source data rather than stored as source columns.
+    - Shared NordWerk company-scale facts are referenced from data/companies/nordwerk.yaml rather than duplicated here.
+
+  domains:
+    - id: master_data
+      name: Master Data
+      entities:
+        - customer
+        - product_category
+        - product
+        - warehouse
+        - salesperson
+        - supplier
+    - id: sales
+      name: Sales & Returns
+      entities:
+        - sales_order_header
+        - sales_order_line
+        - sales_invoice_header
+        - sales_invoice_line
+        - sales_credit_memo_header
+        - sales_credit_memo_line
+    - id: inventory
+      name: Inventory & Cost
+      entities:
+        - purchase_receipt_header
+        - purchase_receipt_line
+        - warehouse_transfer_header
+        - warehouse_transfer_line
+        - inventory_ledger_entry
+        - value_entry
+        - inventory_balance
+
+  entities:
+    - id: customer
+      type: master
+      grain: one row per customer
+      primary_key: customer_id
+      natural_key: customer_no
+      required_attributes:
+        - customer_no
+        - customer_name
+        - customer_group
+        - country_code
+        - postal_region
+        - salesperson_id
+        - payment_terms_code
+        - blocked_flag
+        - created_date
+      relationships:
+        - {field: salesperson_id, references: salesperson.salesperson_id, cardinality: many_to_one}
+      notes:
+        - Customer names are synthetic and contain no real personal data.
+        - Customer grouping supports commercial segmentation without introducing a full CRM domain.
+
+    - id: product_category
+      type: master
+      grain: one row per product category
+      primary_key: product_category_id
+      natural_key: category_code
+      required_attributes:
+        - category_code
+        - category_name
+        - parent_category_id
+      relationships:
+        - {field: parent_category_id, references: product_category.product_category_id, cardinality: many_to_one_optional}
+
+    - id: product
+      type: master
+      grain: one row per sellable or stocked product
+      primary_key: product_id
+      natural_key: product_no
+      required_attributes:
+        - product_no
+        - product_name
+        - product_category_id
+        - base_unit_of_measure
+        - standard_sales_price
+        - standard_unit_cost
+        - preferred_supplier_id
+        - replenishment_lead_time_days
+        - discontinued_flag
+        - created_date
+      relationships:
+        - {field: product_category_id, references: product_category.product_category_id, cardinality: many_to_one}
+        - {field: preferred_supplier_id, references: supplier.supplier_id, cardinality: many_to_one_optional}
+      notes:
+        - Standard unit cost is master-data context; posted gross-margin analysis uses value_entry actual cost.
+        - Replenishment fields are source context only. EOIP V1 does not perform safety-stock or reorder optimization.
+
+    - id: warehouse
+      type: master
+      grain: one row per physical warehouse location
+      primary_key: warehouse_id
+      natural_key: warehouse_code
+      required_attributes:
+        - warehouse_code
+        - warehouse_name
+        - region
+        - active_flag
+
+    - id: salesperson
+      type: master
+      grain: one row per commercial owner
+      primary_key: salesperson_id
+      natural_key: salesperson_code
+      required_attributes:
+        - salesperson_code
+        - display_name
+        - sales_region
+        - active_flag
+      notes:
+        - Display names are synthetic organizational labels, not real people.
+
+    - id: supplier
+      type: master
+      grain: one row per supplier
+      primary_key: supplier_id
+      natural_key: supplier_no
+      required_attributes:
+        - supplier_no
+        - supplier_name
+        - country_code
+        - default_lead_time_days
+        - active_flag
+      notes:
+        - Supplier master exists to support inventory receipt realism.
+        - Detailed supplier performance, price variance and contract analytics remain ProcureGuard scope.
+
+    - id: sales_order_header
+      type: transaction_header
+      grain: one row per sales order
+      primary_key: sales_order_id
+      natural_key: order_no
+      required_attributes:
+        - order_no
+        - customer_id
+        - order_date
+        - requested_delivery_date
+        - salesperson_id
+        - currency_code
+        - status
+        - document_discount_amount
+        - created_at
+      relationships:
+        - {field: customer_id, references: customer.customer_id, cardinality: many_to_one}
+        - {field: salesperson_id, references: salesperson.salesperson_id, cardinality: many_to_one}
+
+    - id: sales_order_line
+      type: transaction_line
+      grain: one row per sales order line
+      primary_key: sales_order_line_id
+      natural_key: order_no + line_no
+      required_attributes:
+        - sales_order_id
+        - line_no
+        - product_id
+        - warehouse_id
+        - ordered_quantity
+        - shipped_quantity
+        - invoiced_quantity
+        - outstanding_quantity
+        - unit_price
+        - line_discount_pct
+        - line_discount_amount
+        - net_line_amount
+        - promised_delivery_date
+        - line_status
+      relationships:
+        - {field: sales_order_id, references: sales_order_header.sales_order_id, cardinality: many_to_one}
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      rules:
+        - ordered_quantity = invoiced_quantity + outstanding_quantity for simplified V1 order accounting after cancellation handling.
+        - shipped_quantity cannot exceed ordered_quantity.
+        - net_line_amount is operational document value, not an analytical KPI.
+
+    - id: sales_invoice_header
+      type: posted_transaction_header
+      grain: one row per posted sales invoice
+      primary_key: sales_invoice_id
+      natural_key: invoice_no
+      required_attributes:
+        - invoice_no
+        - customer_id
+        - invoice_date
+        - posting_date
+        - salesperson_id
+        - currency_code
+        - source_order_no
+        - document_discount_amount
+        - total_net_amount
+        - total_tax_amount
+      relationships:
+        - {field: customer_id, references: customer.customer_id, cardinality: many_to_one}
+        - {field: salesperson_id, references: salesperson.salesperson_id, cardinality: many_to_one}
+
+    - id: sales_invoice_line
+      type: posted_transaction_line
+      grain: one row per posted sales invoice line
+      primary_key: sales_invoice_line_id
+      natural_key: invoice_no + line_no
+      required_attributes:
+        - sales_invoice_id
+        - line_no
+        - source_order_no
+        - source_order_line_no
+        - product_id
+        - warehouse_id
+        - quantity
+        - unit_price
+        - gross_line_amount
+        - discount_amount
+        - net_line_amount
+      relationships:
+        - {field: sales_invoice_id, references: sales_invoice_header.sales_invoice_id, cardinality: many_to_one}
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      rules:
+        - gross_line_amount - discount_amount = net_line_amount within currency rounding tolerance.
+        - Posted invoice lines do not store the final analytical gross-margin KPI.
+
+    - id: sales_credit_memo_header
+      type: posted_transaction_header
+      grain: one row per posted sales credit memo
+      primary_key: sales_credit_memo_id
+      natural_key: credit_memo_no
+      required_attributes:
+        - credit_memo_no
+        - customer_id
+        - posting_date
+        - original_invoice_no
+        - reason_code
+        - total_net_amount
+      relationships:
+        - {field: customer_id, references: customer.customer_id, cardinality: many_to_one}
+
+    - id: sales_credit_memo_line
+      type: posted_transaction_line
+      grain: one row per posted sales credit memo line
+      primary_key: sales_credit_memo_line_id
+      natural_key: credit_memo_no + line_no
+      required_attributes:
+        - sales_credit_memo_id
+        - line_no
+        - original_invoice_no
+        - original_invoice_line_no
+        - product_id
+        - warehouse_id
+        - return_quantity
+        - unit_price
+        - discount_amount
+        - net_credit_amount
+        - disposition
+      relationships:
+        - {field: sales_credit_memo_id, references: sales_credit_memo_header.sales_credit_memo_id, cardinality: many_to_one}
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      rules:
+        - disposition is one of restock, scrap, financial_only.
+        - Only restock disposition creates positive physical inventory quantity.
+
+    - id: purchase_receipt_header
+      type: posted_transaction_header
+      grain: one row per posted purchase receipt
+      primary_key: purchase_receipt_id
+      natural_key: receipt_no
+      required_attributes:
+        - receipt_no
+        - supplier_id
+        - warehouse_id
+        - posting_date
+        - supplier_document_no
+      relationships:
+        - {field: supplier_id, references: supplier.supplier_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      notes:
+        - Purchase receipts exist to create realistic inventory inflow.
+        - Purchase-order negotiation, contract and PPV logic is deliberately excluded from EOIP V1.
+
+    - id: purchase_receipt_line
+      type: posted_transaction_line
+      grain: one row per posted purchase receipt line
+      primary_key: purchase_receipt_line_id
+      natural_key: receipt_no + line_no
+      required_attributes:
+        - purchase_receipt_id
+        - line_no
+        - product_id
+        - quantity
+        - unit_cost
+      relationships:
+        - {field: purchase_receipt_id, references: purchase_receipt_header.purchase_receipt_id, cardinality: many_to_one}
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+
+    - id: warehouse_transfer_header
+      type: transaction_header
+      grain: one row per warehouse transfer
+      primary_key: transfer_id
+      natural_key: transfer_no
+      required_attributes:
+        - transfer_no
+        - from_warehouse_id
+        - to_warehouse_id
+        - posting_date
+        - status
+      relationships:
+        - {field: from_warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+        - {field: to_warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+
+    - id: warehouse_transfer_line
+      type: transaction_line
+      grain: one row per warehouse transfer line
+      primary_key: transfer_line_id
+      natural_key: transfer_no + line_no
+      required_attributes:
+        - transfer_id
+        - line_no
+        - product_id
+        - quantity
+      relationships:
+        - {field: transfer_id, references: warehouse_transfer_header.transfer_id, cardinality: many_to_one}
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+
+    - id: inventory_ledger_entry
+      type: ledger
+      grain: one row per posted physical inventory quantity movement
+      primary_key: inventory_ledger_entry_id
+      natural_key: entry_no
+      required_attributes:
+        - entry_no
+        - product_id
+        - warehouse_id
+        - posting_date
+        - entry_type
+        - quantity
+        - remaining_quantity
+        - document_type
+        - document_no
+        - document_line_no
+        - source_entity_type
+        - source_entity_id
+        - transfer_pair_id
+      relationships:
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      allowed_entry_types:
+        - purchase_receipt
+        - sale
+        - sales_return
+        - positive_adjustment
+        - negative_adjustment
+        - transfer_out
+        - transfer_in
+      rules:
+        - Quantity sign convention is positive for stock increase and negative for stock decrease.
+        - Transfer out and transfer in quantities reconcile by transfer pair and product.
+        - Physical stock as of a date can be derived by summing quantity through that date.
+
+    - id: value_entry
+      type: ledger
+      grain: one row per posted inventory value or sales value movement linked to an inventory ledger entry
+      primary_key: value_entry_id
+      natural_key: value_entry_no
+      required_attributes:
+        - value_entry_no
+        - inventory_ledger_entry_id
+        - posting_date
+        - entry_type
+        - cost_amount_actual
+        - sales_amount_actual
+        - discount_amount
+        - document_type
+        - document_no
+        - document_line_no
+      relationships:
+        - {field: inventory_ledger_entry_id, references: inventory_ledger_entry.inventory_ledger_entry_id, cardinality: many_to_one}
+      rules:
+        - Sale-related cost amounts provide the actual COGS basis for gross-profit calculations.
+        - Credit/return value entries reverse sales and cost consistently according to documented sign conventions.
+        - Analytical gross profit is derived from posted sales value and actual cost, not stored here as a source KPI.
+
+    - id: inventory_balance
+      type: operational_state
+      grain: one row per product and warehouse at current snapshot date
+      primary_key: inventory_balance_id
+      natural_key: product_id + warehouse_id
+      required_attributes:
+        - product_id
+        - warehouse_id
+        - snapshot_date
+        - on_hand_quantity
+        - reserved_quantity
+        - available_quantity
+      relationships:
+        - {field: product_id, references: product.product_id, cardinality: many_to_one}
+        - {field: warehouse_id, references: warehouse.warehouse_id, cardinality: many_to_one}
+      rules:
+        - on_hand_quantity must reconcile to cumulative inventory_ledger_entry quantity at snapshot date.
+        - available_quantity = on_hand_quantity - reserved_quantity in V1.
+
+  process_flows:
+    - id: order_to_cash
+      steps:
+        - sales_order_header
+        - sales_order_line
+        - sales_invoice_header
+        - sales_invoice_line
+        - inventory_ledger_entry:sale
+        - value_entry:sale_cost_and_sales_value
+      reconciliation:
+        - Posted invoiced quantities trace back to source order lines where applicable.
+        - Sale inventory ledger quantities reconcile to invoiced physical product quantities subject to documented posting timing.
+
+    - id: return_to_credit
+      steps:
+        - sales_invoice_line
+        - sales_credit_memo_header
+        - sales_credit_memo_line
+        - inventory_ledger_entry:sales_return_if_restocked
+        - value_entry:return_reversal
+      reconciliation:
+        - Returned quantities cannot exceed reasonable original invoiced quantities after cumulative prior returns.
+        - Return disposition determines physical stock effect.
+
+    - id: receive_to_stock
+      steps:
+        - supplier
+        - purchase_receipt_header
+        - purchase_receipt_line
+        - inventory_ledger_entry:purchase_receipt
+        - value_entry:receipt_cost
+      reconciliation:
+        - Purchase receipt quantities equal related positive inventory ledger movements.
+
+    - id: warehouse_transfer
+      steps:
+        - warehouse_transfer_header
+        - warehouse_transfer_line
+        - inventory_ledger_entry:transfer_out
+        - inventory_ledger_entry:transfer_in
+      reconciliation:
+        - Transfer-out quantity equals transfer-in quantity for completed transfers.
+
+  generation_scale:
+    period_months: 36
+    targets:
+      sales_orders: {min: 70000, max: 95000}
+      sales_order_lines: {min: 400000, max: 650000}
+      posted_sales_invoices: {min: 65000, max: 90000}
+      posted_sales_invoice_lines: {min: 380000, max: 620000}
+      sales_credit_memos: {min: 2500, max: 6500}
+      purchase_receipts: {min: 15000, max: 30000}
+      inventory_ledger_entries: {min: 900000, max: 1600000}
+      value_entries: {min: 900000, max: 1800000}
+    calibration_rules:
+      - Annual net sales should be calibrated around the company profile rather than hard-coded independently here.
+      - Transaction distributions should vary by season, customer, product category and warehouse.
+      - A minority of customers and products should account for a disproportionate share of sales to create realistic concentration.
+      - Discounts, returns, slow-moving stock, excess inventory and stockout exposure must be present but not uniformly distributed.
+      - Data anomalies used for quality testing must be intentionally tagged in generator tests rather than silently corrupting the canonical dataset.
+
+  kpi_source_mapping:
+    - {kpi_id: net_sales, sources: [sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: sales_growth_pct, sources: [sales_invoice_header, sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: gross_profit, sources: [sales_invoice_line, sales_credit_memo_line, value_entry]}
+    - {kpi_id: gross_margin_pct, sources: [sales_invoice_line, sales_credit_memo_line, value_entry]}
+    - {kpi_id: order_count, sources: [sales_order_header]}
+    - {kpi_id: average_order_value, sources: [sales_invoice_header, sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: active_customers, sources: [sales_invoice_header]}
+    - {kpi_id: units_sold, sources: [sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: discount_value, sources: [sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: discount_rate_pct, sources: [sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: return_value, sources: [sales_credit_memo_line]}
+    - {kpi_id: return_rate_pct, sources: [sales_invoice_line, sales_credit_memo_line]}
+    - {kpi_id: inventory_value, sources: [inventory_ledger_entry, value_entry]}
+    - {kpi_id: inventory_turnover, sources: [sales_invoice_line, value_entry, inventory_ledger_entry]}
+    - {kpi_id: stock_coverage_days, sources: [inventory_ledger_entry, sales_invoice_line]}
+    - {kpi_id: slow_moving_inventory_value, sources: [inventory_ledger_entry, value_entry, sales_invoice_line]}
+    - {kpi_id: excess_inventory_value, sources: [inventory_ledger_entry, value_entry, sales_invoice_line]}
+    - {kpi_id: stockout_risk_sku_count, sources: [sales_order_line, inventory_balance]}
+
+  business_case_source_mapping:
+    - {business_case_id: eoip-bc-01, sources: [inventory_ledger_entry, value_entry, sales_invoice_line]}
+    - {business_case_id: eoip-bc-02, sources: [sales_invoice_line, sales_credit_memo_line, value_entry]}
+    - {business_case_id: eoip-bc-03, sources: [sales_order_line, inventory_balance, sales_invoice_line]}
+
+  source_quality_rules:
+    - All primary keys are unique and non-null.
+    - All declared mandatory foreign-key relationships resolve.
+    - Posted document line totals reconcile to header totals within documented rounding tolerance.
+    - Sales returns reference plausible original invoices and lines.
+    - Inventory balance reconciles to cumulative physical ledger movement.
+    - Transfer-out and transfer-in pairs reconcile in product and quantity.
+    - Posted sales quantity, sales value and actual cost can be traced through document and ledger references.
+    - Currency is EUR for EOIP V1 unless a future scope change explicitly introduces multi-currency behavior.
+    - Generated timestamps and posting dates follow plausible chronological order.
+    - No analytical KPI is stored as a source field merely to simplify later reporting.
+
+  handoff_to_eoip_03:
+    generator_must:
+      - Produce all entities and keys defined in this model.
+      - Respect entity grains and relationship cardinalities.
+      - Generate reproducible data using a fixed seed/configuration.
+      - Meet company-scale and transaction-range targets.
+      - Generate realistic non-uniform business patterns needed by EOIP business cases.
+      - Produce validation outputs proving source-quality rules.
