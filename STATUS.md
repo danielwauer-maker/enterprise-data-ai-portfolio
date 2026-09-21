@@ -4,23 +4,34 @@
 **Baseline:** v1.0  
 **Application-ready target:** 28 February 2027
 
-> This file is a human-readable status view. The authoritative planning data lives in `data/roadmap.yaml`. It should progressively become generated output from structured portfolio data.
+> This file is currently a human-readable status view. FND-05 will establish deterministic generation of metrics and status views from canonical delivery data.
 
 ## Current state
 
 - Portfolio Master Specification v1.0: Done
 - Baseline Roadmap v1.0: Done
 - Central GitHub Portfolio Repository: Done
-- Structured Portfolio Data Model: Planned / next action
-- Control Center Metrics Baseline: Planned
+- Structured Portfolio Data Model: Done
+- Control Center Metrics Baseline: Ready / next action
+- EOIP Requirements & Scope Specification: Planned
 
-## Initial weighted progress
+## Current weighted progress
 
-- Portfolio Scope Progress: **6.0%** (FND-01 + FND-02 + FND-03)
-- Mandatory Application Readiness Progress: **6.32%** (6 / 95 mandatory weighted points)
+- Portfolio Scope Progress: **8.0%** (8 / 100 weighted points)
+- Mandatory Application Readiness Progress: **8.42%** (8 / 95 mandatory weighted points)
 - Current milestone: **M01 — Portfolio Baseline Established**
 - M01 target: **30 September 2026**
+- M01 completion condition remaining: **FND-05 — Control Center Metrics Baseline**
+
+## Structured source of truth
+
+- Delivery baseline: `data/roadmap.yaml`
+- Portfolio metadata: `data/portfolio.yaml`
+- Project metadata: `data/projects/*.yaml`
+- Shared NordWerk context: `data/companies/nordwerk.yaml`
+- Certification metadata: `data/certifications.yaml`
+- Business-impact framework: `data/business-impact.yaml`
 
 ## Next focus
 
-Complete FND-04 (Structured Portfolio Data Model), then FND-05 (Control Center Metrics Baseline). After that, begin EOIP-01 Requirements & Scope Specification while keeping the baseline date and scope guardrails intact.
+Complete FND-05 and establish automatically calculated portfolio metrics. Once M01 is complete, EOIP-01 becomes the primary delivery focus.

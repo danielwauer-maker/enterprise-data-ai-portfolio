@@ -1,0 +1,95 @@
+schema_version: 1
+project:
+  id: marginguard
+  name: MarginGuard
+  full_name: Customer & Product Profitability Intelligence
+  project_type: decision_intelligence_extension
+  environment: fictional_enterprise
+  company_context: nordwerk-distribution
+
+  portfolio:
+    workstream_id: marginguard
+    featured: true
+    display_order: 4
+    mandatory_for_application: true
+    role: Demonstrates profitability analytics beyond revenue and gross margin by modeling cost-to-serve and margin leakage.
+
+  positioning:
+    target_roles:
+      - Analytics Engineer
+      - Data & Analytics Consultant
+      - Decision Intelligence / Business Analytics
+      - Microsoft Fabric / Power BI Consultant
+    capabilities:
+      - Customer Profitability
+      - Product Profitability
+      - Cost-to-Serve
+      - Contribution Margin
+      - Margin Leakage
+      - Commercial Analytics
+      - SQL
+      - Power BI
+      - DAX
+
+  business:
+    problem: Revenue and gross margin alone can hide unprofitable customers, products and commercial practices when discounts, freight, returns and handling costs are not attributed.
+    decision_questions:
+      - Which customers and products create or destroy economic value?
+      - Where is margin leaking through discounts or cost-to-serve?
+      - Which commercial actions offer the highest supportable profit opportunity?
+    impact_categories:
+      - profit
+      - revenue
+      - cost_savings
+    operational_outcomes:
+      - pricing_transparency
+      - profitability_visibility
+      - commercial_decision_support
+
+  solution:
+    summary: A profitability intelligence layer that attributes relevant cost components to customers and products and identifies traceable margin leakage.
+    v1_portfolio_scope:
+      - Cost-to-serve data model
+      - Customer profitability
+      - Product profitability
+      - Margin leakage analysis
+      - Profit-impact business case
+      - Reporting and documentation
+    exclusions:
+      - Automated pricing engine
+      - Black-box customer scoring
+      - Unsupported lifetime-value claims
+
+  technology:
+    core:
+      - SQL
+      - Power BI
+      - DAX
+      - Git
+
+  dependencies:
+    project_ids:
+      - eoip
+    shared_data:
+      - nordwerk-distribution
+
+  links:
+    repository_full_name: null
+    demo_url: null
+    documentation_url: null
+
+  evidence:
+    expected:
+      - cost_to_serve_model
+      - customer_profitability
+      - product_profitability
+      - margin_leakage
+      - profit_business_case
+      - reporting
+      - documented_assumptions
+
+  source_of_truth:
+    delivery: data/roadmap.yaml
+    company: data/companies/nordwerk.yaml
+    business_impact: data/business-impact.yaml
+    project_metadata: data/projects/marginguard.yaml

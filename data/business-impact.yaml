@@ -1,0 +1,43 @@
+schema_version: 1
+business_impact:
+  financial_categories:
+    - id: revenue
+      name: Revenue Impact
+      definition: Incremental or protected sales value. Revenue is not profit.
+    - id: profit
+      name: Profit Impact
+      definition: Incremental contribution or profit after the applicable cost and margin logic.
+    - id: cost_savings
+      name: Cost Savings
+      definition: Directly supportable reduction of operating or procurement cost.
+    - id: working_capital_release
+      name: Working Capital Release
+      definition: Capital released from inventory or other balance-sheet working-capital positions. It is not automatically profit.
+  evidence_levels:
+    - id: A
+      name: Directly Calculated
+      definition: Calculated directly from portfolio data without scenario assumptions.
+    - id: B
+      name: Modeled Opportunity
+      definition: Calculated from portfolio data using explicit documented assumptions or policies.
+    - id: C
+      name: Scenario
+      definition: Hypothetical potential based on explicit scenario assumptions.
+  required_business_case_fields:
+    - id
+    - project_id
+    - title
+    - impact_category
+    - evidence_level
+    - baseline
+    - calculation
+    - assumptions
+    - affected_population
+    - result
+    - limitations
+  rules:
+    - Never present revenue as profit.
+    - Never present working-capital release as profit.
+    - Scenario values must not be presented as realized savings.
+    - Every displayed financial effect must be reproducible from portfolio data and documented assumptions.
+    - Marketing claims without calculation lineage are prohibited.

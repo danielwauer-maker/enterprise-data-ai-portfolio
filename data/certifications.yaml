@@ -1,0 +1,41 @@
+schema_version: 1
+certifications:
+  - id: mb-800
+    provider: Microsoft
+    code: MB-800
+    name: Microsoft Dynamics 365 Business Central Functional Consultant
+    sequence: 1
+    portfolio_story_stage: ERP / Business Processes
+    delivery_work_package_id: CERT-01
+    mandatory_for_application: true
+    evidence:
+      credential_url: null
+      completed_date: null
+
+  - id: pl-300
+    provider: Microsoft
+    code: PL-300
+    name: Microsoft Power BI Data Analyst
+    sequence: 2
+    portfolio_story_stage: Business Intelligence / Analytics
+    delivery_work_package_id: CERT-02
+    mandatory_for_application: true
+    evidence:
+      credential_url: null
+      completed_date: null
+
+  - id: dp-600
+    provider: Microsoft
+    code: DP-600
+    name: Microsoft Fabric Analytics Engineer
+    sequence: 3
+    portfolio_story_stage: Enterprise Analytics / Fabric
+    delivery_work_package_id: CERT-STRETCH-01
+    mandatory_for_application: false
+    evidence:
+      credential_url: null
+      completed_date: null
+
+source_of_truth:
+  delivery_status_and_dates: data/roadmap.yaml
+  credential_metadata_and_evidence: data/certifications.yaml

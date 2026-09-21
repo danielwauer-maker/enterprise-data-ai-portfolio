@@ -1,0 +1,108 @@
+schema_version: 1
+project:
+  id: eoip
+  name: EOIP
+  full_name: Enterprise Operational Intelligence Platform
+  project_type: enterprise_analytics_platform
+  environment: fictional_enterprise
+  company_context: nordwerk-distribution
+
+  portfolio:
+    workstream_id: eoip
+    featured: true
+    display_order: 1
+    mandatory_for_application: true
+    role: Central enterprise analytics flagship and shared analytical data foundation for later portfolio projects.
+
+  positioning:
+    target_roles:
+      - Analytics Engineer
+      - Data & Analytics Consultant
+      - BI & Data Platform Engineer
+      - Microsoft Fabric / Power BI Consultant
+      - Decision Intelligence / Business Analytics
+    capabilities:
+      - SQL
+      - Data Modeling
+      - Dimensional Modeling
+      - Star Schema
+      - Power BI
+      - DAX
+      - Analytics Engineering
+      - KPI Engineering
+      - Business Intelligence
+      - Business Impact Analysis
+
+  business:
+    problem: Operational ERP-style data is fragmented and difficult for management to translate into reliable commercial and inventory decisions.
+    decision_questions:
+      - How is the business performing at executive level?
+      - Where are sales and margin changing and why?
+      - Where is inventory creating service risk or tying up working capital?
+    impact_categories:
+      - revenue
+      - profit
+      - working_capital_release
+    operational_outcomes:
+      - management_transparency
+      - decision_speed
+      - trusted_kpis
+
+  solution:
+    summary: A reproducible enterprise BI platform that transforms realistic ERP-style source data into a dimensional model, governed KPIs and decision-ready Power BI reporting.
+    v1_portfolio_scope:
+      - ERP-style source data
+      - SQL raw and staging layers
+      - Dimensional model and Star Schema
+      - KPI dictionary
+      - Executive Overview
+      - Sales & Margin Intelligence
+      - Inventory Intelligence
+      - Traceable business-impact cases
+      - Documentation and V1 release
+    exclusions:
+      - Autonomous AI agents
+      - Custom model training
+      - Real-time streaming
+      - Unnecessary microservices
+      - Large-scale MLOps
+
+  technology:
+    core:
+      - SQL
+      - Relational Database
+      - Dimensional Modeling
+      - Power BI
+      - DAX
+      - Git
+    later_or_optional:
+      - Microsoft Fabric
+      - Python
+
+  dependencies:
+    project_ids: []
+    shared_data:
+      - nordwerk-distribution
+
+  links:
+    repository_full_name: null
+    demo_url: null
+    documentation_url: null
+
+  evidence:
+    expected:
+      - source_model
+      - reproducible_data
+      - star_schema
+      - kpi_dictionary
+      - power_bi_report
+      - business_cases
+      - data_quality_checks
+      - architecture
+      - documentation
+
+  source_of_truth:
+    delivery: data/roadmap.yaml
+    company: data/companies/nordwerk.yaml
+    business_impact: data/business-impact.yaml
+    project_metadata: data/projects/eoip.yaml
