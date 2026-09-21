@@ -129,6 +129,7 @@ def render_status(metrics):
     milestones = metrics["milestones"]
     risks = metrics["risks"]
     cp = metrics["critical_path"]
+    efficiency = metrics["delivery_efficiency"]
 
     milestone_text = "No milestone yet due"
     if milestones["items"]:
@@ -174,6 +175,15 @@ def render_status(metrics):
 - Milestone Reliability: **{str(milestones["reliability_pct"]) + "%" if milestones["reliability_pct"] is not None else "n/a"}**
 - Current Milestone: **{milestone_text}**
 
+## AI-Assisted Delivery Efficiency
+
+- Baseline Delivery Window: **{efficiency["baseline_delivery_window_elapsed_days"]} elapsed calendar days**
+- Forecast Delivery Window: **{efficiency["forecast_delivery_window_elapsed_days"]} elapsed calendar days**
+- Forecast Schedule Compression: **{efficiency["forecast_schedule_compression_days"]:+d} days / {efficiency["forecast_schedule_compression_pct"]:+.2f}%**
+- Actual Delivery Window: **{str(efficiency["actual_delivery_window_elapsed_days"]) + " elapsed calendar days" if efficiency["actual_delivery_window_elapsed_days"] is not None else "pending — M11 not complete"}**
+- Observed Human Effort: **{str(efficiency["human_effort"]["observed_hours"]) + " h" if efficiency["human_effort"]["observed_hours"] is not None else "not yet tracked"}**
+- Cost Scenario: **{efficiency["cost_model"]["status"]}**
+
 ## Risk & Critical Path
 
 - Active Blockers: **{metrics["blockers"]["count"]}**
@@ -185,6 +195,8 @@ def render_status(metrics):
 
 - `data/roadmap.yaml`
 - `data/control-center.yaml`
+- `data/delivery-efficiency.yaml`
+- `data/effort-log.yaml`
 - `data/risks.yaml`
 - generated `data/metrics.json`
 """
@@ -199,6 +211,8 @@ def main():
     roadmap = load_yaml(ROOT / "data" / "roadmap.yaml")
     control = load_yaml(ROOT / "data" / "control-center.yaml")["control_center"]
     risks_data = load_yaml(ROOT / "data" / "risks.yaml")
+    delivery_efficiency_config = load_yaml(ROOT / "data" / "delivery-efficiency.yaml")["delivery_efficiency"]
+    effort_data = load_yaml(ROOT / "data" / "effort-log.yaml")["effort_log"]
 
     as_of = as_date(args.as_of or control["snapshot_date"])
     baseline = roadmap["baseline"]
@@ -289,6 +303,50 @@ def main():
 
     spi = None if planned_app_pct <= 0 else actual_app_pct / planned_app_pct
 
+    baseline_delivery_window_days = (target_date - baseline_start).days
+    forecast_delivery_window_days = max(0, (forecast_date - baseline_start).days)
+    forecast_compression_days = baseline_delivery_window_days - forecast_delivery_window_days
+    forecast_compression_pct = (
+        forecast_compression_days / baseline_delivery_window_days * 100.0
+        if baseline_delivery_window_days > 0
+        else None
+    )
+
+    application_milestone = next(
+        (m for m in milestones["items"] if m["id"] == "M11"),
+        None,
+    )
+    actual_completion_date = (
+        as_date(application_milestone["actual_completion"])
+        if application_milestone and application_milestone["complete"]
+        else None
+    )
+    actual_delivery_window_days = (
+        (actual_completion_date - baseline_start).days
+        if actual_completion_date
+        else None
+    )
+    actual_compression_days = (
+        baseline_delivery_window_days - actual_delivery_window_days
+        if actual_delivery_window_days is not None
+        else None
+    )
+    actual_compression_pct = (
+        actual_compression_days / baseline_delivery_window_days * 100.0
+        if actual_compression_days is not None and baseline_delivery_window_days > 0
+        else None
+    )
+
+    effort_entries = effort_data.get("entries", [])
+    human_minutes = [
+        float(entry["human_minutes"])
+        for entry in effort_entries
+        if entry.get("human_minutes") is not None
+    ]
+    observed_human_effort_hours = (
+        sum(human_minutes) / 60.0 if human_minutes else None
+    )
+
     metrics = {
         "schema_version": 1,
         "as_of": as_of.isoformat(),
@@ -313,6 +371,28 @@ def main():
             "forecast_confidence": forecast_confidence,
             "target_date": target_date.isoformat(),
             "schedule_buffer_days": buffer_days,
+        },
+        "delivery_efficiency": {
+            "baseline_start_date": baseline_start.isoformat(),
+            "baseline_target_date": target_date.isoformat(),
+            "baseline_delivery_window_elapsed_days": baseline_delivery_window_days,
+            "current_elapsed_days": max(0, (as_of - baseline_start).days),
+            "forecast_completion_date": forecast_date.isoformat(),
+            "forecast_delivery_window_elapsed_days": forecast_delivery_window_days,
+            "forecast_schedule_compression_days": forecast_compression_days,
+            "forecast_schedule_compression_pct": round2(forecast_compression_pct),
+            "actual_completion_date": actual_completion_date.isoformat() if actual_completion_date else None,
+            "actual_delivery_window_elapsed_days": actual_delivery_window_days,
+            "actual_schedule_compression_days": actual_compression_days,
+            "actual_schedule_compression_pct": round2(actual_compression_pct),
+            "human_effort": {
+                "entries_count": len(effort_entries),
+                "observed_hours": round2(observed_human_effort_hours),
+            },
+            "cost_model": {
+                "status": delivery_efficiency_config["cost_scenarios"]["status"],
+                "modeled_capacity_value_eur": None,
+            },
         },
         "throughput": {
             "window_days": window_days,
