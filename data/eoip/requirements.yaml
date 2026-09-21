@@ -1,0 +1,274 @@
+schema_version: 1
+eoip_requirements:
+  id: eoip-v1
+  title: EOIP — Enterprise Operational Intelligence Platform
+  version: "1.0"
+  status: frozen_v1_scope
+  owner_project_id: eoip
+  company_context: nordwerk-distribution
+
+  purpose:
+    statement: Transform realistic ERP-style operational data into a trusted management analytics layer for commercial and inventory decisions.
+    primary_users:
+      - executive_management
+      - sales_management
+      - commercial_controlling
+      - inventory_management
+    primary_outcomes:
+      - trusted_management_kpis
+      - faster_variance_detection
+      - sales_and_margin_transparency
+      - inventory_and_working_capital_visibility
+      - traceable_business_impact
+
+  business_problem:
+    summary: Operational ERP data is transaction-oriented and fragmented across customers, products, sales documents and inventory movements. Management needs a governed analytical model that explains performance, highlights exceptions and connects findings to supportable business impact.
+    target_decisions:
+      - Understand whether revenue and gross margin are improving or deteriorating and identify the main drivers.
+      - Identify customers, products and categories responsible for material sales or gross-margin changes.
+      - Detect discount and return patterns that erode gross-margin performance.
+      - Identify inventory segments that tie up working capital or create availability risk.
+      - Prioritize management attention using a consistent set of trusted KPIs and exceptions.
+
+  analytical_domains:
+    - id: executive
+      name: Executive Performance
+      purpose: Cross-domain management view of revenue, gross margin, customers and inventory.
+    - id: sales
+      name: Sales Performance
+      purpose: Revenue, volume, orders and customer/product performance over time.
+    - id: margin
+      name: Gross Margin & Commercial Leakage
+      purpose: Gross margin, discount and return visibility without full cost-to-serve profitability.
+    - id: inventory
+      name: Inventory Intelligence
+      purpose: Inventory value, coverage, movement and working-capital exposure.
+
+  source_boundaries:
+    included:
+      master_data:
+        - customers
+        - products
+        - product_categories
+        - warehouses
+        - salespeople_or_commercial_owners
+      sales_transactions:
+        - sales_orders
+        - sales_order_lines
+        - posted_sales_invoices
+        - posted_sales_invoice_lines
+        - sales_returns_or_credit_memos
+        - discounts
+      inventory_transactions:
+        - item_or_inventory_movements
+        - inventory_balances
+        - warehouse_transfers
+        - receipt_and_issue_movements
+      cost_basis:
+        - product_unit_cost_or_cogs_basis_required_for_gross_margin
+    excluded_from_v1_source_scope:
+      - general_ledger_and_full_financial_accounting
+      - accounts_receivable_and_cash_collection
+      - payroll_and_hr
+      - crm_activity_tracking
+      - detailed_supplier_contract_management
+      - procurement_optimization_data_beyond_inventory_receipt_context
+      - external_market_or_competitor_data
+      - unstructured_documents
+      - personally_identifying_real_customer_or_employee_data
+
+  kpi_scope:
+    count: 18
+    items:
+      - {id: net_sales, name: Net Sales, domain: sales}
+      - {id: sales_growth_pct, name: Sales Growth %, domain: sales}
+      - {id: gross_profit, name: Gross Profit, domain: margin}
+      - {id: gross_margin_pct, name: Gross Margin %, domain: margin}
+      - {id: order_count, name: Order Count, domain: sales}
+      - {id: average_order_value, name: Average Order Value, domain: sales}
+      - {id: active_customers, name: Active Customers, domain: sales}
+      - {id: units_sold, name: Units Sold, domain: sales}
+      - {id: discount_value, name: Discount Value, domain: margin}
+      - {id: discount_rate_pct, name: Discount Rate %, domain: margin}
+      - {id: return_value, name: Return Value, domain: margin}
+      - {id: return_rate_pct, name: Return Rate %, domain: margin}
+      - {id: inventory_value, name: Inventory Value, domain: inventory}
+      - {id: inventory_turnover, name: Inventory Turnover, domain: inventory}
+      - {id: stock_coverage_days, name: Stock Coverage Days, domain: inventory}
+      - {id: slow_moving_inventory_value, name: Slow-Moving Inventory Value, domain: inventory}
+      - {id: excess_inventory_value, name: Excess Inventory Value, domain: inventory}
+      - {id: stockout_risk_sku_count, name: Stockout-Risk SKU Count, domain: inventory}
+    rule: KPI formulas and calculation grain are defined later in EOIP-06 without changing the agreed V1 KPI identities unless a documented scope change is approved.
+
+  report_scope:
+    page_count: 5
+    pages:
+      - id: executive_overview
+        name: Executive Overview
+        purpose: Summarize enterprise performance and surface the highest-value exceptions.
+        primary_domains: [executive, sales, margin, inventory]
+      - id: sales_performance
+        name: Sales Performance
+        purpose: Explain revenue, volume, orders and growth by time, customer, product and category.
+        primary_domains: [sales]
+      - id: margin_discount
+        name: Margin & Discount Intelligence
+        purpose: Explain gross-margin movement, discount concentration and return leakage.
+        primary_domains: [margin]
+      - id: customer_product
+        name: Customer & Product Performance
+        purpose: Compare commercial performance across customers, products and categories using revenue and gross-margin measures.
+        primary_domains: [sales, margin]
+      - id: inventory_intelligence
+        name: Inventory Intelligence
+        purpose: Explain inventory value, coverage, slow movers, excess stock and availability risk.
+        primary_domains: [inventory]
+
+  business_case_scope:
+    cases:
+      - id: eoip-bc-01
+        title: Excess Inventory Working Capital Opportunity
+        impact_category: working_capital_release
+        intended_evidence_level: B
+        analytical_basis:
+          - excess_inventory_value
+          - slow_moving_inventory_value
+          - stock_coverage_days
+        requirement: Identify the directly calculated excess-inventory baseline and model a documented reduction scenario without presenting working-capital release as profit.
+      - id: eoip-bc-02
+        title: Discount Leakage Gross-Profit Opportunity
+        impact_category: profit
+        intended_evidence_level: B
+        analytical_basis:
+          - discount_value
+          - discount_rate_pct
+          - gross_profit
+          - gross_margin_pct
+        requirement: Identify material discount concentration and model a transparent partial-remediation scenario using explicit assumptions.
+      - id: eoip-bc-03
+        title: Inventory Availability Revenue-at-Risk Scenario
+        impact_category: revenue
+        intended_evidence_level: C
+        analytical_basis:
+          - stockout_risk_sku_count
+          - net_sales
+          - units_sold
+        requirement: Quantify sales value exposed to stockout risk as a scenario, clearly separated from realized lost sales or profit.
+
+  data_quality_requirements:
+    - id: dq_unique_keys
+      requirement: Required business and transaction keys are unique at their defined grain.
+    - id: dq_referential_integrity
+      requirement: Transactional foreign keys resolve to valid master-data records unless an explicitly documented unknown-member rule applies.
+    - id: dq_required_fields
+      requirement: Required dates, quantities, amounts, product IDs, customer IDs and warehouse IDs are populated.
+    - id: dq_sales_reconciliation
+      requirement: Sales header and line values reconcile within defined rounding tolerances.
+    - id: dq_returns_sign
+      requirement: Returns and credit quantities/values use a documented sign convention consistently.
+    - id: dq_cost_validity
+      requirement: Cost values used for gross-margin calculations are non-negative and available for all in-scope sales lines unless explicitly flagged.
+    - id: dq_inventory_reconciliation
+      requirement: Inventory opening balance plus movements reconciles to calculated ending balance at the defined grain.
+    - id: dq_date_validity
+      requirement: Transaction dates are chronologically plausible and fall inside the generated analytical period.
+    - id: dq_amount_validity
+      requirement: Quantities, prices, discounts and monetary amounts respect documented business rules and ranges.
+    - id: dq_synthetic_only
+      requirement: EOIP uses synthetic fictional enterprise data and contains no real customer, supplier or employee personal data.
+
+  non_functional_requirements:
+    reproducibility:
+      - Synthetic source data can be regenerated deterministically from a documented seed/configuration.
+      - SQL transformation steps are version controlled and rerunnable.
+      - A clean environment can reproduce the analytical model using documented setup steps.
+    traceability:
+      - KPI lineage is documented from source fields through transformation to report measure.
+      - Business-case calculations reference specific KPI/data inputs and explicit assumptions.
+      - Material architecture and scope decisions are version controlled.
+    maintainability:
+      - Raw, staging, dimensional and reporting concerns remain clearly separated.
+      - Naming conventions and grains are documented.
+      - Logic is centralized rather than duplicated across report visuals.
+    portability:
+      - The core portfolio demo must remain runnable without paid enterprise infrastructure.
+      - Cloud/Fabric extensions may be demonstrated later but are not required for EOIP V1.
+    performance:
+      - Report interactions should remain responsive for the portfolio-scale dataset.
+      - Model size and refresh approach must be appropriate to the synthetic dataset rather than artificially over-engineered.
+    security_and_privacy:
+      - No production credentials or secrets are committed.
+      - No real personal or confidential company data is used.
+
+  explicit_exclusions:
+    analytics:
+      - abc_xyz_segmentation
+      - safety_stock_optimization
+      - reorder_point_optimization
+      - advanced_demand_forecasting
+      - cost_to_serve_profitability
+      - contribution_margin_after_freight_returns_handling
+      - supplier_performance_and_purchase_price_variance
+      - cash_flow_and_dso
+    ai:
+      - autonomous_agents
+      - llm_orchestration
+      - custom_model_training
+      - production_mlops
+    architecture:
+      - real_time_streaming
+      - kubernetes
+      - unnecessary_microservices
+      - bespoke_api_backend_for_power_bi
+      - paid_cloud_infrastructure_required_for_demo
+
+  downstream_ownership:
+    InventoryIQ:
+      owns:
+        - abc_xyz_segmentation
+        - safety_stock
+        - reorder_point
+        - inventory_optimization
+        - advanced_working_capital_simulation
+    MarginGuard:
+      owns:
+        - cost_to_serve
+        - contribution_margin
+        - customer_profitability
+        - product_profitability
+        - deeper_margin_leakage
+    ProcureGuard:
+      owns:
+        - supplier_performance
+        - purchase_price_variance
+        - procurement_savings
+        - lead_time_supplier_intelligence
+
+  definition_of_done:
+    scope_and_business:
+      - Business problem, primary users and target decisions are frozen and documented.
+      - Analytical domains and source-system boundaries are unambiguous.
+      - The 18 KPI identities and five Power BI pages are agreed V1 scope.
+      - Three traceable business-case targets are defined with financial category and evidence level.
+      - Explicit exclusions prevent overlap with InventoryIQ, MarginGuard and ProcureGuard.
+    quality_and_governance:
+      - Data-quality requirements are defined before synthetic data generation begins.
+      - Non-functional requirements cover reproducibility, traceability, maintainability, portability, performance and security/privacy.
+      - Changes after freeze require a documented scope decision with schedule impact.
+    delivery:
+      - Canonical requirements are committed to GitHub.
+      - EOIP project metadata links to this specification.
+      - EOIP-02 may begin without unresolved V1 scope questions.
+
+  change_control:
+    rule: Any requested V1 change affecting KPI count, report-page scope, source boundaries, business cases or downstream ownership requires a documented scope review against the 28 February 2027 Application Readiness target.
+    first_response_to_scope_pressure:
+      - simplify_visual_detail
+      - reduce_nonessential_drillthrough
+      - defer_optional_enrichment
+    must_not_expand_without_rebaseline:
+      - additional_analytical_domain
+      - additional_source_system
+      - machine_learning
+      - autonomous_ai
+      - real_time_architecture

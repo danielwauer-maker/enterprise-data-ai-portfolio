@@ -113,8 +113,8 @@ work_packages:
   - {id: FND-04, workstream: foundation, name: Structured Portfolio Data Model, weight: 2.0, start: 2026-09-24, end: 2026-09-27, mandatory: true, critical: true, depends_on: [FND-03], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
   - {id: FND-05, workstream: foundation, name: Control Center Metrics Baseline, weight: 2.0, start: 2026-09-27, end: 2026-09-30, mandatory: true, critical: true, depends_on: [FND-04], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
 
-  - {id: EOIP-01, workstream: eoip, name: EOIP Requirements & Scope Specification, weight: 3.0, start: 2026-09-28, end: 2026-10-04, mandatory: true, critical: true, depends_on: [FND-04], status: ready}
-  - {id: EOIP-02, workstream: eoip, name: NordWerk Domain & ERP Source Model, weight: 4.0, start: 2026-10-01, end: 2026-10-11, mandatory: true, critical: true, depends_on: [EOIP-01], status: planned}
+  - {id: EOIP-01, workstream: eoip, name: EOIP Requirements & Scope Specification, weight: 3.0, start: 2026-09-28, end: 2026-10-04, mandatory: true, critical: true, depends_on: [FND-04], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: EOIP-02, workstream: eoip, name: NordWerk Domain & ERP Source Model, weight: 4.0, start: 2026-10-01, end: 2026-10-11, mandatory: true, critical: true, depends_on: [EOIP-01], status: ready}
   - {id: EOIP-03, workstream: eoip, name: Reproducible Synthetic ERP Data Generation, weight: 4.0, start: 2026-10-08, end: 2026-10-18, mandatory: true, critical: true, depends_on: [EOIP-02], status: planned}
   - {id: EOIP-04, workstream: eoip, name: SQL Raw & Staging Layer, weight: 4.0, start: 2026-10-15, end: 2026-10-24, mandatory: true, critical: true, depends_on: [EOIP-03], status: planned}
   - {id: EOIP-05, workstream: eoip, name: Dimensional Model & Star Schema, weight: 5.0, start: 2026-10-22, end: 2026-10-31, mandatory: true, critical: true, depends_on: [EOIP-04], status: planned}
