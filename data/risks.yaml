@@ -1,0 +1,65 @@
+schema_version: 1
+risks:
+  - id: R1
+    title: Scope Creep
+    probability: high
+    impact: high
+    severity: high
+    status: open
+    mitigation: Apply scope guardrails and feature freeze; new work above one focused day requires scope review.
+
+  - id: R2
+    title: EOIP Becomes Too Large
+    probability: medium_high
+    impact: critical
+    severity: critical
+    status: open
+    mitigation: Keep EOIP V1 focused on SQL, dimensional modeling, Power BI, DAX and traceable business cases.
+
+  - id: R3
+    title: BCSentinel Consumes Portfolio Capacity
+    probability: high
+    impact: high
+    severity: high
+    status: open
+    mitigation: Separate SaaS product roadmap from the defined BCSentinel portfolio-readiness package.
+
+  - id: R4
+    title: Too Many Certifications
+    probability: medium
+    impact: medium
+    severity: medium
+    status: open
+    mitigation: Certifications support project delivery and do not replace mandatory portfolio work.
+
+  - id: R5
+    title: Website Development Becomes Its Own Product
+    probability: medium
+    impact: high
+    severity: high
+    status: open
+    mitigation: Keep the website static, source structured data from GitHub and avoid unnecessary backend infrastructure.
+
+  - id: R6
+    title: Artificial Business Impact
+    probability: medium
+    impact: critical
+    severity: critical
+    status: open
+    mitigation: Enforce business-impact evidence levels and traceable calculations with explicit assumptions and limitations.
+
+  - id: R7
+    title: Attractive Dashboards but Weak Engineering
+    probability: medium
+    impact: high
+    severity: high
+    status: open
+    mitigation: Require reproducibility, architecture, testing, data quality and documentation in project definitions of done.
+
+  - id: R8
+    title: Strong Engineering but Weak Recruiter Story
+    probability: medium
+    impact: high
+    severity: high
+    status: open
+    mitigation: Present every flagship project through Problem -> Solution -> Insight -> Decision -> Impact.
