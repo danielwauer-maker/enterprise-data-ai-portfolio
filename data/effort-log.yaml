@@ -1,0 +1,11 @@
+schema_version: 1
+effort_log:
+  unit: minutes
+  tracking_started: 2026-09-22
+  rules:
+    - Record active human effort, not elapsed wall-clock time.
+    - One entry may cover one focused working session.
+    - Every entry must reference at least one portfolio work package or cross-cutting activity.
+    - AI-assisted work identifies the assistance category but does not subtract AI runtime from human effort.
+    - Estimates must be marked estimated; measured or timer-based values should be preferred.
+  entries: []

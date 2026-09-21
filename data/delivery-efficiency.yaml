@@ -1,0 +1,67 @@
+schema_version: 1
+delivery_efficiency:
+  id: ai-assisted-delivery-efficiency
+  purpose: Quantify schedule compression and, where evidence exists, human-capacity and cost scenarios for AI-assisted portfolio delivery.
+
+  schedule:
+    baseline_start_source: data/roadmap.yaml#baseline.start_date
+    baseline_target_source: data/roadmap.yaml#baseline.application_ready_date
+    actual_completion_milestone: M11
+    duration_definition: elapsed_calendar_days
+    rules:
+      - Baseline dates are never rewritten to improve the comparison.
+      - Actual delivery duration is only final when M11 Application Ready is complete.
+      - Forecast duration must be labelled forecast until M11 is complete.
+      - Schedule compression compares the frozen baseline target with actual or forecast completion.
+
+  effort:
+    source: data/effort-log.yaml
+    unit: minutes
+    measure: active_human_effort
+    rules:
+      - Log active human effort only.
+      - Do not infer human effort from Git commit timestamps, PR duration or AI runtime.
+      - AI runtime may be noted separately but is not human labor.
+      - Missing effort data is reported as unknown, never as zero.
+
+  ai_assistance:
+    allowed_categories:
+      - planning
+      - research
+      - architecture
+      - coding
+      - testing
+      - documentation
+      - debugging
+      - data_modeling
+      - analytics
+      - portfolio_management
+    disclosure_rule: Describe AI as an engineering accelerator and collaborator; do not claim autonomous delivery when human decisions or review were required.
+
+  cost_scenarios:
+    evidence_level: C
+    status: awaiting_benchmark_and_effort_data
+    formulas:
+      capacity_hours_saved: benchmark_human_hours - actual_human_effort_hours
+      modeled_capacity_value_eur: capacity_hours_saved * loaded_hourly_rate_eur
+      modeled_efficiency_pct: capacity_hours_saved / benchmark_human_hours * 100
+    required_inputs:
+      - benchmark_human_hours
+      - actual_human_effort_hours
+      - loaded_hourly_rate_eur
+    rules:
+      - Cost scenarios are illustrative until benchmark source and rate assumptions are documented.
+      - Never multiply calendar schedule days by eight and call the result labor savings.
+      - Never present modeled capacity value as realized employer savings.
+      - Every displayed euro value must expose assumptions and evidence level.
+
+  website:
+    section_id: delivery-efficiency
+    title: AI-Assisted Delivery Efficiency
+    required_views:
+      - baseline_vs_actual_delivery_window
+      - baseline_vs_forecast_until_actual_exists
+      - schedule_compression_days_and_pct
+      - effort_hours_when_available
+      - modeled_capacity_value_when_evidence_is_sufficient
+      - methodology_and_assumptions
