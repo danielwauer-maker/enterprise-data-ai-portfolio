@@ -148,5 +148,27 @@
     "blocked_count": 0,
     "blocked_ids": [],
     "first_unresolved": "EOIP-06"
+  },
+  "delivery_efficiency": {
+    "baseline_start_date": "2026-09-22",
+    "baseline_target_date": "2027-02-28",
+    "baseline_delivery_window_elapsed_days": 159,
+    "current_elapsed_days": 0,
+    "forecast_completion_date": "2027-01-24",
+    "forecast_delivery_window_elapsed_days": 124,
+    "forecast_schedule_compression_days": 35,
+    "forecast_schedule_compression_pct": 22.01,
+    "actual_completion_date": null,
+    "actual_delivery_window_elapsed_days": null,
+    "actual_schedule_compression_days": null,
+    "actual_schedule_compression_pct": null,
+    "human_effort": {
+      "entries_count": 0,
+      "observed_hours": null
+    },
+    "cost_model": {
+      "status": "awaiting_benchmark_and_effort_data",
+      "modeled_capacity_value_eur": null
+    }
   }
 }
