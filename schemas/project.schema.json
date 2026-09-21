@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/danielwauer-maker/enterprise-data-ai-portfolio/schemas/project.schema.json",
+  "title": "Enterprise Data & AI Portfolio Project Metadata",
+  "type": "object",
+  "required": ["schema_version", "project"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "project": {
+      "type": "object",
+      "required": [
+        "id", "name", "full_name", "project_type", "environment", "company_context",
+        "portfolio", "positioning", "business", "solution", "technology",
+        "dependencies", "links", "evidence", "source_of_truth"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "full_name": { "type": "string", "minLength": 1 },
+        "project_type": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "minLength": 1 },
+        "company_context": { "type": ["string", "null"] },
+        "portfolio": {
+          "type": "object",
+          "required": ["workstream_id", "featured", "display_order", "mandatory_for_application", "role"],
+          "properties": {
+            "workstream_id": { "type": "string", "minLength": 1 },
+            "featured": { "type": "boolean" },
+            "display_order": { "type": "integer", "minimum": 1 },
+            "mandatory_for_application": { "type": "boolean" },
+            "role": { "type": "string", "minLength": 1 }
+          }
+        },
+        "positioning": {
+          "type": "object",
+          "required": ["target_roles", "capabilities"],
+          "properties": {
+            "target_roles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "capabilities": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        },
+        "business": {
+          "type": "object",
+          "required": ["problem", "decision_questions", "impact_categories", "operational_outcomes"],
+          "properties": {
+            "problem": { "type": "string", "minLength": 1 },
+            "decision_questions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "impact_categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["revenue", "profit", "cost_savings", "working_capital_release"]
+              },
+              "uniqueItems": true
+            },
+            "operational_outcomes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "solution": {
+          "type": "object",
+          "required": ["summary", "exclusions"],
+          "properties": {
+            "summary": { "type": "string", "minLength": 1 },
+            "v1_portfolio_scope": { "type": "array", "items": { "type": "string" } },
+            "exclusions": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "technology": { "type": "object", "minProperties": 1 },
+        "dependencies": {
+          "type": "object",
+          "required": ["project_ids", "shared_data"],
+          "properties": {
+            "project_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+            "shared_data": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+          }
+        },
+        "links": {
+          "type": "object",
+          "required": ["repository_full_name", "demo_url", "documentation_url"]
+        },
+        "evidence": {
+          "type": "object",
+          "required": ["expected"],
+          "properties": {
+            "expected": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        },
+        "source_of_truth": { "type": "object", "minProperties": 2 }
+      }
+    }
+  }
+}
