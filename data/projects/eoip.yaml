@@ -85,7 +85,7 @@ project:
       - nordwerk-distribution
 
   links:
-    repository_full_name: null
+    repository_full_name: danielwauer-maker/eoip
     demo_url: null
     documentation_url: null
 
@@ -108,4 +108,5 @@ project:
     business_impact: data/business-impact.yaml
     requirements: data/eoip/requirements.yaml
     domain_model: data/eoip/domain-model.yaml
+    implementation_repository: https://github.com/danielwauer-maker/eoip
     project_metadata: data/projects/eoip.yaml
