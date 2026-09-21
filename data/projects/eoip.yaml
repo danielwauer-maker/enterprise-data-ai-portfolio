@@ -107,4 +107,5 @@ project:
     company: data/companies/nordwerk.yaml
     business_impact: data/business-impact.yaml
     requirements: data/eoip/requirements.yaml
+    domain_model: data/eoip/domain-model.yaml
     project_metadata: data/projects/eoip.yaml
