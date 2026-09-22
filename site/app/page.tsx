@@ -299,7 +299,7 @@ export default function Home() {
               <Localized i18n={i18n} path="control.schedule_position" />
             </div>
             <div className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-cyan-200">
-              +{metrics.schedule.schedule_delta_days} days
+              +{metrics.schedule.schedule_delta_days} <Localized i18n={i18n} path="units.days" />
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-400">
               <Localized i18n={i18n} path="control.ahead_text" />{" "}
@@ -359,7 +359,7 @@ export default function Home() {
                   <Localized i18n={i18n} path="delivery.baseline_window" />
                 </div>
                 <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.baseline_delivery_window_elapsed_days} days
+                  {efficiency.baseline_delivery_window_elapsed_days} <Localized i18n={i18n} path="units.days" />
                 </div>
                 <div className="mt-3 text-xs leading-5 text-slate-500">
                   <LocalizedDate value={efficiency.baseline_start_date} /> → <LocalizedDate value={efficiency.baseline_target_date} />
@@ -370,7 +370,7 @@ export default function Home() {
                   <Localized i18n={i18n} path="delivery.forecast_window" />
                 </div>
                 <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.forecast_delivery_window_elapsed_days} days
+                  {efficiency.forecast_delivery_window_elapsed_days} <Localized i18n={i18n} path="units.days" />
                 </div>
                 <div className="mt-3 text-xs leading-5 text-slate-500">
                   <Localized i18n={i18n} path="delivery.forecast_to" />{" "}
@@ -382,7 +382,7 @@ export default function Home() {
                   <Localized i18n={i18n} path="delivery.forecast_compression" />
                 </div>
                 <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.forecast_schedule_compression_days} days
+                  {efficiency.forecast_schedule_compression_days} <Localized i18n={i18n} path="units.days" />
                 </div>
                 <div className="mt-3 text-xs leading-5 text-slate-500">
                   {formatPct(efficiency.forecast_schedule_compression_pct)}{" "}
@@ -432,10 +432,10 @@ export default function Home() {
                   <Localized i18n={i18n} path="delivery.planned_hours" />
                 </div>
                 <div className="mt-3 text-2xl font-semibold text-white">
-                  {efficiency.human_effort.planned_portfolio_hours} h
+                  {efficiency.human_effort.planned_portfolio_hours} <Localized i18n={i18n} path="units.hours" />
                 </div>
                 <div className="mt-2 text-xs text-slate-500">
-                  {efficiency.human_effort.planned_mandatory_hours} h mandatory / Pflichtumfang
+                  {efficiency.human_effort.planned_mandatory_hours} <Localized i18n={i18n} path="units.hours" />{" "}<Localized i18n={i18n} path="delivery.mandatory_scope" />
                 </div>
               </article>
 
@@ -460,7 +460,7 @@ export default function Home() {
                   <LocalizedCurrency value={efficiency.cost_model.planned_portfolio_cost_eur} />
                 </div>
                 <div className="mt-2 text-xs text-slate-500">
-                  <LocalizedCurrency value={efficiency.cost_model.planned_mandatory_cost_eur} /> mandatory / Pflichtumfang
+                  <LocalizedCurrency value={efficiency.cost_model.planned_mandatory_cost_eur} />{" "}<Localized i18n={i18n} path="delivery.mandatory_scope" />
                 </div>
               </article>
 
@@ -513,7 +513,7 @@ export default function Home() {
               </div>
 
               <p className="mt-5 text-sm leading-7 text-slate-400">
-                <Localized i18n={i18n} path={`projects.${project.id}.summary`} />
+                <Localized i18n={i18n} path={`project_cards.${project.id}.summary`} />
               </p>
 
               <div className="mt-6">
