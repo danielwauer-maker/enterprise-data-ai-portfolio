@@ -24,6 +24,11 @@ export type PortfolioData = {
   roadmap: AnyRecord;
   metrics: AnyRecord;
   website: AnyRecord;
+  effortPlan: AnyRecord;
+  i18n: {
+    en: AnyRecord;
+    de: AnyRecord;
+  };
   projects: ProjectView[];
   eoip: AnyRecord;
 };
@@ -133,13 +138,18 @@ export function loadPortfolioData(): PortfolioData {
   const roadmap = readYaml("data/roadmap.yaml");
   const metrics = readJson("data/metrics.json");
   const website = readYaml("data/website.yaml").website;
+  const effortPlan = readYaml("data/effort-plan.yaml").effort_plan;
   const eoip = readYaml("data/projects/eoip.yaml").project;
+  const en = readYaml("data/i18n/en.yaml").website;
+  const de = readYaml("data/i18n/de.yaml").website;
 
   return {
     portfolio,
     roadmap,
     metrics,
     website,
+    effortPlan,
+    i18n: { en, de },
     projects: loadProjects(roadmap),
     eoip,
   };
