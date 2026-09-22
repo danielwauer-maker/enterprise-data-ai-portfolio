@@ -18,6 +18,12 @@ website:
       initial_preference: system
       user_toggle: true
       persistence: browser_local_storage
+    localization:
+      languages: [de, en]
+      default_preference: system
+      fallback_language: en
+      user_toggle: flags
+      persistence: browser_local_storage
 
   principles:
     - Recruiter and technical decision-maker first.
@@ -34,7 +40,9 @@ website:
     certifications: data/certifications.yaml
     business_impact: data/business-impact.yaml
     delivery_efficiency: data/delivery-efficiency.yaml
+    effort_plan: data/effort-plan.yaml
     effort_log: data/effort-log.yaml
+    translations: data/i18n/
     company_context: data/companies/nordwerk.yaml
 
   initial_vertical_slice:
