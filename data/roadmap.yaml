@@ -152,8 +152,8 @@ work_packages:
   - {id: PG-04, workstream: procureguard, name: Procurement Savings Business Case, weight: 0.75, start: 2027-02-09, end: 2027-02-12, mandatory: false, critical: false, depends_on: [PG-03], status: planned}
   - {id: PG-05, workstream: procureguard, name: MVP Documentation & Release, weight: 0.75, start: 2027-02-11, end: 2027-02-14, mandatory: false, critical: false, depends_on: [PG-04], status: planned}
 
-  - {id: WEB-01, workstream: website, name: Website Information Architecture & Design System, weight: 1.5, start: 2027-01-15, end: 2027-01-24, mandatory: true, critical: true, depends_on: [FND-04], status: in_progress, actual_start: 2026-09-22}
-  - {id: WEB-02, workstream: website, name: Structured Data Integration, weight: 1.5, start: 2027-01-22, end: 2027-01-31, mandatory: true, critical: true, depends_on: [WEB-01], status: planned}
+  - {id: WEB-01, workstream: website, name: Website Information Architecture & Design System, weight: 1.5, start: 2027-01-15, end: 2027-01-24, mandatory: true, critical: true, depends_on: [FND-04], status: done, actual_start: 2026-09-22, actual_end: 2026-09-22}
+  - {id: WEB-02, workstream: website, name: Structured Data Integration, weight: 1.5, start: 2027-01-22, end: 2027-01-31, mandatory: true, critical: true, depends_on: [WEB-01], status: ready}
   - {id: WEB-03, workstream: website, name: Hero Projects & Business Impact Pages, weight: 2.0, start: 2027-01-29, end: 2027-02-07, mandatory: true, critical: true, depends_on: [WEB-02, EOIP-11], status: planned}
   - {id: WEB-04, workstream: website, name: Roadmap Status Plan-vs-Actual & Forecast Views, weight: 1.5, start: 2027-02-03, end: 2027-02-10, mandatory: true, critical: true, depends_on: [FND-05, WEB-02], status: planned}
   - {id: WEB-05, workstream: website, name: Project Detail Pages & Repository Links, weight: 1.0, start: 2027-02-07, end: 2027-02-14, mandatory: true, critical: true, depends_on: [WEB-03, INV-06, MG-06, BC-06], status: planned}
