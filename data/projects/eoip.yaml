@@ -119,4 +119,7 @@ project:
     requirements: data/eoip/requirements.yaml
     domain_model: data/eoip/domain-model.yaml
     implementation_repository: https://github.com/danielwauer-maker/eoip
+    technical_kpi_catalog: danielwauer-maker/eoip:semantic/kpi-catalog.yaml
+    dax_foundation: danielwauer-maker/eoip:powerbi/measures.dax
+    semantic_sql_reference: danielwauer-maker/eoip:sql/040_semantic_views.sql
     project_metadata: data/projects/eoip.yaml
