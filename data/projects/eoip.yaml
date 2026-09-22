@@ -122,4 +122,7 @@ project:
     technical_kpi_catalog: danielwauer-maker/eoip:semantic/kpi-catalog.yaml
     dax_foundation: danielwauer-maker/eoip:powerbi/measures.dax
     semantic_sql_reference: danielwauer-maker/eoip:sql/040_semantic_views.sql
+    sales_margin_report_contract: danielwauer-maker/eoip:powerbi/report-pages.yaml
+    sales_margin_sql_reference: danielwauer-maker/eoip:sql/050_sales_margin_reporting_views.sql
+    sales_margin_documentation: danielwauer-maker/eoip:docs/SALES_MARGIN_INTELLIGENCE.md
     project_metadata: data/projects/eoip.yaml
