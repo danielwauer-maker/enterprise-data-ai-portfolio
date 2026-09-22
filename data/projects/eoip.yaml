@@ -79,6 +79,16 @@ project:
       - Microsoft Fabric
       - Python
 
+  architecture:
+    flow:
+      - {id: source, label: Synthetic ERP, description: Reproducible operational source data}
+      - {id: raw, label: Raw, description: Typed PostgreSQL source layer}
+      - {id: staging, label: Staging, description: Normalized operational semantics}
+      - {id: dimensional, label: Star Schema, description: Conformed dimensions and analytical facts}
+      - {id: semantic, label: KPI / DAX, description: Governed semantic and measure layer}
+      - {id: reporting, label: Power BI, description: Decision-ready analytical reporting}
+      - {id: decision, label: Decisions, description: Management action and traceable business impact}
+
   dependencies:
     project_ids: []
     shared_data:
