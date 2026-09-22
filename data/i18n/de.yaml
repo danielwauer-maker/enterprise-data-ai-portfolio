@@ -87,7 +87,7 @@ website:
   architecture:
     eyebrow: EOIP-Architektur
     title: Von operativen Daten zur Entscheidungsunterstützung.
-    copy: EOIP ist bewusst geschichtet: Quelldaten bleiben operativ, Staging normalisiert die Semantik, das dimensionale Modell definiert den analytischen Grain und Reporting baut auf einer nachvollziehbaren Grundlage auf.
+    copy: "EOIP ist bewusst geschichtet: Quelldaten bleiben operativ, Staging normalisiert die Semantik, das dimensionale Modell definiert den analytischen Grain und Reporting baut auf einer nachvollziehbaren Grundlage auf."
   roadmap:
     eyebrow: Roadmap & Meilensteine
     title: Die Baseline bleibt eingefroren. Die tatsächliche Delivery bleibt sichtbar.
