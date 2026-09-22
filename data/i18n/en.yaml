@@ -73,6 +73,10 @@ website:
     modeled_savings: Modeled capacity value
     savings_pending: Available when actual effort exists
     scenario_label: Scenario - not realized cash savings
+    mandatory_scope: mandatory scope
+  units:
+    days: days
+    hours: h
   projects:
     eyebrow: Featured work
     title: One portfolio, several enterprise decision problems.
@@ -104,7 +108,7 @@ website:
   environments:
     real_product: Real product
     fictional_enterprise: Fictional enterprise
-  projects:
+  project_cards:
     bcsentinel:
       role: Demonstrates production-oriented SaaS and software engineering in the Microsoft Dynamics 365 Business Central ecosystem.
       summary: A real SaaS-oriented monitoring and analysis product for Microsoft Dynamics 365 Business Central.
