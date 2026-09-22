@@ -38,11 +38,23 @@
     "actual_schedule_compression_pct": null,
     "human_effort": {
       "entries_count": 0,
-      "observed_hours": null
+      "observed_hours": null,
+      "planned_portfolio_hours": 635,
+      "planned_mandatory_hours": 600,
+      "benchmark_id": "effort-baseline-v1.0",
+      "benchmark_evidence_level": "C"
     },
     "cost_model": {
-      "status": "awaiting_benchmark_and_effort_data",
-      "modeled_capacity_value_eur": null
+      "status": "planned_benchmark_ready_actual_effort_pending",
+      "loaded_hourly_rate_eur": 80,
+      "rate_evidence_level": "C",
+      "planned_portfolio_cost_eur": 50800,
+      "planned_mandatory_cost_eur": 48000,
+      "observed_cost_eur": null,
+      "capacity_hours_saved": null,
+      "modeled_capacity_value_eur": null,
+      "modeled_efficiency_pct": null,
+      "comparison_final": false
     }
   },
   "throughput": {

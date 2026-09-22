@@ -15,7 +15,8 @@ delivery_efficiency:
       - Schedule compression compares the frozen baseline target with actual or forecast completion.
 
   effort:
-    source: data/effort-log.yaml
+    plan_source: data/effort-plan.yaml
+    actual_source: data/effort-log.yaml
     unit: minutes
     measure: active_human_effort
     rules:
@@ -40,13 +41,13 @@ delivery_efficiency:
 
   cost_scenarios:
     evidence_level: C
-    status: awaiting_benchmark_and_effort_data
+    status: planned_benchmark_ready_actual_effort_pending
     formulas:
       capacity_hours_saved: benchmark_human_hours - actual_human_effort_hours
       modeled_capacity_value_eur: capacity_hours_saved * loaded_hourly_rate_eur
       modeled_efficiency_pct: capacity_hours_saved / benchmark_human_hours * 100
     required_inputs:
-      - benchmark_human_hours
+      - planned_human_hours
       - actual_human_effort_hours
       - loaded_hourly_rate_eur
     rules:

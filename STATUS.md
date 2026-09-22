@@ -34,8 +34,11 @@
 - Forecast Delivery Window: **116 elapsed calendar days**
 - Forecast Schedule Compression: **+43 days / +27.04%**
 - Actual Delivery Window: **pending — M11 not complete**
+- Planned Human Effort: **635 h portfolio / 600 h mandatory**
 - Observed Human Effort: **not yet tracked**
-- Cost Scenario: **awaiting_benchmark_and_effort_data**
+- Planned Capacity Cost: **EUR 50800 portfolio / EUR 48000 mandatory**
+- Observed Capacity Cost: **not yet tracked**
+- Cost Scenario: **planned_benchmark_ready_actual_effort_pending**
 
 ## Risk & Critical Path
 
@@ -49,6 +52,7 @@
 - `data/roadmap.yaml`
 - `data/control-center.yaml`
 - `data/delivery-efficiency.yaml`
+- `data/effort-plan.yaml`
 - `data/effort-log.yaml`
 - `data/risks.yaml`
 - generated `data/metrics.json`

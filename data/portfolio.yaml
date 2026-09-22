@@ -40,7 +40,9 @@ portfolio:
     risk_register: data/risks.yaml
     generated_metrics: data/metrics.json
     delivery_efficiency: data/delivery-efficiency.yaml
+    human_effort_plan: data/effort-plan.yaml
     human_effort_log: data/effort-log.yaml
+    website_translations: data/i18n/
     website_architecture: data/website.yaml
     data_model_documentation: docs/data-model.md
     metrics_documentation: docs/control-center-metrics.md

@@ -221,3 +221,45 @@ a {
 :root[data-theme="light"] [class*="to-indigo-300"] {
   --tw-gradient-to: #4f46e5 var(--tw-gradient-to-position) !important;
 }
+
+
+.lang-de {
+  display: none;
+}
+
+:root[data-language="de"] .lang-en {
+  display: none;
+}
+
+:root[data-language="de"] .lang-de {
+  display: inline;
+}
+
+:root[data-language="en"] .lang-en {
+  display: inline;
+}
+
+:root[data-language="en"] .lang-de {
+  display: none;
+}
+
+.language-toggle {
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  @apply inline-flex h-9 items-center rounded-full p-0.5;
+}
+
+.language-toggle-button {
+  @apply flex h-7 w-8 items-center justify-center rounded-full text-sm transition;
+  opacity: 0.58;
+}
+
+.language-toggle-button:hover {
+  opacity: 1;
+}
+
+.language-toggle-button[aria-pressed="true"] {
+  opacity: 1;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
+}
