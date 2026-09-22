@@ -125,4 +125,10 @@ project:
     sales_margin_report_contract: danielwauer-maker/eoip:powerbi/report-pages.yaml
     sales_margin_sql_reference: danielwauer-maker/eoip:sql/050_sales_margin_reporting_views.sql
     sales_margin_documentation: danielwauer-maker/eoip:docs/SALES_MARGIN_INTELLIGENCE.md
+    executive_report_contract: danielwauer-maker/eoip:powerbi/executive-overview.yaml
+    executive_sql_reference: danielwauer-maker/eoip:sql/060_executive_overview_views.sql
+    executive_documentation: danielwauer-maker/eoip:docs/EXECUTIVE_OVERVIEW.md
+    inventory_report_contract: danielwauer-maker/eoip:powerbi/inventory-intelligence.yaml
+    inventory_sql_reference: danielwauer-maker/eoip:sql/070_inventory_reporting_views.sql
+    inventory_documentation: danielwauer-maker/eoip:docs/INVENTORY_INTELLIGENCE.md
     project_metadata: data/projects/eoip.yaml
