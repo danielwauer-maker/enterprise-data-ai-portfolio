@@ -3,33 +3,33 @@
   "as_of": "2026-09-22",
   "baseline_id": "baseline-v1.0",
   "progress": {
-    "portfolio_scope_completed_weight": 30,
-    "portfolio_scope_pct": 30,
-    "application_readiness_completed_weight": 30,
-    "application_readiness_pct": 31.58,
+    "portfolio_scope_completed_weight": 31.5,
+    "portfolio_scope_pct": 31.5,
+    "application_readiness_completed_weight": 31.5,
+    "application_readiness_pct": 33.16,
     "planned_portfolio_weight": 4,
     "planned_portfolio_pct": 4,
     "planned_application_weight": 4,
     "planned_application_readiness_pct": 4.21
   },
   "schedule": {
-    "variance_percentage_points": 27.37,
-    "performance_index": 7.5,
-    "schedule_equivalent_date": "2026-10-27",
-    "schedule_delta_days": 35,
-    "forecast_completion_date": "2027-01-24",
+    "variance_percentage_points": 28.95,
+    "performance_index": 7.88,
+    "schedule_equivalent_date": "2026-10-29",
+    "schedule_delta_days": 37,
+    "forecast_completion_date": "2027-01-22",
     "forecast_method": "schedule_equivalent_projection",
     "forecast_confidence": "low",
     "target_date": "2027-02-28",
-    "schedule_buffer_days": 35
+    "schedule_buffer_days": 37
   },
   "throughput": {
     "window_days": 14,
-    "completed_packages": 10,
-    "completed_weight": 30
+    "completed_packages": 11,
+    "completed_weight": 31.5
   },
   "cycle_time": {
-    "sample_size": 10,
+    "sample_size": 11,
     "average_days": 1,
     "median_days": 1
   },
@@ -154,10 +154,10 @@
     "baseline_target_date": "2027-02-28",
     "baseline_delivery_window_elapsed_days": 159,
     "current_elapsed_days": 0,
-    "forecast_completion_date": "2027-01-24",
-    "forecast_delivery_window_elapsed_days": 124,
-    "forecast_schedule_compression_days": 35,
-    "forecast_schedule_compression_pct": 22.01,
+    "forecast_completion_date": "2027-01-22",
+    "forecast_delivery_window_elapsed_days": 122,
+    "forecast_schedule_compression_days": 37,
+    "forecast_schedule_compression_pct": 23.27,
     "actual_completion_date": null,
     "actual_delivery_window_elapsed_days": null,
     "actual_schedule_compression_days": null,
