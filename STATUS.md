@@ -8,22 +8,22 @@
 
 ## Progress
 
-- Portfolio Scope Progress: **31.50%**
-- Application Readiness: **33.16%**
+- Portfolio Scope Progress: **34.50%**
+- Application Readiness: **36.32%**
 - Planned Application Readiness: **4.21%**
-- Schedule Variance: **+28.95 percentage points**
-- Schedule Position: **37 days ahead**
+- Schedule Variance: **+32.11 percentage points**
+- Schedule Position: **43 days ahead**
 
 ## Forecast
 
-- Forecast Completion Date: **2027-01-22**
+- Forecast Completion Date: **2027-01-16**
 - Forecast Method: **schedule_equivalent_projection**
 - Forecast Confidence: **low**
-- Schedule Buffer: **+37 days**
+- Schedule Buffer: **+43 days**
 
 ## Delivery
 
-- Rolling Throughput: **11 packages / 31.50 weighted points**
+- Rolling Throughput: **12 packages / 34.50 weighted points**
 - Average Cycle Time: **1.0 days**
 - Milestone Reliability: **100.0%**
 - Current Milestone: **M04 — EOIP Analytics Core Complete**
@@ -31,8 +31,8 @@
 ## AI-Assisted Delivery Efficiency
 
 - Baseline Delivery Window: **159 elapsed calendar days**
-- Forecast Delivery Window: **122 elapsed calendar days**
-- Forecast Schedule Compression: **+37 days / +23.27%**
+- Forecast Delivery Window: **116 elapsed calendar days**
+- Forecast Schedule Compression: **+43 days / +27.04%**
 - Actual Delivery Window: **pending — M11 not complete**
 - Observed Human Effort: **not yet tracked**
 - Cost Scenario: **awaiting_benchmark_and_effort_data**
@@ -41,8 +41,8 @@
 
 - Active Blockers: **0**
 - Active Critical Risks: **2**
-- Critical Path Completed: **9/31**
-- First Unresolved Critical Package: **EOIP-06**
+- Critical Path Completed: **10/31**
+- First Unresolved Critical Package: **EOIP-08**
 
 ## Source of truth
 
