@@ -1,0 +1,47 @@
+schema_version: 1
+effort_plan:
+  id: effort-baseline-v1.0
+  baseline_date: 2026-09-22
+  status: frozen_model
+  purpose: Provide a transparent human-effort and employer-capacity cost planning benchmark for the portfolio.
+
+  benchmark:
+    type: conventional_focused_human_effort_scenario
+    evidence_level: C
+    interpretation: Planning benchmark for the scoped portfolio; not a claim that a specific employer previously budgeted these hours.
+    limitation: The benchmark was introduced on the baseline date after portfolio delivery had already started that day.
+
+  cost_assumption:
+    loaded_hourly_rate_eur: 80
+    evidence_level: C
+    label: Illustrative loaded employer capacity cost
+    configurable: true
+    includes:
+      - salary
+      - employer_on_costs
+      - workplace_and_overhead_capacity
+    excludes:
+      - external_software_licenses
+      - cloud_consumption
+      - legal_and_tax_advisory
+      - opportunity_cost_beyond_capacity_rate
+
+  workstreams:
+    - {id: foundation, planned_human_hours: 30, mandatory: true}
+    - {id: eoip, planned_human_hours: 180, mandatory: true}
+    - {id: bcsentinel, planned_human_hours: 50, mandatory: true}
+    - {id: inventoryiq, planned_human_hours: 80, mandatory: true}
+    - {id: marginguard, planned_human_hours: 70, mandatory: true}
+    - {id: procureguard, planned_human_hours: 35, mandatory: false}
+    - {id: website, planned_human_hours: 60, mandatory: true}
+    - {id: career, planned_human_hours: 30, mandatory: true}
+    - {id: certifications, planned_human_hours: 100, mandatory: true}
+
+  rules:
+    - Planned hours are a frozen scenario benchmark and are not reconstructed from Git timestamps.
+    - Actual hours come only from data/effort-log.yaml.
+    - Missing actual effort remains unknown rather than zero.
+    - Planned cost equals planned human hours multiplied by the configured loaded hourly rate.
+    - Actual cost equals observed human effort multiplied by the same rate for comparability.
+    - Capacity value is modeled only when actual human effort exists.
+    - Modeled capacity value is not presented as realized cash savings.
