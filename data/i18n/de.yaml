@@ -1,0 +1,142 @@
+schema_version: 1
+locale: de
+website:
+  nav:
+    control_center: Control Center
+    delivery: Delivery
+    projects: Projekte
+    roadmap: Roadmap
+    github: GitHub ansehen
+  language:
+    german: Deutsch
+    english: Englisch
+  hero:
+    eyebrow: Enterprise Analytics · Engineering · Decision Intelligence
+    title_prefix: Enterprise-Datenprodukte von
+    title_accent: ERP-Signalen bis zu Geschäftsentscheidungen.
+    copy: Ein business-orientiertes Portfolio, das ERP-Prozesswissen, Data Engineering, Analytics Engineering, Power BI und messbaren Geschäftsnutzen verbindet — umgesetzt mit einem KI-unterstützten Engineering-Workflow und transparenten Delivery-Kennzahlen.
+    explore_projects: Projekte ansehen
+    see_delivery: Delivery-Effizienz ansehen
+  live:
+    eyebrow: Aktueller Portfolio-Stand
+    title: Control-Center-Snapshot
+    on_track: Im Plan
+    readiness: Bewerbungsreife
+    scope_done: Umfang erledigt
+    ahead_baseline: Vor Baseline
+    blockers: Blocker
+    application_readiness: Application Readiness
+    forecast: Forecast
+    confidence: Konfidenz
+  control:
+    eyebrow: Portfolio Control Center
+    title: Fortschritt wird gemessen, nicht geschätzt.
+    copy: Fortschritt wird nur durch abgeschlossene, gewichtete Work Packages verdient. Plan, Ist, Forecast, Meilensteine, Risiken und Critical Path stammen aus denselben strukturierten GitHub-Daten.
+    portfolio_scope: Portfolio-Umfang
+    portfolio_scope_copy: Abgeschlossener gewichteter Portfolio-Umfang
+    app_readiness: Application Readiness
+    app_readiness_copy: Pflichtumfang auf 100 % normiert
+    planned_readiness: Geplante Readiness
+    planned_readiness_copy: Baseline-Kurve zum aktuellen Snapshot
+    milestone_reliability: Meilenstein-Treue
+    considered_on_time: berücksichtigte Meilensteine im Plan
+    schedule_position: Terminposition
+    ahead_text: Vorsprung gegenüber der eingefrorenen Baseline-Kurve.
+    spi: Aktueller Schedule Performance Index
+    critical_path: Kritischer Pfad
+    first_unresolved: Erstes offenes Paket
+    risk_posture: Risikolage
+    critical_risks_copy: Offene kritische Risiken
+    active_blockers_copy: aktive Delivery-Blocker
+  delivery:
+    eyebrow: KI-unterstützte Delivery-Effizienz
+    title: Schnellere Umsetzung — mit sichtbarer Methodik.
+    copy: Terminbeschleunigung wird gegen die eingefrorene Baseline gemessen. Menschlicher Aufwand wird separat erfasst; Kostenwerte bleiben transparente Szenarien, bis Benchmark- und Ist-Aufwandsdaten vorliegen.
+    evidence_rule: Evidenzregel
+    evidence_copy: Kalendertage werden niemals pauschal mit acht Stunden multipliziert und als Arbeitsersparnis ausgegeben. Modellierter Arbeitgeberwert wird immer als Szenario gekennzeichnet.
+    baseline_window: Baseline-Zeitraum
+    forecast_window: Forecast-Zeitraum
+    forecast_compression: Forecast-Verkürzung
+    actual_window: Tatsächlicher Zeitraum
+    forecast_to: Forecast bis
+    shorter_baseline: kürzer als Baseline
+    pending: Ausstehend
+    final_m11: Final, sobald M11 abgeschlossen ist
+    effort_title: Menschlicher Aufwand & Kapazitätskosten
+    planned_hours: Geplanter menschlicher Aufwand
+    actual_hours: Erfasster Ist-Aufwand
+    planned_cost: Geplante Kapazitätskosten
+    actual_cost: Erfasste Kapazitätskosten
+    planned_model: Eingefrorener Szenario-Benchmark
+    actual_pending: Noch nicht erfasst
+    cost_rate_note: Basierend auf dem konfigurierbaren Vollkosten-/Kapazitätssatz des Arbeitgebers
+    modeled_savings: Modellierter Kapazitätswert
+    savings_pending: Verfügbar, sobald Ist-Aufwand vorliegt
+    scenario_label: Szenario - keine realisierte Cash-Einsparung
+  projects:
+    eyebrow: Ausgewählte Projekte
+    title: Ein Portfolio, mehrere Enterprise-Entscheidungsprobleme.
+    copy: Die Kernprojekte erzählen eine konsistente Business-Story und belegen gleichzeitig unterschiedliche Engineering- und Analytics-Fähigkeiten.
+    workstream_progress: Workstream-Fortschritt
+    repository: Repository ↗
+    repository_follows: Repository folgt
+  architecture:
+    eyebrow: EOIP-Architektur
+    title: Von operativen Daten zur Entscheidungsunterstützung.
+    copy: EOIP ist bewusst geschichtet: Quelldaten bleiben operativ, Staging normalisiert die Semantik, das dimensionale Modell definiert den analytischen Grain und Reporting baut auf einer nachvollziehbaren Grundlage auf.
+  roadmap:
+    eyebrow: Roadmap & Meilensteine
+    title: Die Baseline bleibt eingefroren. Die tatsächliche Delivery bleibt sichtbar.
+    copy: Meilensteinziele stammen aus der ursprünglichen Roadmap. Abschlussdaten kommen aus der tatsächlichen Work-Package-Delivery und erhalten so eine nachvollziehbare Plan-vs.-Ist-Historie.
+    complete: Abgeschlossen
+    planned: Geplant
+    target: Ziel
+    actual: Ist
+    pending: Ist ausstehend
+  footer:
+    source: Enterprise Data & AI Portfolio 2027 · GitHub ist die technische Source of Truth.
+    snapshot: Snapshot
+  statuses:
+    Complete: Abgeschlossen
+    Active: Aktiv
+    Ready: Bereit
+    Planned: Geplant
+  environments:
+    real_product: Reales Produkt
+    fictional_enterprise: Fiktives Unternehmen
+  projects:
+    bcsentinel:
+      role: Belegt produktionsorientierte SaaS- und Software-Engineering-Fähigkeiten im Microsoft-Dynamics-365-Business-Central-Ökosystem.
+      summary: Ein reales SaaS-orientiertes Monitoring- und Analyseprodukt für Microsoft Dynamics 365 Business Central.
+    eoip:
+      role: Zentrales Enterprise-Analytics-Flaggschiff und gemeinsame analytische Datenbasis für spätere Portfolio-Projekte.
+      summary: Eine reproduzierbare Enterprise-BI-Plattform, die realistische ERP-nahe Quelldaten in ein dimensionales Modell, governede KPIs und entscheidungsreifes Power-BI-Reporting überführt.
+    inventoryiq:
+      role: Erweitert EOIP um tiefere Bestandsrichtlinien, Optimierungslogik und Working-Capital-Entscheidungsunterstützung.
+      summary: Eine fortgeschrittene Inventory-Decision-Support-Schicht auf der gemeinsamen EOIP-/NordWerk-Datenbasis.
+    marginguard:
+      role: Belegt Profitabilitätsanalysen über Umsatz und Bruttomarge hinaus durch Cost-to-Serve- und Margin-Leakage-Modellierung.
+      summary: Eine Profitability-Intelligence-Schicht, die relevante Kosten Kunden und Produkten zuordnet und nachvollziehbare Margin-Leakage identifiziert.
+    procureguard:
+      role: Optionale V1-Erweiterung für Lieferanten-, Spend- und Einkaufspreis-Intelligence, ohne die Application Readiness zu blockieren.
+      summary: Ein optionales Procurement-Intelligence-MVP auf Basis der gemeinsamen NordWerk-Datenbasis.
+  architecture_steps:
+    source: {label: Synthetisches ERP, description: Reproduzierbare operative Quelldaten}
+    raw: {label: Raw, description: Typisierte PostgreSQL-Quellschicht}
+    staging: {label: Staging, description: Normalisierte operative Semantik}
+    dimensional: {label: Star Schema, description: Konforme Dimensionen und analytische Fakten}
+    semantic: {label: KPI / DAX, description: Governede semantische Measure-Schicht}
+    reporting: {label: Power BI, description: Entscheidungsreifes analytisches Reporting}
+    decision: {label: Entscheidungen, description: Management-Maßnahmen und nachvollziehbarer Business Impact}
+  milestones:
+    M01: Portfolio-Baseline etabliert
+    M02: EOIP-Architektur & Datenspezifikation
+    M03: EOIP-Datenfundament abgeschlossen
+    M04: EOIP-Analytics-Core abgeschlossen
+    M05: EOIP V1 veröffentlicht
+    M06: InventoryIQ V1 veröffentlicht
+    M07: BCSentinel portfolio-ready
+    M08: MarginGuard V1 veröffentlicht
+    M09: Feature Freeze
+    M10: Portfolio-Hardening abgeschlossen
+    M11: Bewerbungsbereit
