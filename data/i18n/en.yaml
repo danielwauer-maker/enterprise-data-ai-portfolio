@@ -87,7 +87,7 @@ website:
   architecture:
     eyebrow: EOIP architecture
     title: Operational data to decision support.
-    copy: EOIP is deliberately layered: source data stays operational, staging normalizes semantics, the dimensional model governs analytical grain, and reporting sits on top of a traceable foundation.
+    copy: "EOIP is deliberately layered: source data stays operational, staging normalizes semantics, the dimensional model governs analytical grain, and reporting sits on top of a traceable foundation."
   roadmap:
     eyebrow: Roadmap & milestones
     title: Baseline stays frozen. Actual delivery stays visible.
