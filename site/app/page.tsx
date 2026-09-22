@@ -397,7 +397,10 @@ export default function Home() {
                   {efficiency.actual_delivery_window_elapsed_days === null ? (
                     <Localized i18n={i18n} path="delivery.pending" />
                   ) : (
-                    `${efficiency.actual_delivery_window_elapsed_days} days`
+                    <>
+                      {efficiency.actual_delivery_window_elapsed_days}{" "}
+                      <Localized i18n={i18n} path="units.days" />
+                    </>
                   )}
                 </div>
                 <div className="mt-3 text-xs leading-5 text-slate-500">
@@ -447,7 +450,10 @@ export default function Home() {
                   {efficiency.human_effort.observed_hours == null ? (
                     <Localized i18n={i18n} path="delivery.actual_pending" />
                   ) : (
-                    `${efficiency.human_effort.observed_hours} h`
+                    <>
+                      {efficiency.human_effort.observed_hours}{" "}
+                      <Localized i18n={i18n} path="units.hours" />
+                    </>
                   )}
                 </div>
               </article>
