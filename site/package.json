@@ -8,9 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.5.2",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
+    "next": "15.5.24",
+    "react": "19.1.5",
+    "react-dom": "19.1.5",
     "yaml": "2.8.1"
   },
   "devDependencies": {
