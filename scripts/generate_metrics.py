@@ -181,7 +181,10 @@ def render_status(metrics):
 - Forecast Delivery Window: **{efficiency["forecast_delivery_window_elapsed_days"]} elapsed calendar days**
 - Forecast Schedule Compression: **{efficiency["forecast_schedule_compression_days"]:+d} days / {efficiency["forecast_schedule_compression_pct"]:+.2f}%**
 - Actual Delivery Window: **{str(efficiency["actual_delivery_window_elapsed_days"]) + " elapsed calendar days" if efficiency["actual_delivery_window_elapsed_days"] is not None else "pending — M11 not complete"}**
+- Planned Human Effort: **{efficiency["human_effort"]["planned_portfolio_hours"]:.0f} h portfolio / {efficiency["human_effort"]["planned_mandatory_hours"]:.0f} h mandatory**
 - Observed Human Effort: **{str(efficiency["human_effort"]["observed_hours"]) + " h" if efficiency["human_effort"]["observed_hours"] is not None else "not yet tracked"}**
+- Planned Capacity Cost: **EUR {efficiency["cost_model"]["planned_portfolio_cost_eur"]:.0f} portfolio / EUR {efficiency["cost_model"]["planned_mandatory_cost_eur"]:.0f} mandatory**
+- Observed Capacity Cost: **{("EUR " + str(efficiency["cost_model"]["observed_cost_eur"])) if efficiency["cost_model"]["observed_cost_eur"] is not None else "not yet tracked"}**
 - Cost Scenario: **{efficiency["cost_model"]["status"]}**
 
 ## Risk & Critical Path
@@ -196,6 +199,7 @@ def render_status(metrics):
 - `data/roadmap.yaml`
 - `data/control-center.yaml`
 - `data/delivery-efficiency.yaml`
+- `data/effort-plan.yaml`
 - `data/effort-log.yaml`
 - `data/risks.yaml`
 - generated `data/metrics.json`
@@ -213,6 +217,7 @@ def main():
     risks_data = load_yaml(ROOT / "data" / "risks.yaml")
     delivery_efficiency_config = load_yaml(ROOT / "data" / "delivery-efficiency.yaml")["delivery_efficiency"]
     effort_data = load_yaml(ROOT / "data" / "effort-log.yaml")["effort_log"]
+    effort_plan = load_yaml(ROOT / "data" / "effort-plan.yaml")["effort_plan"]
 
     as_of = as_date(args.as_of or control["snapshot_date"])
     baseline = roadmap["baseline"]
@@ -347,6 +352,50 @@ def main():
         sum(human_minutes) / 60.0 if human_minutes else None
     )
 
+    effort_workstreams = effort_plan.get("workstreams", [])
+    planned_portfolio_hours = sum(
+        float(row["planned_human_hours"]) for row in effort_workstreams
+    )
+    planned_mandatory_hours = sum(
+        float(row["planned_human_hours"])
+        for row in effort_workstreams
+        if row.get("mandatory", False)
+    )
+    loaded_hourly_rate_eur = float(
+        effort_plan["cost_assumption"]["loaded_hourly_rate_eur"]
+    )
+    planned_portfolio_cost_eur = planned_portfolio_hours * loaded_hourly_rate_eur
+    planned_mandatory_cost_eur = planned_mandatory_hours * loaded_hourly_rate_eur
+    observed_human_effort_cost_eur = (
+        observed_human_effort_hours * loaded_hourly_rate_eur
+        if observed_human_effort_hours is not None
+        else None
+    )
+
+    effort_comparison_final = actual_app_pct >= 100.0 and observed_human_effort_hours is not None
+    capacity_hours_saved = (
+        planned_mandatory_hours - observed_human_effort_hours
+        if effort_comparison_final
+        else None
+    )
+    modeled_capacity_value_eur = (
+        capacity_hours_saved * loaded_hourly_rate_eur
+        if capacity_hours_saved is not None
+        else None
+    )
+    modeled_efficiency_pct = (
+        capacity_hours_saved / planned_mandatory_hours * 100.0
+        if capacity_hours_saved is not None and planned_mandatory_hours > 0
+        else None
+    )
+    cost_model_status = (
+        "final_scenario_available"
+        if effort_comparison_final
+        else "planned_benchmark_ready_actual_effort_pending"
+        if observed_human_effort_hours is None
+        else "actual_effort_tracking_in_progress"
+    )
+
     metrics = {
         "schema_version": 1,
         "as_of": as_of.isoformat(),
@@ -388,10 +437,22 @@ def main():
             "human_effort": {
                 "entries_count": len(effort_entries),
                 "observed_hours": round2(observed_human_effort_hours),
+                "planned_portfolio_hours": round2(planned_portfolio_hours),
+                "planned_mandatory_hours": round2(planned_mandatory_hours),
+                "benchmark_id": effort_plan["id"],
+                "benchmark_evidence_level": effort_plan["benchmark"]["evidence_level"],
             },
             "cost_model": {
-                "status": delivery_efficiency_config["cost_scenarios"]["status"],
-                "modeled_capacity_value_eur": None,
+                "status": cost_model_status,
+                "loaded_hourly_rate_eur": round2(loaded_hourly_rate_eur),
+                "rate_evidence_level": effort_plan["cost_assumption"]["evidence_level"],
+                "planned_portfolio_cost_eur": round2(planned_portfolio_cost_eur),
+                "planned_mandatory_cost_eur": round2(planned_mandatory_cost_eur),
+                "observed_cost_eur": round2(observed_human_effort_cost_eur),
+                "capacity_hours_saved": round2(capacity_hours_saved),
+                "modeled_capacity_value_eur": round2(modeled_capacity_value_eur),
+                "modeled_efficiency_pct": round2(modeled_efficiency_pct),
+                "comparison_final": effort_comparison_final,
             },
         },
         "throughput": {
