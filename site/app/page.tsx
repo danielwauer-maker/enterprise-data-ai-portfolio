@@ -1,3 +1,4 @@
+import { ThemeToggle } from "../components/theme-toggle";
 import { loadPortfolioData } from "../lib/portfolio-data";
 
 export const dynamic = "force-static";
@@ -51,14 +52,17 @@ export default function Home() {
           <a className="transition hover:text-white" href="#roadmap">Roadmap</a>
         </nav>
 
-        <a
-          href={repoUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-full border hairline bg-white/[0.04] px-4 py-2 text-xs font-medium text-slate-200 transition hover:border-cyan-300/30 hover:bg-cyan-300/[0.06]"
-        >
-          View GitHub
-        </a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <a
+            href={repoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border hairline bg-white/[0.04] px-4 py-2 text-xs font-medium text-slate-200 transition hover:border-cyan-300/30 hover:bg-cyan-300/[0.06]"
+          >
+            View GitHub
+          </a>
+        </div>
       </header>
 
       <section id="top" className="shell grid gap-10 py-16 md:py-24 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">

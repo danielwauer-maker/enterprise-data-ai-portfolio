@@ -13,6 +13,11 @@ website:
     hosting: GitHub Pages
     production_url: https://danielwauer-maker.github.io/enterprise-data-ai-portfolio/
     backend_required: false
+    appearance:
+      themes: [dark, light]
+      initial_preference: system
+      user_toggle: true
+      persistence: browser_local_storage
 
   principles:
     - Recruiter and technical decision-maker first.
