@@ -3,33 +3,55 @@
   "as_of": "2026-09-22",
   "baseline_id": "baseline-v1.0",
   "progress": {
-    "portfolio_scope_completed_weight": 31.5,
-    "portfolio_scope_pct": 31.5,
-    "application_readiness_completed_weight": 31.5,
-    "application_readiness_pct": 33.16,
+    "portfolio_scope_completed_weight": 34.5,
+    "portfolio_scope_pct": 34.5,
+    "application_readiness_completed_weight": 34.5,
+    "application_readiness_pct": 36.32,
     "planned_portfolio_weight": 4,
     "planned_portfolio_pct": 4,
     "planned_application_weight": 4,
     "planned_application_readiness_pct": 4.21
   },
   "schedule": {
-    "variance_percentage_points": 28.95,
-    "performance_index": 7.88,
-    "schedule_equivalent_date": "2026-10-29",
-    "schedule_delta_days": 37,
-    "forecast_completion_date": "2027-01-22",
+    "variance_percentage_points": 32.11,
+    "performance_index": 8.63,
+    "schedule_equivalent_date": "2026-11-04",
+    "schedule_delta_days": 43,
+    "forecast_completion_date": "2027-01-16",
     "forecast_method": "schedule_equivalent_projection",
     "forecast_confidence": "low",
     "target_date": "2027-02-28",
-    "schedule_buffer_days": 37
+    "schedule_buffer_days": 43
+  },
+  "delivery_efficiency": {
+    "baseline_start_date": "2026-09-22",
+    "baseline_target_date": "2027-02-28",
+    "baseline_delivery_window_elapsed_days": 159,
+    "current_elapsed_days": 0,
+    "forecast_completion_date": "2027-01-16",
+    "forecast_delivery_window_elapsed_days": 116,
+    "forecast_schedule_compression_days": 43,
+    "forecast_schedule_compression_pct": 27.04,
+    "actual_completion_date": null,
+    "actual_delivery_window_elapsed_days": null,
+    "actual_schedule_compression_days": null,
+    "actual_schedule_compression_pct": null,
+    "human_effort": {
+      "entries_count": 0,
+      "observed_hours": null
+    },
+    "cost_model": {
+      "status": "awaiting_benchmark_and_effort_data",
+      "modeled_capacity_value_eur": null
+    }
   },
   "throughput": {
     "window_days": 14,
-    "completed_packages": 11,
-    "completed_weight": 31.5
+    "completed_packages": 12,
+    "completed_weight": 34.5
   },
   "cycle_time": {
-    "sample_size": 11,
+    "sample_size": 12,
     "average_days": 1,
     "median_days": 1
   },
@@ -143,32 +165,10 @@
   },
   "critical_path": {
     "total_count": 31,
-    "completed_count": 9,
-    "remaining_count": 22,
+    "completed_count": 10,
+    "remaining_count": 21,
     "blocked_count": 0,
     "blocked_ids": [],
-    "first_unresolved": "EOIP-06"
-  },
-  "delivery_efficiency": {
-    "baseline_start_date": "2026-09-22",
-    "baseline_target_date": "2027-02-28",
-    "baseline_delivery_window_elapsed_days": 159,
-    "current_elapsed_days": 0,
-    "forecast_completion_date": "2027-01-22",
-    "forecast_delivery_window_elapsed_days": 122,
-    "forecast_schedule_compression_days": 37,
-    "forecast_schedule_compression_pct": 23.27,
-    "actual_completion_date": null,
-    "actual_delivery_window_elapsed_days": null,
-    "actual_schedule_compression_days": null,
-    "actual_schedule_compression_pct": null,
-    "human_effort": {
-      "entries_count": 0,
-      "observed_hours": null
-    },
-    "cost_model": {
-      "status": "awaiting_benchmark_and_effort_data",
-      "modeled_capacity_value_eur": null
-    }
+    "first_unresolved": "EOIP-08"
   }
 }
