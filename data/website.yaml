@@ -2,7 +2,7 @@ schema_version: 1
 website:
   id: enterprise-data-ai-portfolio-web
   name: Enterprise Data & AI Portfolio 2027
-  status: foundation_in_progress
+  status: foundation_live
   implementation:
     repository: danielwauer-maker/enterprise-data-ai-portfolio
     path: site
@@ -11,6 +11,7 @@ website:
     styling: Tailwind CSS
     rendering: static_export
     hosting: GitHub Pages
+    production_url: https://danielwauer-maker.github.io/enterprise-data-ai-portfolio/
     backend_required: false
 
   principles:
