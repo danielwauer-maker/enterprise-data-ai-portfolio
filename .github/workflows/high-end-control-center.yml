@@ -22,7 +22,5 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install PyYAML
-      - run: python scripts/generate_high_end_control_center.py
+      - run: python scripts/generate_high_end_control_center.py --check
       - run: python scripts/validate_high_end_control_center.py
-      - name: Ensure generated snapshot is committed
-        run: git diff --exit-code -- control-center/program.json
