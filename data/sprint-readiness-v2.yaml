@@ -1,0 +1,68 @@
+schema_version: 2
+program_id: enterprise-data-ai-high-end-v2
+
+readiness_method:
+  principle: Readiness is calculated from explicit checklist items, not subjective estimates.
+  category_weights:
+    requirements: 10
+    architecture: 10
+    implementation: 35
+    automated_tests: 15
+    runtime_acceptance: 15
+    documentation_evidence: 10
+    merge_release_closeout: 5
+  item_credit:
+    done: 1.0
+    not_started: 0.0
+    blocked: 0.0
+    in_progress: 0.0
+  rule: Add or split checklist items before claiming partial completion inside a category.
+
+sprints:
+  S00:
+    status: IN_PROGRESS
+    categories:
+      requirements:
+        - {id: S00-REQ-01, title: Portfolio Bible v2 exists, status: done}
+        - {id: S00-REQ-02, title: S00-S19 structured roadmap exists, status: done}
+      architecture:
+        - {id: S00-ARCH-01, title: Cross-repository authority model defined, status: done}
+        - {id: S00-ARCH-02, title: BPS program boundary defined, status: done}
+        - {id: S00-ARCH-03, title: BFB derived-only boundary defined, status: done}
+      implementation:
+        - {id: S00-IMP-01, title: Control Center v2 metrics generator, status: in_progress}
+        - {id: S00-IMP-02, title: Sprint board UI, status: in_progress}
+        - {id: S00-IMP-03, title: Sprint detail UI, status: not_started}
+        - {id: S00-IMP-04, title: History Current Roadmap timeline UI, status: not_started}
+        - {id: S00-IMP-05, title: Plan vs Actual effort UI, status: not_started}
+      automated_tests:
+        - {id: S00-TST-01, title: Structured data validation, status: not_started}
+        - {id: S00-TST-02, title: Generated JSON consistency check, status: not_started}
+      runtime_acceptance:
+        - {id: S00-ACC-01, title: Control Center renders all S00-S19 sprints, status: not_started}
+        - {id: S00-ACC-02, title: Mobile and desktop smoke acceptance, status: not_started}
+      documentation_evidence:
+        - {id: S00-DOC-01, title: Portfolio Bible documents Control Center model, status: done}
+        - {id: S00-DOC-02, title: Cross-repository alignment PRs opened, status: done}
+      merge_release_closeout:
+        - {id: S00-CLS-01, title: S00 reviewed and closeout recorded, status: not_started}
+
+  S01: {status: PLANNED}
+  S02: {status: PLANNED}
+  S03: {status: PLANNED}
+  S04: {status: PLANNED}
+  S05: {status: PLANNED}
+  S06: {status: PLANNED}
+  S07: {status: PLANNED}
+  S08: {status: PLANNED}
+  S09: {status: PLANNED}
+  S10: {status: PLANNED}
+  S11: {status: PLANNED}
+  S12: {status: PLANNED}
+  S13: {status: PLANNED}
+  S14: {status: PLANNED}
+  S15: {status: PLANNED}
+  S16: {status: PLANNED}
+  S17: {status: PLANNED}
+  S18: {status: PLANNED}
+  S19: {status: PLANNED}
