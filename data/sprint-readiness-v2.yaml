@@ -30,11 +30,11 @@ sprints:
         - {id: S00-ARCH-02, title: BPS program boundary defined, status: done}
         - {id: S00-ARCH-03, title: BFB derived-only boundary defined, status: done}
       implementation:
-        - {id: S00-IMP-01, title: Control Center v2 metrics generator, status: in_progress}
-        - {id: S00-IMP-02, title: Sprint board UI, status: in_progress}
+        - {id: S00-IMP-01, title: Control Center v2 metrics generator, status: done}
+        - {id: S00-IMP-02, title: Sprint board UI, status: done}
         - {id: S00-IMP-03, title: Sprint detail UI, status: not_started}
-        - {id: S00-IMP-04, title: History Current Roadmap timeline UI, status: not_started}
-        - {id: S00-IMP-05, title: Plan vs Actual effort UI, status: not_started}
+        - {id: S00-IMP-04, title: History Current Roadmap timeline UI, status: done}
+        - {id: S00-IMP-05, title: Plan vs Actual effort UI, status: done}
       automated_tests:
         - {id: S00-TST-01, title: Structured data validation, status: not_started}
         - {id: S00-TST-02, title: Generated JSON consistency check, status: not_started}
