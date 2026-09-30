@@ -5,42 +5,6 @@ import { loadHighEndControlCenter } from "../lib/high-end-control-center";
 
 export const dynamic = "force-static";
 
-type I18n = {
-  en: Record<string, any>;
-  de: Record<string, any>;
-};
-
-function lookup(source: Record<string, any>, path: string): string {
-  const value = path.split(".").reduce<any>((current, key) => current?.[key], source);
-  return value == null ? path : String(value);
-}
-
-function interpolate(value: string, vars: Record<string, string | number> = {}): string {
-  return Object.entries(vars).reduce(
-    (text, [key, replacement]) => text.replaceAll(`{${key}}`, String(replacement)),
-    value,
-  );
-}
-
-function Localized({
-  i18n,
-  path,
-  vars,
-}: {
-  i18n: I18n;
-  path: string;
-  vars?: Record<string, string | number>;
-}) {
-  const en = interpolate(lookup(i18n.en, path), vars);
-  const de = interpolate(lookup(i18n.de, path), vars);
-  return (
-    <>
-      <span className="lang-en">{en}</span>
-      <span className="lang-de">{de}</span>
-    </>
-  );
-}
-
 function LocalizedDate({ value }: { value: string }) {
   const date = new Date(`${value}T00:00:00Z`);
   const en = new Intl.DateTimeFormat("en-GB", {
@@ -87,7 +51,7 @@ function deliveryClasses(tone: string): string {
 }
 
 export default function Home() {
-  const { portfolio, projects, i18n } = loadPortfolioData();
+  const { portfolio, projects } = loadPortfolioData();
   const highEnd = loadHighEndControlCenter();
   const currentSprint =
     highEnd.sprints.find((sprint) => sprint.id === highEnd.program.current_sprint_id) ??
@@ -409,7 +373,7 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-px bg-white/[0.06]">
               <div className="bg-[#0b1728] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Program capacity" de="Programmkapa­zität" /></div>
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Program capacity" de="Programmkapazität" /></div>
                 <div className="mt-3 text-3xl font-semibold text-white">{highEnd.program.planned_hours} h</div>
                 <div className="mt-2 text-xs text-slate-500">{highEnd.program.planned_hours_per_week} h / <Dual en="week" de="Woche" /></div>
               </div>
