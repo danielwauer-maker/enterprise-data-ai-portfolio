@@ -42,7 +42,7 @@ export default function ControlCenterPage() {
 
   return (
     <main>
-      <header className="shell flex min-h-20 items-center justify-between border-b hairline">
+      <header className="shell flex min-h-20 flex-wrap items-center justify-between gap-3 border-b hairline py-3 sm:flex-nowrap">
         <a href="../" className="flex items-center gap-3 text-sm font-semibold tracking-wide">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl border hairline bg-white/[0.03] text-xs text-cyan-200">
             CC
@@ -101,7 +101,12 @@ export default function ControlCenterPage() {
               <h2 className="mt-3 text-2xl font-semibold text-white md:text-3xl">{current.id} — {current.title}</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">{current.objective}</p>
             </div>
-            <div className="text-4xl font-semibold tracking-[-0.04em] text-cyan-200">{pct(current.readiness_pct)}</div>
+            <div className="text-right">
+              <div className="text-4xl font-semibold tracking-[-0.04em] text-cyan-200">{pct(current.scope_readiness_pct)}</div>
+              <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">
+                <Dual en="Scope readiness" de="Scope-Readiness" />
+              </div>
+            </div>
           </div>
           <div className="progress-track mt-6">
             <div className="progress-fill" style={{ width: `${current.readiness_pct}%` }} />
@@ -111,6 +116,8 @@ export default function ControlCenterPage() {
             <span><Dual en="Plan" de="Plan" /> {current.planned_hours} h</span>
             <span><Dual en="Actual" de="Ist" /> {current.actual_hours} h</span>
             <span><Dual en="Track" de="Track" />: {current.track}</span>
+            <span><Dual en="Details done" de="Details fertig" />: {current.detail_done_count}/{current.detail_total_count}</span>
+            <span><Dual en="Delivery gates" de="Delivery-Gates" />: {pct(current.delivery_gate_readiness_pct)}</span>
           </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
             {Object.entries(current.readiness_breakdown).map(([key, value]) => (
@@ -148,11 +155,13 @@ export default function ControlCenterPage() {
                 <div className="progress-fill" style={{ width: `${sprint.readiness_pct}%` }} />
               </div>
               <div className="mt-3 flex items-center justify-between text-xs">
-                <span className="font-semibold text-slate-200"><Dual en="Readiness" de="Readiness" /> {pct(sprint.readiness_pct)}</span>
+                <span className="font-semibold text-slate-200"><Dual en="Scope readiness" de="Scope-Readiness" /> {pct(sprint.scope_readiness_pct)}</span>
                 <span className="text-slate-400">{sprint.actual_hours} / {sprint.planned_hours} h</span>
               </div>
               <div className="mt-4 border-t hairline pt-4 text-xs leading-6 text-slate-400">
                 <div><Dual en="Track" de="Track" />: {sprint.track}</div>
+                <div><Dual en="Details" de="Details" />: {sprint.detail_done_count}/{sprint.detail_total_count} <Dual en="done" de="fertig" /></div>
+                <div><Dual en="Delivery gates" de="Delivery-Gates" />: {pct(sprint.delivery_gate_readiness_pct)}</div>
                 <div><Dual en="Depends on" de="Abhängig von" />: {sprint.depends_on.length ? sprint.depends_on.join(", ") : "—"}</div>
               </div>
               <a href={`./${sprint.id}/`} className="mt-4 inline-flex text-xs font-semibold text-cyan-200 transition hover:text-cyan-100">
