@@ -61,75 +61,117 @@ function LocalizedDate({ value }: { value: string }) {
   );
 }
 
-function LocalizedCurrency({ value }: { value: number }) {
+function Dual({ en, de }: { en: string; de: string }) {
   return (
     <>
-      <span className="lang-en">
-        {new Intl.NumberFormat("en-GB", {
-          style: "currency",
-          currency: "EUR",
-          maximumFractionDigits: 0,
-        }).format(value)}
-      </span>
-      <span className="lang-de">
-        {new Intl.NumberFormat("de-DE", {
-          style: "currency",
-          currency: "EUR",
-          maximumFractionDigits: 0,
-        }).format(value)}
-      </span>
+      <span className="lang-en">{en}</span>
+      <span className="lang-de">{de}</span>
     </>
   );
 }
 
 function formatPct(value: number): string {
-  return `${value.toFixed(value % 1 === 0 ? 0 : 2)}%`;
+  return `${value.toFixed(value % 1 === 0 ? 0 : 1)}%`;
 }
 
-function highEndStatusClasses(status: string): string {
-  if (status === "DONE") return "border-emerald-400/25 bg-emerald-400/10 text-emerald-200";
-  if (status === "IN_PROGRESS") return "border-cyan-400/25 bg-cyan-400/10 text-cyan-100";
-  if (status === "BLOCKED") return "border-rose-400/25 bg-rose-400/10 text-rose-100";
-  if (status === "READY") return "border-indigo-400/25 bg-indigo-400/10 text-indigo-100";
-  return "border-slate-400/15 bg-slate-400/5 text-slate-400";
+function deliveryLabel(sprintId: string, currentId: string, status: string) {
+  if (status === "DONE") return { en: "Done", de: "Fertig", tone: "done" };
+  if (sprintId === currentId) return { en: "Current", de: "Aktuell", tone: "current" };
+  return { en: "Upcoming", de: "Kommend", tone: "upcoming" };
 }
 
-function statusClasses(status: string): string {
-  if (status === "Complete") {
-    return "border-emerald-400/20 bg-emerald-400/10 text-emerald-200";
-  }
-  if (status === "Active") {
-    return "border-cyan-400/20 bg-cyan-400/10 text-cyan-100";
-  }
-  if (status === "Ready") {
-    return "border-indigo-400/20 bg-indigo-400/10 text-indigo-100";
-  }
-  return "border-slate-400/15 bg-slate-400/5 text-slate-300";
+function deliveryClasses(tone: string): string {
+  if (tone === "done") return "border-emerald-400/25 bg-emerald-400/10 text-emerald-200";
+  if (tone === "current") return "border-cyan-400/25 bg-cyan-400/10 text-cyan-100";
+  return "border-slate-400/15 bg-white/[0.025] text-slate-400";
 }
 
 export default function Home() {
-  const { portfolio, metrics, projects, eoip, i18n } = loadPortfolioData();
+  const { portfolio, projects, i18n } = loadPortfolioData();
   const highEnd = loadHighEndControlCenter();
-  const currentSprint = highEnd.sprints.find((sprint) => sprint.id === highEnd.program.current_sprint_id) ?? highEnd.sprints[0];
-  const activeSprints = highEnd.sprints.filter((sprint) => sprint.status === "IN_PROGRESS");
-  const completedSprints = highEnd.sprints.filter((sprint) => sprint.status === "DONE");
-  const auditedBlockers = highEnd.sprints.reduce((sum, sprint) => sum + sprint.blocker_count, 0);
-  const bcsentinelCoreSprints = highEnd.sprints.filter((sprint) => ["S01","S02","S03","S04","S05","S06"].includes(sprint.id));
-  const bcsentinelScope = bcsentinelCoreSprints.length
-    ? bcsentinelCoreSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) / bcsentinelCoreSprints.length
-    : 0;
-  const eoipSprint = highEnd.sprints.find((sprint) => sprint.id === "S08");
-  const aiSprints = highEnd.sprints.filter((sprint) => ["S12","S13","S14","S15","S16"].includes(sprint.id));
-  const aiScope = aiSprints.length
-    ? aiSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) / aiSprints.length
-    : 0;
-  const efficiency = metrics.delivery_efficiency;
-  const architecture = (eoip.architecture?.flow ?? []) as Array<Record<string, any>>;
+  const currentSprint =
+    highEnd.sprints.find((sprint) => sprint.id === highEnd.program.current_sprint_id) ??
+    highEnd.sprints[0];
+
+  const sprintById = Object.fromEntries(highEnd.sprints.map((sprint) => [sprint.id, sprint]));
+  const bcsentinelCoreIds = ["S01", "S02", "S03", "S04", "S05", "S06"];
+  const bcsentinelCoreSprints = bcsentinelCoreIds.map((id) => sprintById[id]).filter(Boolean);
+  const bcsentinelScope =
+    bcsentinelCoreSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) /
+    bcsentinelCoreSprints.length;
+
+  const eoipSprint = sprintById.S08;
+  const bcsentinelProject = projects.find((project) => project.id === "bcsentinel");
+  const eoipProject = projects.find((project) => project.id === "eoip");
+
+  const findDetail = (id: string) =>
+    highEnd.sprints.flatMap((sprint) => sprint.detail_items).find((item) => item.id === id);
+
+  const evidenceItems = [
+    findDetail("S01-D01"),
+    findDetail("S01-D02"),
+    findDetail("S03-D03"),
+    findDetail("S04-D03"),
+    findDetail("S06-D02"),
+    findDetail("S06-D03"),
+  ].filter(Boolean);
+
+  const capabilities = [
+    { id: "S09", en: "Inventory Intelligence", de: "Inventory Intelligence" },
+    { id: "S10", en: "Margin & Customer Intelligence", de: "Margin- & Customer-Intelligence" },
+    { id: "S11", en: "Procurement Intelligence", de: "Procurement Intelligence" },
+  ].map((capability) => ({ ...capability, sprint: sprintById[capability.id] }));
+
+  const phases = [
+    {
+      id: "core",
+      en: "Core Commercialization",
+      de: "Core-Kommerzialisierung",
+      copyEn: "From product hardening to pilot-ready BCSentinel Core.",
+      copyDe: "Vom Product-Hardening bis zum pilotfähigen BCSentinel Core.",
+      sprints: highEnd.sprints.filter((sprint) => Number(sprint.id.slice(1)) <= 7),
+    },
+    {
+      id: "intelligence",
+      en: "Decision Intelligence",
+      de: "Decision Intelligence",
+      copyEn: "EOIP becomes reusable inventory, margin, customer and procurement intelligence.",
+      copyDe: "EOIP wird zu wiederverwendbarer Inventory-, Margin-, Customer- und Procurement-Intelligence.",
+      sprints: highEnd.sprints.filter((sprint) => ["S08", "S09", "S10", "S11"].includes(sprint.id)),
+    },
+    {
+      id: "ai",
+      en: "AI Platform",
+      de: "AI-Plattform",
+      copyEn: "Grounded Copilot, evaluation, agents, observability and controlled actions.",
+      copyDe: "Grounded Copilot, Evaluation, Agents, Observability und kontrollierte Aktionen.",
+      sprints: highEnd.sprints.filter((sprint) => ["S12", "S13", "S14", "S15", "S16"].includes(sprint.id)),
+    },
+    {
+      id: "enterprise",
+      en: "Enterprise Platform",
+      de: "Enterprise-Plattform",
+      copyEn: "Multi-company, cloud, scale and the BCSentinel Professional Beta.",
+      copyDe: "Multi-Company, Cloud, Scale und die BCSentinel Professional Beta.",
+      sprints: highEnd.sprints.filter((sprint) => ["S17", "S18", "S19"].includes(sprint.id)),
+    },
+  ];
+
+  const architecture = [
+    ["01", "Business Central", "Business Central"],
+    ["02", "BCSentinel Core", "BCSentinel Core"],
+    ["03", "Data & Semantic Layer", "Data- & Semantic-Layer"],
+    ["04", "Decision Intelligence", "Decision Intelligence"],
+    ["05", "AI Copilot & Agents", "AI Copilot & Agents"],
+    ["06", "Policy & Human Approval", "Policy & Human Approval"],
+    ["07", "Audited BC Actions", "Auditierte BC-Aktionen"],
+  ];
+
   const repoUrl = `https://github.com/${portfolio.owner}/${portfolio.repository}`;
 
   return (
     <main>
-      <header className="shell flex min-h-20 items-center justify-between border-b hairline">
+      <header className="shell flex min-h-20 flex-wrap items-center justify-between gap-3 border-b hairline py-3 sm:flex-nowrap">
         <a href="#top" className="flex items-center gap-3 text-sm font-semibold tracking-wide">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl border hairline bg-white/[0.03] text-xs text-cyan-200">
             DA
@@ -138,19 +180,10 @@ export default function Home() {
         </a>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
-          <a className="transition hover:text-white" href="#program">
-            <span className="lang-en">Program</span>
-            <span className="lang-de">Programm</span>
-          </a>
-          <a className="transition hover:text-white" href="#delivery-efficiency">
-            <Localized i18n={i18n} path="nav.delivery" />
-          </a>
-          <a className="transition hover:text-white" href="#projects">
-            <Localized i18n={i18n} path="nav.projects" />
-          </a>
-          <a className="transition hover:text-white" href="#roadmap">
-            <Localized i18n={i18n} path="nav.roadmap" />
-          </a>
+          <a className="transition hover:text-white" href="#building"><Dual en="Building" de="Projekte" /></a>
+          <a className="transition hover:text-white" href="#evidence"><Dual en="Evidence" de="Evidence" /></a>
+          <a className="transition hover:text-white" href="#delivery"><Dual en="AI Delivery" de="AI Delivery" /></a>
+          <a className="transition hover:text-white" href="#roadmap"><Dual en="Roadmap" de="Roadmap" /></a>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -162,7 +195,7 @@ export default function Home() {
             rel="noreferrer"
             className="rounded-full border hairline bg-white/[0.04] px-4 py-2 text-xs font-medium text-slate-200 transition hover:border-cyan-300/30 hover:bg-cyan-300/[0.06]"
           >
-            <Localized i18n={i18n} path="nav.github" />
+            GitHub
           </a>
         </div>
       </header>
@@ -170,462 +203,252 @@ export default function Home() {
       <section id="top" className="shell grid gap-10 py-16 md:py-24 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
         <div>
           <div className="eyebrow">
-            <Localized i18n={i18n} path="hero.eyebrow" />
+            <Dual en="Enterprise Data & AI Engineering" de="Enterprise Data & AI Engineering" />
           </div>
           <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.055em] text-white md:text-7xl">
-            <Localized i18n={i18n} path="hero.title_prefix" />
+            <Dual en="From Business Central data to" de="Von Business-Central-Daten zu" />{" "}
             <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 bg-clip-text text-transparent">
-              {" "}
-              <Localized i18n={i18n} path="hero.title_accent" />
+              <Dual en="Decision Intelligence." de="Decision Intelligence." />
             </span>
           </h1>
           <p className="mt-7 max-w-3xl text-base leading-8 text-slate-400 md:text-lg">
-            <Localized i18n={i18n} path="hero.copy" />
+            <Dual
+              en="A production-oriented portfolio centered on BCSentinel: Business Central product engineering, enterprise analytics, explainable recommendations and a controlled path toward AI copilots, agents and audited ERP actions."
+              de="Ein produktionsorientiertes Portfolio rund um BCSentinel: Business-Central-Product-Engineering, Enterprise Analytics, erklärbare Empfehlungen und ein kontrollierter Weg zu AI Copilots, Agents und auditierten ERP-Aktionen."
+            />
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2">
-            {(portfolio.positioning as string[]).slice(0, 5).map((role) => (
-              <span
-                key={role}
-                className="rounded-full border hairline bg-white/[0.025] px-3 py-1.5 text-xs text-slate-300"
-              >
+            {["Data & AI Solutions Engineer", "Analytics / Data Platform Engineer", "Business Central & Decision Intelligence"].map((role) => (
+              <span key={role} className="rounded-full border hairline bg-white/[0.025] px-3 py-1.5 text-xs text-slate-300">
                 {role}
               </span>
             ))}
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
-              <Localized i18n={i18n} path="hero.explore_projects" />
+            <a href="#building" className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+              <Dual en="Explore the platform" de="Plattform ansehen" />
             </a>
-            <a
-              href="#delivery-efficiency"
-              className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]"
-            >
-              <Localized i18n={i18n} path="hero.see_delivery" />
+            <a href={`./control-center/${currentSprint.id}/`} className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
+              <Dual en="Current sprint details" de="Aktueller Sprint im Detail" />
             </a>
           </div>
         </div>
 
         <div className="panel p-6 md:p-7">
-          <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="eyebrow"><Dual en="Live program" de="Live-Programm" /></div>
+          <div className="mt-6 grid grid-cols-2 gap-5">
             <div>
-              <div className="eyebrow">
-                <span className="lang-en">Live High-End Program</span>
-                <span className="lang-de">Live High-End-Programm</span>
-              </div>
-              <div className="mt-2 text-lg font-medium text-white">
-                {currentSprint.id} — {currentSprint.title}
-              </div>
-            </div>
-            <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${highEndStatusClasses(currentSprint.status)}`}>
-              {currentSprint.status}
-            </span>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-5">
-            <div>
-              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <span className="lang-en">Program complete</span>
-                <span className="lang-de">Programmfortschritt</span>
-              </div>
+              <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Program" de="Programm" /></div>
               <div className="mt-2 text-3xl font-semibold text-white">{formatPct(highEnd.program.program_completion_pct)}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <span className="lang-en">Current sprint</span>
-                <span className="lang-de">Aktueller Sprint</span>
-              </div>
+              <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Current sprint" de="Aktueller Sprint" /></div>
               <div className="mt-2 text-3xl font-semibold text-cyan-200">{formatPct(currentSprint.scope_readiness_pct)}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <span className="lang-en">Sprints done</span>
-                <span className="lang-de">Sprints fertig</span>
-              </div>
-              <div className="mt-2 text-3xl font-semibold text-white">{completedSprints.length}/20</div>
+              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">BCSentinel Core</div>
+              <div className="mt-2 text-3xl font-semibold text-white">{formatPct(bcsentinelScope)}</div>
             </div>
             <div>
-              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <span className="lang-en">Audited blockers</span>
-                <span className="lang-de">Auditierte Blocker</span>
-              </div>
-              <div className="mt-2 text-3xl font-semibold text-white">{auditedBlockers}</div>
+              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">EOIP / Data</div>
+              <div className="mt-2 text-3xl font-semibold text-white">{formatPct(eoipSprint?.scope_readiness_pct ?? 0)}</div>
             </div>
           </div>
 
           <div className="mt-8 border-t hairline pt-5">
-            <div className="flex items-center justify-between gap-4 text-xs text-slate-500">
-              <span>
-                <span className="lang-en">Current sprint scope</span>
-                <span className="lang-de">Aktueller Sprint-Scope</span>
-              </span>
-              <span>{currentSprint.detail_done_count}/{currentSprint.detail_total_count} <span className="lang-en">details done</span><span className="lang-de">Details fertig</span></span>
+            <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
+              <Dual en="Now building" de="Aktuell in Arbeit" />
             </div>
-            <div className="progress-track mt-3">
+            <div className="mt-2 text-base font-semibold text-white">{currentSprint.id} — {currentSprint.title}</div>
+            <div className="progress-track mt-4">
               <div className="progress-fill" style={{ width: `${currentSprint.scope_readiness_pct}%` }} />
             </div>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm">
-              <span className="text-slate-400">
-                <span className="lang-en">Target</span>
-                <span className="lang-de">Ziel</span>
-              </span>
-              <span className="font-medium text-white"><LocalizedDate value={String(highEnd.program.target_date)} /></span>
+            <div className="mt-4 flex items-center justify-between gap-4 text-xs text-slate-500">
+              <span>{currentSprint.detail_done_count}/{currentSprint.detail_total_count} <Dual en="details done" de="Details fertig" /></span>
+              <span><Dual en="Target" de="Ziel" /> <LocalizedDate value={String(highEnd.program.target_date)} /></span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="program" className="shell py-14 md:py-20">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <div className="eyebrow">
-              <span className="lang-en">Program at a glance</span>
-              <span className="lang-de">Programm auf einen Blick</span>
-            </div>
-            <h2 className="section-title mt-3">
-              <span className="lang-en">One portfolio. One delivery truth.</span>
-              <span className="lang-de">Ein Portfolio. Eine Delivery-Wahrheit.</span>
-            </h2>
-            <p className="section-copy">
-              <span className="lang-en">The public portfolio and delivery control center now use the same structured GitHub data: program progress, BCSentinel readiness, EOIP, AI roadmap, sprint detail and evidence.</span>
-              <span className="lang-de">Portfolio und Delivery Control Center nutzen dieselben strukturierten GitHub-Daten: Programmfortschritt, BCSentinel-Readiness, EOIP, AI-Roadmap, Sprintdetails und Evidence.</span>
-            </p>
-          </div>
-          <div className="rounded-2xl border hairline bg-white/[0.025] px-5 py-4 text-sm">
-            <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-              <span className="lang-en">Active delivery</span>
-              <span className="lang-de">Aktive Delivery</span>
-            </div>
-            <div className="mt-1 font-semibold text-white">{activeSprints.length} <span className="lang-en">active sprints</span><span className="lang-de">aktive Sprints</span></div>
-          </div>
-        </div>
+      <section id="building" className="shell py-14 md:py-20">
+        <div className="eyebrow"><Dual en="What I'm building" de="Was ich baue" /></div>
+        <h2 className="section-title mt-3"><Dual en="One platform story, two core engineering assets." de="Eine Plattform-Story, zwei zentrale Engineering-Assets." /></h2>
+        <p className="section-copy">
+          <Dual
+            en="BCSentinel is the commercial product. EOIP is the controlled data and analytics R&D foundation. Inventory, margin, customer and procurement intelligence become capabilities of the platform rather than separate products."
+            de="BCSentinel ist das kommerzielle Produkt. EOIP ist die kontrollierte Data-&-Analytics-R&D-Grundlage. Inventory-, Margin-, Customer- und Procurement-Intelligence werden Plattform-Capabilities statt separater Produkte."
+          />
+        </p>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-          {[
-            ["Program", highEnd.program.program_completion_pct, "S00–S19"],
-            ["BCSentinel Core", bcsentinelScope, "S01–S06"],
-            ["EOIP / Data", eoipSprint?.scope_readiness_pct ?? 0, "S08"],
-            ["AI Platform", aiScope, "S12–S16"],
-          ].map(([label, value, scope]) => (
-            <article key={String(label)} className="panel p-5 md:p-6">
-              <div className="text-xs uppercase tracking-[0.14em] text-slate-500">{label}</div>
-              <div className="metric-value mt-3">{formatPct(Number(value))}</div>
-              <div className="mt-2 text-xs text-slate-500">{scope}</div>
-            </article>
-          ))}
-          <article className="panel p-5 md:p-6">
-            <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-              <span className="lang-en">Capacity baseline</span>
-              <span className="lang-de">Kapazitäts-Baseline</span>
+        <div className="mt-8 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="panel p-7 md:p-9">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <div className="eyebrow">Flagship Product</div>
+                <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">BCSentinel</h3>
+                <p className="mt-2 text-sm text-slate-500">{bcsentinelProject?.fullName ?? "Business Central Data & AI Platform"}</p>
+              </div>
+              <div className="text-right">
+                <div className="text-4xl font-semibold tracking-[-0.04em] text-cyan-200">{formatPct(bcsentinelScope)}</div>
+                <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500"><Dual en="Core readiness" de="Core-Readiness" /></div>
+              </div>
             </div>
-            <div className="metric-value mt-3">{highEnd.program.planned_hours_per_week} h</div>
-            <div className="mt-2 text-xs text-slate-500">
-              <span className="lang-en">per week · measured</span>
-              <span className="lang-de">pro Woche · gemessen</span>
+            <p className="mt-6 max-w-3xl text-sm leading-7 text-slate-400">
+              <Dual
+                en="A SaaS-oriented Business Central platform for data health, findings, executive reporting, monitoring and controlled remediation — evolving toward reusable decision intelligence and AI-assisted operations."
+                de="Eine SaaS-orientierte Business-Central-Plattform für Data Health, Findings, Executive Reporting, Monitoring und kontrollierte Remediation – mit Ausbau zu wiederverwendbarer Decision Intelligence und AI-gestützten Operations."
+              />
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {(bcsentinelProject?.technologies ?? ["AL", "FastAPI", "PostgreSQL", "GitHub Actions"]).map((technology) => (
+                <span key={technology} className="rounded-lg bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-400">{technology}</span>
+              ))}
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3 border-t hairline pt-6">
+              {bcsentinelProject?.repository && (
+                <a href={`https://github.com/${bcsentinelProject.repository}`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-cyan-200 transition hover:text-cyan-100">
+                  GitHub →
+                </a>
+              )}
+              <a href="./control-center/S01/" className="text-sm font-semibold text-slate-300 transition hover:text-white">
+                <Dual en="Engineering readiness →" de="Engineering-Readiness →" />
+              </a>
+            </div>
+          </article>
+
+          <article className="panel p-7 md:p-9">
+            <div className="eyebrow">Data & Analytics R&D</div>
+            <div className="mt-3 flex items-end justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-0.035em] text-white">EOIP</h3>
+                <p className="mt-2 text-sm text-slate-500">{eoipProject?.fullName ?? "Enterprise Operational Intelligence Platform"}</p>
+              </div>
+              <div className="text-3xl font-semibold text-white">{formatPct(eoipSprint?.scope_readiness_pct ?? 0)}</div>
+            </div>
+            <p className="mt-6 text-sm leading-7 text-slate-400">
+              <Dual
+                en="Synthetic ERP data, PostgreSQL, dimensional modeling, KPI semantics and Power BI — used to develop reusable enterprise intelligence before product integration."
+                de="Synthetische ERP-Daten, PostgreSQL, dimensionales Modell, KPI-Semantik und Power BI – als Entwicklungsumgebung für wiederverwendbare Enterprise Intelligence vor der Produktintegration."
+              />
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {(eoipProject?.technologies ?? ["Python", "PostgreSQL", "Power BI"]).map((technology) => (
+                <span key={technology} className="rounded-lg bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-400">{technology}</span>
+              ))}
             </div>
           </article>
         </div>
 
-        <article className="panel mt-5 p-6 md:p-8">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-            <div>
-              <div className="eyebrow">
-                <span className="lang-en">Now building</span>
-                <span className="lang-de">Aktuell in Arbeit</span>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {capabilities.map((capability) => (
+            <article key={capability.id} className="rounded-2xl border hairline bg-white/[0.02] p-5">
+              <div className="text-xs font-semibold text-cyan-200">{capability.id}</div>
+              <h3 className="mt-3 text-base font-semibold text-white"><Dual en={capability.en} de={capability.de} /></h3>
+              <div className="mt-4 flex items-end justify-between gap-4">
+                <div className="text-2xl font-semibold text-white">{formatPct(capability.sprint?.scope_readiness_pct ?? 0)}</div>
+                <div className="text-[10px] uppercase tracking-[0.12em] text-slate-500"><Dual en="inherited scope" de="vorhandener Scope" /></div>
               </div>
-              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">{currentSprint.id} — {currentSprint.title}</h3>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">{currentSprint.objective}</p>
-            </div>
-            <div className="text-left lg:text-right">
-              <div className="text-4xl font-semibold tracking-[-0.04em] text-cyan-200">{formatPct(currentSprint.scope_readiness_pct)}</div>
-              <div className="mt-1 text-xs text-slate-500">
-                <span className="lang-en">scope readiness</span>
-                <span className="lang-de">Scope-Readiness</span>
+              <div className="progress-track mt-3">
+                <div className="progress-fill" style={{ width: `${capability.sprint?.scope_readiness_pct ?? 0}%` }} />
               </div>
-            </div>
-          </div>
-          <div className="progress-track mt-6">
-            <div className="progress-fill" style={{ width: `${currentSprint.scope_readiness_pct}%` }} />
-          </div>
-
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
-            {currentSprint.detail_items.slice(0, 6).map((item) => (
-              <div key={item.id} className="rounded-2xl border hairline bg-white/[0.025] p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200">{item.id}</div>
-                    <div className="mt-1 text-sm font-medium text-slate-200">{item.title}</div>
-                  </div>
-                  <span className={`rounded-full border px-2 py-1 text-[10px] font-semibold ${item.status === "done" || item.status === "verified" ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-200" : item.status === "in_progress" ? "border-cyan-400/20 bg-cyan-400/10 text-cyan-100" : item.status === "blocked" ? "border-rose-400/20 bg-rose-400/10 text-rose-100" : "border-slate-400/15 bg-white/[0.025] text-slate-400"}`}>
-                    {item.status.replaceAll("_", " ").toUpperCase()}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`./control-center/${currentSprint.id}/`} className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
-              <span className="lang-en">Open full sprint detail</span>
-              <span className="lang-de">Vollständige Sprintdetails</span>
-            </a>
-            <a href="#roadmap" className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
-              <span className="lang-en">See full roadmap</span>
-              <span className="lang-de">Gesamte Roadmap</span>
-            </a>
-          </div>
-        </article>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="delivery-efficiency" className="shell py-14 md:py-20">
+      <section id="evidence" className="shell py-14 md:py-20">
+        <div className="eyebrow"><Dual en="Engineering evidence" de="Engineering Evidence" /></div>
+        <h2 className="section-title mt-3"><Dual en="Built as engineering, not as a demo." de="Als Engineering gebaut, nicht als Demo." /></h2>
+        <p className="section-copy">
+          <Dual
+            en="The portfolio prioritizes runtime evidence, least privilege, data migrations, backup/restore, tenant boundaries and release traceability — not only screenshots and feature lists."
+            de="Das Portfolio priorisiert Runtime-Evidence, Least Privilege, Datenmigrationen, Backup/Restore, Tenant-Grenzen und Release-Traceability – nicht nur Screenshots und Featurelisten."
+          />
+        </p>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {evidenceItems.map((item) => (
+            <article key={item!.id} className="panel p-6">
+              <div className="flex items-start justify-between gap-3">
+                <div className="text-xs font-semibold text-cyan-200">{item!.id}</div>
+                <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-semibold text-emerald-200">
+                  VERIFIED
+                </span>
+              </div>
+              <h3 className="mt-4 text-base font-semibold leading-6 text-white">{item!.title}</h3>
+              <p className="mt-3 text-xs leading-6 text-slate-500">{item!.evidence}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="delivery" className="shell py-14 md:py-20">
         <div className="panel overflow-hidden">
-          <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="border-b hairline p-7 md:p-10 lg:border-b-0 lg:border-r">
-              <div className="eyebrow"><Localized i18n={i18n} path="delivery.eyebrow" /></div>
+              <div className="eyebrow"><Dual en="AI-assisted engineering" de="AI-assisted Engineering" /></div>
               <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">
-                <Localized i18n={i18n} path="delivery.title" />
+                <Dual en="Measure the acceleration, keep the verification." de="Beschleunigung messen, Verifikation behalten." />
               </h2>
               <p className="mt-5 text-sm leading-7 text-slate-400 md:text-base">
-                <Localized i18n={i18n} path="delivery.copy" />
+                <Dual
+                  en="AI is used to accelerate planning, implementation, testing and documentation. It does not replace runtime acceptance or human release decisions."
+                  de="AI beschleunigt Planung, Implementierung, Tests und Dokumentation. Sie ersetzt weder Runtime-Abnahme noch menschliche Release-Entscheidungen."
+                />
               </p>
-
-              <div className="mt-8 rounded-2xl border hairline bg-black/10 p-5 text-sm leading-7 text-slate-400">
-                <div className="font-medium text-slate-200">
-                  <Localized i18n={i18n} path="delivery.evidence_rule" />
-                </div>
-                <Localized i18n={i18n} path="delivery.evidence_copy" />
+              <div className="mt-7 rounded-2xl border hairline bg-black/10 p-5 text-sm leading-7 text-slate-400">
+                <Dual
+                  en="Measured effort starts with the High-End v2 baseline. Historical effort remains a separate reconstructed estimate and is never inferred from commit timestamps."
+                  de="Gemessener Aufwand startet mit der High-End-v2-Baseline. Historischer Aufwand bleibt eine separate rekonstruierte Schätzung und wird niemals aus Commit-Zeitstempeln abgeleitet."
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-px bg-white/[0.06]">
               <div className="bg-[#0b1728] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.baseline_window" />
-                </div>
-                <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.baseline_delivery_window_elapsed_days} <Localized i18n={i18n} path="units.days" />
-                </div>
-                <div className="mt-3 text-xs leading-5 text-slate-500">
-                  <LocalizedDate value={efficiency.baseline_start_date} /> → <LocalizedDate value={efficiency.baseline_target_date} />
-                </div>
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Program capacity" de="Programmkapa­zität" /></div>
+                <div className="mt-3 text-3xl font-semibold text-white">{highEnd.program.planned_hours} h</div>
+                <div className="mt-2 text-xs text-slate-500">{highEnd.program.planned_hours_per_week} h / <Dual en="week" de="Woche" /></div>
               </div>
               <div className="bg-[#0b1728] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.forecast_window" />
-                </div>
-                <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.forecast_delivery_window_elapsed_days} <Localized i18n={i18n} path="units.days" />
-                </div>
-                <div className="mt-3 text-xs leading-5 text-slate-500">
-                  <Localized i18n={i18n} path="delivery.forecast_to" />{" "}
-                  <LocalizedDate value={efficiency.forecast_completion_date} />
-                </div>
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Measured effort" de="Gemessener Aufwand" /></div>
+                <div className="mt-3 text-3xl font-semibold text-white">{highEnd.program.actual_hours} h</div>
+                <div className="mt-2 text-xs text-slate-500"><Dual en="High-End v2 tracking active" de="High-End-v2-Tracking aktiv" /></div>
               </div>
               <div className="bg-[#0b1728] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.forecast_compression" />
-                </div>
-                <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.forecast_schedule_compression_days} <Localized i18n={i18n} path="units.days" />
-                </div>
-                <div className="mt-3 text-xs leading-5 text-slate-500">
-                  {formatPct(efficiency.forecast_schedule_compression_pct)}{" "}
-                  <Localized i18n={i18n} path="delivery.shorter_baseline" />
-                </div>
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Method" de="Methode" /></div>
+                <div className="mt-3 text-xl font-semibold text-white"><Dual en="Benchmark vs actual" de="Benchmark vs. Ist" /></div>
+                <div className="mt-2 text-xs leading-5 text-slate-500"><Dual en="Effort compression only after evidence-backed completion." de="Effort Compression erst nach evidenzbasiertem Abschluss." /></div>
               </div>
               <div className="bg-[#0b1728] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.actual_window" />
-                </div>
-                <div className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                  {efficiency.actual_delivery_window_elapsed_days === null ? (
-                    <Localized i18n={i18n} path="delivery.pending" />
-                  ) : (
-                    <>
-                      {efficiency.actual_delivery_window_elapsed_days}{" "}
-                      <Localized i18n={i18n} path="units.days" />
-                    </>
-                  )}
-                </div>
-                <div className="mt-3 text-xs leading-5 text-slate-500">
-                  {efficiency.actual_completion_date ? (
-                    <LocalizedDate value={efficiency.actual_completion_date} />
-                  ) : (
-                    <Localized i18n={i18n} path="delivery.final_m11" />
-                  )}
-                </div>
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500"><Dual en="Quality gate" de="Qualitäts-Gate" /></div>
+                <div className="mt-3 text-xl font-semibold text-white"><Dual en="Tests + runtime + human" de="Tests + Runtime + Human" /></div>
+                <div className="mt-2 text-xs leading-5 text-slate-500"><Dual en="No AI-speed claim without verification." de="Kein AI-Speed-Claim ohne Verifikation." /></div>
               </div>
             </div>
           </div>
-
-          <div className="border-t hairline p-7 md:p-10">
-            <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
-              <div>
-                <div className="eyebrow"><Localized i18n={i18n} path="delivery.effort_title" /></div>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
-                  <Localized i18n={i18n} path="delivery.planned_model" /> ·{" "}
-                  <Localized i18n={i18n} path="delivery.scenario_label" />
-                </p>
-              </div>
-              <div className="text-xs text-slate-500">
-                <Localized i18n={i18n} path="delivery.cost_rate_note" />:{" "}
-                {efficiency.cost_model.loaded_hourly_rate_eur} €/h
-              </div>
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              <article className="rounded-2xl border hairline bg-white/[0.02] p-5">
-                <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.planned_hours" />
-                </div>
-                <div className="mt-3 text-2xl font-semibold text-white">
-                  {efficiency.human_effort.planned_portfolio_hours} <Localized i18n={i18n} path="units.hours" />
-                </div>
-                <div className="mt-2 text-xs text-slate-500">
-                  {efficiency.human_effort.planned_mandatory_hours} <Localized i18n={i18n} path="units.hours" />{" "}<Localized i18n={i18n} path="delivery.mandatory_scope" />
-                </div>
-              </article>
-
-              <article className="rounded-2xl border hairline bg-white/[0.02] p-5">
-                <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.actual_hours" />
-                </div>
-                <div className="mt-3 text-2xl font-semibold text-white">
-                  {efficiency.human_effort.observed_hours == null ? (
-                    <Localized i18n={i18n} path="delivery.actual_pending" />
-                  ) : (
-                    <>
-                      {efficiency.human_effort.observed_hours}{" "}
-                      <Localized i18n={i18n} path="units.hours" />
-                    </>
-                  )}
-                </div>
-              </article>
-
-              <article className="rounded-2xl border hairline bg-white/[0.02] p-5">
-                <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.planned_cost" />
-                </div>
-                <div className="mt-3 text-2xl font-semibold text-white">
-                  <LocalizedCurrency value={efficiency.cost_model.planned_portfolio_cost_eur} />
-                </div>
-                <div className="mt-2 text-xs text-slate-500">
-                  <LocalizedCurrency value={efficiency.cost_model.planned_mandatory_cost_eur} />{" "}<Localized i18n={i18n} path="delivery.mandatory_scope" />
-                </div>
-              </article>
-
-              <article className="rounded-2xl border hairline bg-white/[0.02] p-5">
-                <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.actual_cost" />
-                </div>
-                <div className="mt-3 text-2xl font-semibold text-white">
-                  {efficiency.cost_model.observed_cost_eur == null ? (
-                    <Localized i18n={i18n} path="delivery.actual_pending" />
-                  ) : (
-                    <LocalizedCurrency value={efficiency.cost_model.observed_cost_eur} />
-                  )}
-                </div>
-              </article>
-
-              <article className="rounded-2xl border hairline bg-white/[0.02] p-5">
-                <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                  <Localized i18n={i18n} path="delivery.modeled_savings" />
-                </div>
-                <div className="mt-3 text-2xl font-semibold text-white">
-                  {efficiency.cost_model.modeled_capacity_value_eur == null ? (
-                    <Localized i18n={i18n} path="delivery.savings_pending" />
-                  ) : (
-                    <LocalizedCurrency value={efficiency.cost_model.modeled_capacity_value_eur} />
-                  )}
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="shell py-14 md:py-20">
-        <div className="eyebrow"><Localized i18n={i18n} path="projects.eyebrow" /></div>
-        <h2 className="section-title mt-3"><Localized i18n={i18n} path="projects.title" /></h2>
-        <p className="section-copy"><Localized i18n={i18n} path="projects.copy" /></p>
-
-        <div className="mt-8 grid gap-4 lg:grid-cols-2">
-          {projects.map((project) => (
-            <article key={project.id} className="panel p-6 md:p-7">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <div className="text-xl font-semibold tracking-[-0.025em] text-white">{project.name}</div>
-                  <div className="mt-1 text-sm text-slate-500">{project.fullName}</div>
-                </div>
-                <span className={`rounded-full border px-3 py-1 text-xs ${statusClasses(project.status)}`}>
-                  <Localized i18n={i18n} path={`statuses.${project.status}`} />
-                </span>
-              </div>
-
-              <p className="mt-5 text-sm leading-7 text-slate-400">
-                <Localized i18n={i18n} path={`project_cards.${project.id}.summary`} />
-              </p>
-
-              <div className="mt-6">
-                <div className="flex items-center justify-between text-xs text-slate-500">
-                  <span><Localized i18n={i18n} path="projects.workstream_progress" /></span>
-                  <span>{formatPct(project.progressPct)}</span>
-                </div>
-                <div className="progress-track mt-2">
-                  <div className="progress-fill" style={{ width: `${Math.min(100, project.progressPct)}%` }} />
-                </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.technologies.map((technology) => (
-                  <span key={technology} className="rounded-lg bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-400">
-                    {technology}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-6 flex items-center justify-between border-t hairline pt-5 text-xs">
-                <span className="text-slate-500">
-                  <Localized i18n={i18n} path={`environments.${project.environment}`} />
-                </span>
-                {project.repository ? (
-                  <a
-                    href={`https://github.com/${project.repository}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-cyan-200 transition hover:text-cyan-100"
-                  >
-                    <Localized i18n={i18n} path="projects.repository" />
-                  </a>
-                ) : (
-                  <span className="text-slate-600"><Localized i18n={i18n} path="projects.repository_follows" /></span>
-                )}
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
       <section className="shell py-14 md:py-20">
-        <div className="eyebrow"><Localized i18n={i18n} path="architecture.eyebrow" /></div>
-        <h2 className="section-title mt-3"><Localized i18n={i18n} path="architecture.title" /></h2>
-        <p className="section-copy"><Localized i18n={i18n} path="architecture.copy" /></p>
+        <div className="eyebrow"><Dual en="Target architecture" de="Zielarchitektur" /></div>
+        <h2 className="section-title mt-3"><Dual en="From ERP evidence to controlled action." de="Von ERP-Evidence zu kontrollierter Aktion." /></h2>
+        <p className="section-copy">
+          <Dual
+            en="Critical business facts stay deterministic. AI explains, orchestrates and assists on top of trusted data, policies and human approval."
+            de="Kritische Business-Fakten bleiben deterministisch. AI erklärt, orchestriert und unterstützt auf Basis vertrauenswürdiger Daten, Policies und Human Approval."
+          />
+        </p>
 
         <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-7">
-          {architecture.map((step, index) => (
-            <div key={step.id} className="relative">
+          {architecture.map(([number, en, de], index) => (
+            <div key={number} className="relative">
               <div className="panel h-full p-5">
-                <div className="text-xs font-semibold text-cyan-200">{String(index + 1).padStart(2, "0")}</div>
-                <div className="mt-4 text-sm font-semibold text-white">
-                  <Localized i18n={i18n} path={`architecture_steps.${step.id}.label`} />
-                </div>
-                <p className="mt-2 text-xs leading-5 text-slate-500">
-                  <Localized i18n={i18n} path={`architecture_steps.${step.id}.description`} />
-                </p>
+                <div className="text-xs font-semibold text-cyan-200">{number}</div>
+                <div className="mt-4 text-sm font-semibold text-white"><Dual en={en} de={de} /></div>
               </div>
               {index < architecture.length - 1 && (
                 <div className="absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 text-slate-600 xl:block">→</div>
@@ -636,53 +459,52 @@ export default function Home() {
       </section>
 
       <section id="roadmap" className="shell py-14 md:py-20">
-        <div className="eyebrow">
-          <span className="lang-en">High-End roadmap</span>
-          <span className="lang-de">High-End-Roadmap</span>
-        </div>
-        <h2 className="section-title mt-3">
-          <span className="lang-en">S00–S19 from Core to Professional Beta.</span>
-          <span className="lang-de">S00–S19 von Core bis Professional Beta.</span>
-        </h2>
+        <div className="eyebrow"><Dual en="High-End roadmap" de="High-End-Roadmap" /></div>
+        <h2 className="section-title mt-3"><Dual en="Core → Intelligence → AI → Enterprise." de="Core → Intelligence → AI → Enterprise." /></h2>
         <p className="section-copy">
-          <span className="lang-en">Every sprint shows evidence-backed scope readiness. Existing verified work is credited; in-progress work remains visible but receives no completion credit.</span>
-          <span className="lang-de">Jeder Sprint zeigt evidenzbasierte Scope-Readiness. Bereits verifizierte Arbeit wird angerechnet; laufende Arbeit bleibt sichtbar, erhält aber noch keinen Completion-Credit.</span>
+          <Dual
+            en="Only one sprint is the current delivery focus. Future sprints can already show scope readiness when verified work from earlier development satisfies part of their target."
+            de="Nur ein Sprint ist der aktuelle Delivery-Fokus. Zukünftige Sprints können bereits Scope-Readiness zeigen, wenn verifizierte frühere Arbeit Teile ihres Zielumfangs erfüllt."
+          />
         </p>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {highEnd.sprints.map((sprint) => (
-            <a
-              key={sprint.id}
-              href={`./control-center/${sprint.id}/`}
-              className={`rounded-2xl border p-5 transition hover:-translate-y-0.5 hover:border-cyan-300/25 ${sprint.id === currentSprint.id ? "border-cyan-300/30 bg-cyan-300/[0.055]" : sprint.status === "DONE" ? "border-emerald-300/15 bg-emerald-300/[0.04]" : "hairline bg-white/[0.02]"}`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="text-xs font-bold text-cyan-200">{sprint.id}</div>
-                <span className={`rounded-full border px-2 py-1 text-[9px] font-semibold ${highEndStatusClasses(sprint.status)}`}>{sprint.status}</span>
+        <div className="mt-8 grid gap-5 xl:grid-cols-2">
+          {phases.map((phase) => (
+            <article key={phase.id} className="panel p-6 md:p-7">
+              <div className="eyebrow"><Dual en={phase.en} de={phase.de} /></div>
+              <p className="mt-3 text-sm leading-7 text-slate-400"><Dual en={phase.copyEn} de={phase.copyDe} /></p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {phase.sprints.map((sprint) => {
+                  const label = deliveryLabel(sprint.id, currentSprint.id, sprint.status);
+                  return (
+                    <a key={sprint.id} href={`./control-center/${sprint.id}/`} className="rounded-2xl border hairline bg-white/[0.02] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.04]">
+                      <div className="flex items-start justify-between gap-3">
+                        <span className="text-xs font-bold text-cyan-200">{sprint.id}</span>
+                        <span className={`rounded-full border px-2 py-1 text-[9px] font-semibold ${deliveryClasses(label.tone)}`}>
+                          <Dual en={label.en} de={label.de} />
+                        </span>
+                      </div>
+                      <div className="mt-3 min-h-10 text-sm font-semibold leading-5 text-white">{sprint.title}</div>
+                      <div className="mt-4 flex items-end justify-between gap-3">
+                        <div className="text-xl font-semibold text-white">{formatPct(sprint.scope_readiness_pct)}</div>
+                        <div className="text-[10px] uppercase tracking-[0.12em] text-slate-500"><Dual en="scope" de="Scope" /></div>
+                      </div>
+                      <div className="progress-track mt-3">
+                        <div className="progress-fill" style={{ width: `${sprint.scope_readiness_pct}%` }} />
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
-              <div className="mt-3 min-h-12 text-sm font-semibold leading-6 text-white">{sprint.title}</div>
-              <div className="mt-5 flex items-end justify-between gap-4">
-                <div>
-                  <div className="text-2xl font-semibold tracking-[-0.04em] text-white">{formatPct(sprint.scope_readiness_pct)}</div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-slate-500">
-                    <span className="lang-en">scope readiness</span>
-                    <span className="lang-de">Scope-Readiness</span>
-                  </div>
-                </div>
-                <div className="text-right text-[11px] text-slate-500">{sprint.detail_done_count}/{sprint.detail_total_count}</div>
-              </div>
-              <div className="progress-track mt-3">
-                <div className="progress-fill" style={{ width: `${sprint.scope_readiness_pct}%` }} />
-              </div>
-            </a>
+            </article>
           ))}
         </div>
       </section>
 
       <footer className="shell mt-10 border-t hairline py-10 text-xs text-slate-600">
         <div className="flex flex-col justify-between gap-4 sm:flex-row">
-          <span><Localized i18n={i18n} path="footer.source" /></span>
-          <span><Localized i18n={i18n} path="footer.snapshot" /> <LocalizedDate value={metrics.as_of} /></span>
+          <span><Dual en="GitHub structured data is the technical source of truth." de="GitHub-Strukturdaten sind die technische Source of Truth." /></span>
+          <span><Dual en="High-End v2 target" de="High-End-v2-Ziel" /> · <LocalizedDate value={String(highEnd.program.target_date)} /></span>
         </div>
       </footer>
     </main>
