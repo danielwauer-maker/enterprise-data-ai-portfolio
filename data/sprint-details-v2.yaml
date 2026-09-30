@@ -13,7 +13,6 @@ method:
 
 sprints:
   S00:
-    status: IN_PROGRESS
     items:
       - {id: S00-D01, title: Portfolio Bible and S00-S19 roadmap, weight: 15, status: done, evidence: "Portfolio Bible + high-end-program-v2.yaml"}
       - {id: S00-D02, title: Cross-repository authority model, weight: 15, status: done, evidence: "CROSS_REPO_AUTHORITY_V2.md + BPS/BFB alignment PRs"}
@@ -25,7 +24,6 @@ sprints:
       - {id: S00-D08, title: S00 final closeout and alignment merge completion, weight: 5, status: in_progress, evidence: "Portfolio merged; BPS/BFB alignment review remains"}
 
   S01:
-    status: IN_PROGRESS
     items:
       - {id: S01-D01, title: Five-role permission model exists, weight: 15, status: done, evidence: "BCSentinel PR #37 / existing Permission Sets"}
       - {id: S01-D02, title: Safe No-SUPER runtime method and evidence checklist, weight: 10, status: done, evidence: "BCSentinel PR #45"}
@@ -39,7 +37,6 @@ sprints:
       - {id: S01-D10, title: Final role matrix evidence and merge, weight: 5, status: planned, evidence: "requires all role runtime gates"}
 
   S02:
-    status: IN_PROGRESS
     items:
       - {id: S02-D01, title: Canonical product model in Core, weight: 15, status: done, evidence: "BCSentinel PR #10"}
       - {id: S02-D02, title: Runtime product policy adoption, weight: 15, status: done, evidence: "BCSentinel PR #12"}
@@ -52,7 +49,6 @@ sprints:
       - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: planned, evidence: "requires DRIFT-003 resolution"}
 
   S03:
-    status: IN_PROGRESS
     items:
       - {id: S03-D01, title: Tenant registration identity binding foundation, weight: 10, status: done, evidence: "existing backend identity model / PR #39 documents binding"}
       - {id: S03-D02, title: Login invite and SMTP contract implementation, weight: 15, status: done, evidence: "BCSentinel PR #25 P0-08 implementation"}
@@ -65,7 +61,6 @@ sprints:
       - {id: S03-D09, title: Real invitation registration BC connection dashboard journey, weight: 10, status: planned, evidence: "pilot E2E runtime gate pending"}
 
   S04:
-    status: IN_PROGRESS
     items:
       - {id: S04-D01, title: Dashboard shell and primary navigation, weight: 10, status: done, evidence: "analytics_embed.html on staging"}
       - {id: S04-D02, title: Overview Analytics Scans Issues Actions Reports Subscription Settings surfaces, weight: 10, status: done, evidence: "dashboard template navigation present"}
@@ -79,7 +74,6 @@ sprints:
       - {id: S04-D10, title: Encoding large-number and formatting QA, weight: 5, status: planned, evidence: "known visible encoding cleanup remains"}
 
   S05:
-    status: IN_PROGRESS
     items:
       - {id: S05-D01, title: Product homepage exists, weight: 15, status: done, evidence: "landingpage_neu/index.html"}
       - {id: S05-D02, title: Pricing page exists, weight: 15, status: done, evidence: "landingpage_neu/pricing.html"}
@@ -92,7 +86,6 @@ sprints:
       - {id: S05-D09, title: Pricing feature truth and commercial-copy audit, weight: 10, status: planned, evidence: "current pricing advertises Alerts and BC actions; must match shipped capability"}
 
   S06:
-    status: IN_PROGRESS
     items:
       - {id: S06-D01, title: Automated pilot test and evidence foundation, weight: 10, status: done, evidence: "BCSentinel PR #14"}
       - {id: S06-D02, title: PostgreSQL upgrade downgrade upgrade gate, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-04 PASS"}
@@ -106,7 +99,6 @@ sprints:
       - {id: S06-D10, title: Final pilot journey and monitoring acceptance, weight: 10, status: planned, evidence: "requires role onboarding and runtime closure"}
 
   S07:
-    status: PLANNED
     items:
       - {id: S07-D01, title: Non-destructive migration and history-preservation strategy, weight: 10, status: done, evidence: "Portfolio Bible safety rule"}
       - {id: S07-D02, title: Verified RC baseline selected for migration, weight: 20, status: planned, evidence: "depends on S06"}
@@ -116,7 +108,6 @@ sprints:
       - {id: S07-D06, title: Design Partner operating feedback integrated, weight: 15, status: planned, evidence: "external dependency"}
 
   S08:
-    status: IN_PROGRESS
     items:
       - {id: S08-D01, title: Requirements source model and reproducible ERP data, weight: 15, status: done, evidence: "EOIP-01 to EOIP-03 done"}
       - {id: S08-D02, title: SQL raw and staging layer, weight: 10, status: done, evidence: "EOIP-04 done"}
@@ -130,7 +121,6 @@ sprints:
       - {id: S08-D10, title: Shared Insight Contract v1, weight: 10, status: planned, evidence: "High-End v2 scope"}
 
   S09:
-    status: PLANNED
     items:
       - {id: S09-D01, title: Inventory analytical data foundation inherited from EOIP, weight: 15, status: done, evidence: "EOIP dimensional and semantic inventory foundation"}
       - {id: S09-D02, title: ABC XYZ segmentation, weight: 15, status: planned, evidence: "not started"}
@@ -142,7 +132,6 @@ sprints:
       - {id: S09-D08, title: Evidence tests reporting and release, weight: 10, status: planned, evidence: "not started"}
 
   S10:
-    status: PLANNED
     items:
       - {id: S10-D01, title: Sales and margin analytical foundation inherited from EOIP, weight: 15, status: done, evidence: "EOIP Sales and Margin reporting foundation"}
       - {id: S10-D02, title: Product margin model, weight: 15, status: planned, evidence: "not started"}
@@ -154,7 +143,6 @@ sprints:
       - {id: S10-D08, title: Evidence tests reporting and release, weight: 10, status: planned, evidence: "not started"}
 
   S11:
-    status: PLANNED
     items:
       - {id: S11-D01, title: Supplier and receipt source-data foundation, weight: 5, status: done, evidence: "EOIP source model contains suppliers receipts and purchasing entities"}
       - {id: S11-D02, title: Spend analysis, weight: 15, status: planned, evidence: "not started"}
@@ -166,7 +154,6 @@ sprints:
       - {id: S11-D08, title: Job-ready portfolio packaging and release, weight: 15, status: planned, evidence: "depends on completed intelligence modules"}
 
   S12:
-    status: PLANNED
     items:
       - {id: S12-D01, title: Copilot architecture and security contract, weight: 15, status: planned, evidence: "not started"}
       - {id: S12-D02, title: Intent and approved-tool routing, weight: 20, status: planned, evidence: "not started"}
@@ -176,7 +163,6 @@ sprints:
       - {id: S12-D06, title: Ask BCSentinel Alpha acceptance, weight: 10, status: planned, evidence: "not started"}
 
   S13:
-    status: PLANNED
     items:
       - {id: S13-D01, title: Representative evaluation dataset, weight: 20, status: planned, evidence: "not started"}
       - {id: S13-D02, title: Tool-selection accuracy evaluation, weight: 15, status: planned, evidence: "not started"}
@@ -186,7 +172,6 @@ sprints:
       - {id: S13-D06, title: Copilot UX and user acceptance, weight: 20, status: planned, evidence: "not started"}
 
   S14:
-    status: PLANNED
     items:
       - {id: S14-D01, title: Agent contract and boundaries, weight: 15, status: planned, evidence: "not started"}
       - {id: S14-D02, title: Inventory Agent, weight: 15, status: planned, evidence: "not started"}
@@ -197,7 +182,6 @@ sprints:
       - {id: S14-D07, title: Orchestrator routing retry fallback and tests, weight: 15, status: planned, evidence: "not started"}
 
   S15:
-    status: PLANNED
     items:
       - {id: S15-D01, title: AI trace model and correlation IDs, weight: 20, status: planned, evidence: "not started"}
       - {id: S15-D02, title: OpenTelemetry traces and metrics, weight: 20, status: planned, evidence: "not started"}
@@ -207,7 +191,6 @@ sprints:
       - {id: S15-D06, title: AI operations dashboard and evidence, weight: 15, status: planned, evidence: "not started"}
 
   S16:
-    status: PLANNED
     items:
       - {id: S16-D01, title: Action contract and allow-list, weight: 15, status: planned, evidence: "not started"}
       - {id: S16-D02, title: Policy and permission checks, weight: 15, status: planned, evidence: "not started"}
@@ -217,7 +200,6 @@ sprints:
       - {id: S16-D06, title: Idempotency audit rollback and runtime evidence, weight: 20, status: planned, evidence: "not started"}
 
   S17:
-    status: PLANNED
     items:
       - {id: S17-D01, title: Tenant isolation and session-binding foundation, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-07 + existing multi-tenant runtime"}
       - {id: S17-D02, title: Backup restore and operator-runbook foundation, weight: 10, status: done, evidence: "BCSentinel PR #25/#26"}
@@ -228,7 +210,6 @@ sprints:
       - {id: S17-D07, title: Disaster recovery and real operational drill, weight: 20, status: planned, evidence: "pilot/enterprise gate remains open"}
 
   S18:
-    status: PLANNED
     items:
       - {id: S18-D01, title: CI CD and containerized application foundation, weight: 10, status: done, evidence: "existing BCSentinel GitHub Actions backend PostgreSQL and AL pipelines"}
       - {id: S18-D02, title: Target Azure architecture decision, weight: 15, status: planned, evidence: "not started"}
@@ -239,7 +220,6 @@ sprints:
       - {id: S18-D07, title: p95 latency and AI infrastructure cost baseline, weight: 15, status: planned, evidence: "not started"}
 
   S19:
-    status: PLANNED
     items:
       - {id: S19-D01, title: BCSentinel Core technical product foundation, weight: 15, status: done, evidence: "current Core is technically GO under remaining runtime/release gates"}
       - {id: S19-D02, title: Core commercial-release closure, weight: 15, status: planned, evidence: "depends on S01-S07"}
