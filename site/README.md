@@ -35,3 +35,23 @@ Next.js exports the static site to `site/out/`.
 `.github/workflows/portfolio-website.yml` validates the build on pull requests and deploys the static export from `main`.
 
 The production build uses the repository base path `/enterprise-data-ai-portfolio`.
+
+
+## Control Center v2
+
+The portfolio site now includes a static `/control-center/` route built from the High-End program source of truth.
+
+Source data:
+
+- `data/high-end-program-v2.yaml`
+- `data/sprint-readiness-v2.yaml`
+- `data/effort-log.yaml`
+
+Generated snapshot:
+
+- `control-center/program.json`
+
+Generation/validation:
+
+- `scripts/generate_high_end_control_center.py`
+- `scripts/validate_high_end_control_center.py`
