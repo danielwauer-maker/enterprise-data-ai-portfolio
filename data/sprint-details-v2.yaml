@@ -30,7 +30,7 @@ sprints:
       - {id: S01-D03, title: Plain BC user negative runtime evidence, weight: 10, status: done, evidence: "BCSentinel PR #46"}
       - {id: S01-D04, title: VIEWER runtime evidence, weight: 10, status: done, evidence: "BCSentinel PR #46"}
       - {id: S01-D05, title: SCAN setup-access negative evidence, weight: 10, status: done, evidence: "BCSentinel PR #46"}
-      - {id: S01-D06, title: SCAN internal permission repair and real SaaS retest, weight: 15, status: in_progress, evidence: "BCSentinel PR #46 candidate 1.0.2.23"}
+      - {id: S01-D06, title: SCAN internal permission repair and real SaaS retest, weight: 15, status: done, evidence: "BCSentinel PR #46 / 1.0.2.25 SaaS PASS: Completed + Synchronized, 10/10 modules, 199/199 checks"}
       - {id: S01-D07, title: SETUP role runtime PASS, weight: 10, status: planned, evidence: "runtime gate pending"}
       - {id: S01-D08, title: SCHEDULER role runtime PASS, weight: 10, status: planned, evidence: "runtime gate pending"}
       - {id: S01-D09, title: ADMIN role runtime PASS, weight: 5, status: planned, evidence: "runtime gate pending"}
