@@ -32,12 +32,12 @@ sprints:
       implementation:
         - {id: S00-IMP-01, title: Control Center v2 metrics generator, status: done}
         - {id: S00-IMP-02, title: Sprint board UI, status: done}
-        - {id: S00-IMP-03, title: Sprint detail UI, status: not_started}
+        - {id: S00-IMP-03, title: Sprint detail UI, status: done}
         - {id: S00-IMP-04, title: History Current Roadmap timeline UI, status: done}
         - {id: S00-IMP-05, title: Plan vs Actual effort UI, status: done}
       automated_tests:
-        - {id: S00-TST-01, title: Structured data validation, status: not_started}
-        - {id: S00-TST-02, title: Generated JSON consistency check, status: not_started}
+        - {id: S00-TST-01, title: Structured data validation, status: done}
+        - {id: S00-TST-02, title: Generated JSON consistency check, status: done}
       runtime_acceptance:
         - {id: S00-ACC-01, title: Control Center renders all S00-S19 sprints, status: not_started}
         - {id: S00-ACC-02, title: Mobile and desktop smoke acceptance, status: not_started}
