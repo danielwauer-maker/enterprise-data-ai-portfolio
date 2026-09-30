@@ -11,7 +11,7 @@
     "planned_total_hours": 780,
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
-    "program_completion_pct": 26.41,
+    "program_completion_pct": 27.18,
     "planned_hours": 780,
     "actual_hours": 0,
     "remaining_hours": 780,
@@ -138,20 +138,20 @@
         "S00"
       ],
       "objective": "Complete real BC SaaS least-privilege runtime evidence for all product roles without SUPER.",
-      "readiness_pct": 55,
+      "readiness_pct": 70,
       "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
+        "requirements": 100,
+        "architecture": 100,
+        "implementation": 100,
+        "automated_tests": 100,
+        "runtime_acceptance": 50,
+        "documentation_evidence": 100,
         "merge_release_closeout": 0
       },
       "blocker_count": 0,
       "result": "Documented real BC SaaS PASS/FAIL role matrix for all BCSentinel roles without SUPER.",
-      "scope_readiness_pct": 55,
-      "delivery_gate_readiness_pct": 0,
+      "scope_readiness_pct": 70,
+      "delivery_gate_readiness_pct": 87.5,
       "detail_items": [
         {
           "id": "S01-D01",
@@ -192,8 +192,8 @@
           "id": "S01-D06",
           "title": "SCAN internal permission repair and real SaaS retest",
           "weight": 15,
-          "status": "in_progress",
-          "evidence": "BCSentinel PR #46 candidate 1.0.2.23"
+          "status": "done",
+          "evidence": "BCSentinel PR #46 / 1.0.2.25 SaaS PASS: Completed + Synchronized, 10/10 modules, 199/199 checks"
         },
         {
           "id": "S01-D07",
@@ -224,7 +224,7 @@
           "evidence": "requires all role runtime gates"
         }
       ],
-      "detail_done_count": 5,
+      "detail_done_count": 6,
       "detail_total_count": 10
     },
     {
@@ -236,7 +236,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "core",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S01"
       ],
@@ -332,7 +332,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "commercialization",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S02"
       ],
@@ -428,7 +428,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "product_ux",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S03"
       ],
@@ -531,7 +531,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "commercialization",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S04"
       ],
@@ -627,7 +627,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "core",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S05"
       ],
@@ -805,7 +805,7 @@
       "actual_hours": 0,
       "remaining_hours": 40,
       "track": "data",
-      "status": "IN_PROGRESS",
+      "status": "PLANNED",
       "depends_on": [
         "S07"
       ],
