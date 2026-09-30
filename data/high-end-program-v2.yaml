@@ -1,0 +1,280 @@
+schema_version: 2
+
+program:
+  id: enterprise-data-ai-high-end-v2
+  title: Enterprise Data & AI High-End Program
+  baseline_date: 2026-10-01
+  start_date: 2026-10-01
+  target_date: 2027-06-30
+  timezone: Europe/Berlin
+  planned_hours_per_week: 20
+  planned_total_hours: 780
+  status: planned
+  primary_product: BCSentinel
+
+scope:
+  main:
+    - bcsentinel
+    - eoip
+    - decision_intelligence
+    - ai_platform
+    - portfolio_control_center
+  excluded_private:
+    - trevella
+    - travel-time-ai
+    - moneyos
+    - spareno
+
+status_values:
+  - PLANNED
+  - READY
+  - IN_PROGRESS
+  - BLOCKED
+  - IN_REVIEW
+  - ACCEPTANCE
+  - DONE
+
+readiness_model:
+  requirements: 10
+  architecture: 10
+  implementation: 35
+  automated_tests: 15
+  runtime_acceptance: 15
+  documentation_evidence: 10
+  merge_release_closeout: 5
+
+tracks:
+  - {id: portfolio, name: Portfolio Platform}
+  - {id: core, name: BCSentinel Core}
+  - {id: commercialization, name: BCSentinel Commercialization}
+  - {id: product_ux, name: BCSentinel Product UX}
+  - {id: data, name: Data Platform}
+  - {id: decision, name: Decision Intelligence}
+  - {id: ai, name: AI Platform}
+  - {id: enterprise, name: Enterprise Engineering}
+  - {id: platform, name: Platform Engineering}
+  - {id: career, name: Career / Portfolio Packaging}
+
+sprints:
+  - id: S00
+    title: Control Center v2 & High-End Baseline
+    start: 2026-10-01
+    end: 2026-10-07
+    planned_hours: 20
+    track: portfolio
+    status: READY
+    depends_on: []
+    objective: Establish the permanent High-End program cockpit and baseline before further product development.
+
+  - id: S01
+    title: BCSentinel Permission Runtime Closure
+    start: 2026-10-08
+    end: 2026-10-21
+    planned_hours: 40
+    track: core
+    status: PLANNED
+    depends_on: [S00]
+    objective: Complete real BC SaaS least-privilege runtime evidence for all product roles without SUPER.
+
+  - id: S02
+    title: Product Model & Entitlement Closure
+    start: 2026-10-22
+    end: 2026-11-04
+    planned_hours: 40
+    track: core
+    status: PLANNED
+    depends_on: [S01]
+    objective: Align visible offers, access states, entitlements, dashboard, reports and pricing to one product truth.
+
+  - id: S03
+    title: Pilot Onboarding
+    start: 2026-11-05
+    end: 2026-11-18
+    planned_hours: 40
+    track: commercialization
+    status: PLANNED
+    depends_on: [S02]
+    objective: Deliver secure pilot enrollment, identity binding, invitation, login and tenant administration.
+
+  - id: S04
+    title: Dashboard & Executive Report Product Hardening
+    start: 2026-11-19
+    end: 2026-12-02
+    planned_hours: 40
+    track: product_ux
+    status: PLANNED
+    depends_on: [S03]
+    objective: Make all customer-facing dashboard and report states pilot-presentable.
+
+  - id: S05
+    title: Salespage, Pricing & Pilotpage
+    start: 2026-12-03
+    end: 2026-12-16
+    planned_hours: 40
+    track: commercialization
+    status: PLANNED
+    depends_on: [S04]
+    objective: Produce truthful professional external product presentation and Design Partner journey.
+
+  - id: S06
+    title: BCSentinel Core Release Candidate
+    start: 2026-12-17
+    end: 2026-12-30
+    planned_hours: 40
+    track: core
+    status: PLANNED
+    depends_on: [S05]
+    objective: Freeze and verify a known-good pilot release candidate.
+
+  - id: S07
+    title: Design Partner & Canonical Repository
+    start: 2026-12-31
+    end: 2027-01-13
+    planned_hours: 40
+    track: commercialization
+    status: PLANNED
+    depends_on: [S06]
+    objective: Preserve history, establish the canonical verified repository baseline and support Design Partner operation.
+
+  - id: S08
+    title: EOIP V1 + Shared Intelligence Contract
+    start: 2027-01-14
+    end: 2027-01-27
+    planned_hours: 40
+    track: data
+    status: PLANNED
+    depends_on: [S07]
+    objective: Complete EOIP V1 and establish the shared structured insight contract.
+
+  - id: S09
+    title: Inventory Intelligence V1
+    start: 2027-01-28
+    end: 2027-02-10
+    planned_hours: 40
+    track: decision
+    status: PLANNED
+    depends_on: [S08]
+    objective: Deliver deterministic explainable inventory and working-capital recommendations.
+
+  - id: S10
+    title: Margin & Customer Intelligence
+    start: 2027-02-11
+    end: 2027-02-24
+    planned_hours: 40
+    track: decision
+    status: PLANNED
+    depends_on: [S09]
+    objective: Deliver profitability, margin-leakage and customer-risk intelligence.
+
+  - id: S11
+    title: Procurement Intelligence + Job-Ready Portfolio
+    start: 2027-02-25
+    end: 2027-03-10
+    planned_hours: 40
+    track: decision
+    status: PLANNED
+    depends_on: [S10]
+    objective: Deliver procurement intelligence and reach the job-ready portfolio milestone.
+
+  - id: S12
+    title: AI Copilot Foundation
+    start: 2027-03-11
+    end: 2027-03-24
+    planned_hours: 40
+    track: ai
+    status: PLANNED
+    depends_on: [S11]
+    objective: Build an evidence-grounded Ask BCSentinel Copilot using approved structured tools.
+
+  - id: S13
+    title: AI Evaluation & Copilot UX
+    start: 2027-03-25
+    end: 2027-04-07
+    planned_hours: 40
+    track: ai
+    status: PLANNED
+    depends_on: [S12]
+    objective: Quantify Copilot quality, groundedness, latency, cost and user experience.
+
+  - id: S14
+    title: Agent Platform V1
+    start: 2027-04-08
+    end: 2027-04-21
+    planned_hours: 40
+    track: ai
+    status: PLANNED
+    depends_on: [S13]
+    objective: Build controlled specialized agents and orchestration.
+
+  - id: S15
+    title: AI Observability & Security
+    start: 2027-04-22
+    end: 2027-05-05
+    planned_hours: 40
+    track: enterprise
+    status: PLANNED
+    depends_on: [S14]
+    objective: Add traces, metrics, cost visibility, policy checks, PII controls and AI auditability.
+
+  - id: S16
+    title: Human-Approved BC Actions
+    start: 2027-05-06
+    end: 2027-05-19
+    planned_hours: 40
+    track: ai
+    status: PLANNED
+    depends_on: [S15]
+    objective: Convert recommendations into policy-controlled, human-approved Business Central actions.
+
+  - id: S17
+    title: Multi-Company & Enterprise Hardening
+    start: 2027-05-20
+    end: 2027-06-02
+    planned_hours: 40
+    track: enterprise
+    status: PLANNED
+    depends_on: [S16]
+    objective: Harden multi-company, security, audit, retention, backup and recovery architecture.
+
+  - id: S18
+    title: Cloud, Infrastructure & Scale
+    start: 2027-06-03
+    end: 2027-06-16
+    planned_hours: 40
+    track: platform
+    status: PLANNED
+    depends_on: [S17]
+    objective: Establish justified cloud architecture, IaC, CI/CD and measured scale/cost baselines.
+
+  - id: S19
+    title: BCSentinel Professional Beta / High-End Release
+    start: 2027-06-17
+    end: 2027-06-30
+    planned_hours: 40
+    track: commercialization
+    status: PLANNED
+    depends_on: [S18]
+    objective: Release the BCSentinel Professional Beta and final High-End portfolio case study.
+
+metrics:
+  required:
+    - program_completion_pct
+    - application_readiness_pct
+    - commercial_readiness_pct
+    - engineering_maturity_pct
+    - ai_platform_maturity_pct
+    - current_sprint_readiness_pct
+    - planned_hours
+    - actual_hours
+    - remaining_hours
+    - schedule_delta_days
+    - forecast_completion_date
+    - effort_variance_hours
+    - estimated_effort_compression_pct
+
+history_policy:
+  preserve_baseline_v1: true
+  allow_backdated_fake_commits: false
+  historical_effort_exact_from_git: false
+  historical_effort_method: reconstructed_estimate_with_confidence
+  measured_effort_start: 2026-10-01
