@@ -20,7 +20,7 @@ readiness_method:
 
 sprints:
   S00:
-    status: IN_PROGRESS
+    status: DONE
     categories:
       requirements:
         - {id: S00-REQ-01, title: Portfolio Bible v2 exists, status: done}
@@ -47,7 +47,33 @@ sprints:
       merge_release_closeout:
         - {id: S00-CLS-01, title: S00 reviewed and closeout recorded, status: done}
 
-  S01: {status: PLANNED}
+  S01:
+    status: IN_PROGRESS
+    categories:
+      requirements:
+        - {id: S01-REQ-01, title: S01 sprint brief and Definition of Done, status: done}
+        - {id: S01-REQ-02, title: Five-role runtime acceptance matrix defined, status: done}
+      architecture:
+        - {id: S01-ARCH-01, title: Least-privilege role model defined, status: done}
+        - {id: S01-ARCH-02, title: No-SUPER runtime evidence method defined, status: done}
+      implementation:
+        - {id: S01-IMP-01, title: Five BCSentinel permission sets implemented, status: done}
+        - {id: S01-IMP-02, title: SCAN indirect DH Setup permission defect fixed in 1.0.2.25, status: done}
+      automated_tests:
+        - {id: S01-TST-01, title: Permission role matrix contract passes, status: done}
+        - {id: S01-TST-02, title: AL compile and Cop gates pass on PR 46, status: done}
+      runtime_acceptance:
+        - {id: S01-ACC-01, title: Plain BC user negative runtime evidence, status: done}
+        - {id: S01-ACC-02, title: VIEWER runtime evidence, status: done}
+        - {id: S01-ACC-03, title: SCAN 1.0.2.25 real SaaS runtime PASS, status: done}
+        - {id: S01-ACC-04, title: SETUP real SaaS runtime PASS, status: not_started}
+        - {id: S01-ACC-05, title: SCHEDULER real SaaS runtime PASS, status: not_started}
+        - {id: S01-ACC-06, title: ADMIN real SaaS runtime PASS, status: not_started}
+      documentation_evidence:
+        - {id: S01-DOC-01, title: Runtime evidence JSON updated through 1.0.2.25, status: done}
+        - {id: S01-DOC-02, title: S01 sprint brief recorded in portfolio, status: done}
+      merge_release_closeout:
+        - {id: S01-CLS-01, title: PR 46 merged to staging and post-merge verification passes, status: not_started}
   S02: {status: PLANNED}
   S03: {status: PLANNED}
   S04: {status: PLANNED}

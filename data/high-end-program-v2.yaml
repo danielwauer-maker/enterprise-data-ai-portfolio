@@ -93,7 +93,7 @@ sprints:
     end: 2026-11-04
     planned_hours: 40
     track: core
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S01]
     objective: Align visible offers, access states, entitlements, dashboard, reports and pricing to one product truth.
     result: One consistent customer-facing product truth across BC, dashboard, reports, access and pricing.
@@ -104,7 +104,7 @@ sprints:
     end: 2026-11-18
     planned_hours: 40
     track: commercialization
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S02]
     objective: Deliver secure pilot enrollment, identity binding, invitation, login and tenant administration.
     result: Pilot invitation → registration → BC connection → dashboard works reproducibly and securely.
@@ -115,7 +115,7 @@ sprints:
     end: 2026-12-02
     planned_hours: 40
     track: product_ux
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S03]
     objective: Make all customer-facing dashboard and report states pilot-presentable.
     result: Dashboard and Executive Reports are pilot-presentable across product states, languages and devices.
@@ -126,7 +126,7 @@ sprints:
     end: 2026-12-16
     planned_hours: 40
     track: commercialization
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S04]
     objective: Produce truthful professional external product presentation and Design Partner journey.
     result: A potential pilot customer can understand the product, trust its claims and request participation.
@@ -137,7 +137,7 @@ sprints:
     end: 2026-12-30
     planned_hours: 40
     track: core
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S05]
     objective: Freeze and verify a known-good pilot release candidate.
     result: A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence.
@@ -159,7 +159,7 @@ sprints:
     end: 2027-01-27
     planned_hours: 40
     track: data
-    status: IN_PROGRESS
+    status: PLANNED
     depends_on: [S07]
     objective: Complete EOIP V1 and establish the shared structured insight contract.
     result: EOIP V1 complete and a shared structured insight contract ready for reusable intelligence modules.
