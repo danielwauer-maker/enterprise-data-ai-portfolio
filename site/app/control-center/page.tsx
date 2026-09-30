@@ -155,6 +155,9 @@ export default function ControlCenterPage() {
                 <div><Dual en="Track" de="Track" />: {sprint.track}</div>
                 <div><Dual en="Depends on" de="Abhängig von" />: {sprint.depends_on.length ? sprint.depends_on.join(", ") : "—"}</div>
               </div>
+              <a href={`./${sprint.id}/`} className="mt-4 inline-flex text-xs font-semibold text-cyan-200 transition hover:text-cyan-100">
+                <Dual en="Open sprint detail →" de="Sprint-Detail öffnen →" />
+              </a>
               <details className="mt-4 border-t hairline pt-3 text-sm">
                 <summary className="cursor-pointer font-medium text-slate-200"><Dual en="Sprint objective" de="Sprintziel" /></summary>
                 <p className="mt-3 leading-7 text-slate-400">{sprint.objective}</p>
