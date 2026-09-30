@@ -29,6 +29,13 @@ function pct(value: number) {
   return `${Number(value ?? 0).toFixed(Number(value ?? 0) % 1 === 0 ? 0 : 1)}%`;
 }
 
+function detailStatusClass(status: string) {
+  if (status === "done" || status === "verified") return "border-emerald-400/30 bg-emerald-400/10 text-emerald-200";
+  if (status === "in_progress") return "border-cyan-400/30 bg-cyan-400/10 text-cyan-100";
+  if (status === "blocked") return "border-rose-400/30 bg-rose-400/10 text-rose-100";
+  return "border-slate-400/15 bg-white/[0.025] text-slate-300";
+}
+
 export function generateStaticParams() {
   return loadHighEndControlCenter().sprints.map((sprint) => ({ sprint: sprint.id }));
 }
@@ -45,7 +52,7 @@ export default async function SprintDetailPage({
 
   return (
     <main>
-      <header className="shell flex min-h-20 items-center justify-between border-b hairline">
+      <header className="shell flex min-h-20 flex-wrap items-center justify-between gap-3 border-b hairline py-3 sm:flex-nowrap">
         <a href="../" className="flex items-center gap-3 text-sm font-semibold tracking-wide">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl border hairline bg-white/[0.03] text-xs text-cyan-200">
             {sprint.id}
@@ -71,11 +78,16 @@ export default async function SprintDetailPage({
             </h1>
             <p className="mt-5 text-sm text-slate-400">{sprint.start} → {sprint.end}</p>
           </div>
-          <div className="text-5xl font-semibold tracking-[-0.04em] text-cyan-200">{pct(sprint.readiness_pct)}</div>
+          <div className="text-right">
+            <div className="text-5xl font-semibold tracking-[-0.04em] text-cyan-200">{pct(sprint.scope_readiness_pct)}</div>
+            <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">
+              <Dual en="Scope readiness" de="Scope-Readiness" />
+            </div>
+          </div>
         </div>
 
         <div className="progress-track mt-8">
-          <div className="progress-fill" style={{ width: `${sprint.readiness_pct}%` }} />
+          <div className="progress-fill" style={{ width: `${sprint.scope_readiness_pct}%` }} />
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -93,7 +105,7 @@ export default async function SprintDetailPage({
           </article>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           <article className="panel p-5">
             <div className="text-xs text-slate-400"><Dual en="Status" de="Status" /></div>
             <div className="mt-2 text-xl font-semibold text-white">{sprint.status}</div>
@@ -107,15 +119,60 @@ export default async function SprintDetailPage({
             <div className="mt-2 text-xl font-semibold text-white">{sprint.actual_hours} h</div>
           </article>
           <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Delivery gates" de="Delivery-Gates" /></div>
+            <div className="mt-2 text-xl font-semibold text-white">{pct(sprint.delivery_gate_readiness_pct)}</div>
+          </article>
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Details done" de="Details fertig" /></div>
+            <div className="mt-2 text-xl font-semibold text-white">{sprint.detail_done_count}/{sprint.detail_total_count}</div>
+          </article>
+          <article className="panel p-5">
             <div className="text-xs text-slate-400"><Dual en="Blockers" de="Blocker" /></div>
             <div className="mt-2 text-xl font-semibold text-white">{sprint.blocker_count}</div>
           </article>
         </div>
       </section>
 
+      <section className="shell pb-10">
+        <div className="eyebrow"><Dual en="Scope details" de="Scope-Details" /></div>
+        <h2 className="section-title mt-3"><Dual en="Features, sub-sprints and gates" de="Features, Untersprints und Gates" /></h2>
+        <p className="section-copy">
+          <Dual
+            en="These evidence-backed items determine the sprint's scope readiness. In-progress work is visible but receives no completion credit until it is done or verified."
+            de="Diese evidenzbasierten Punkte bestimmen die Scope-Readiness des Sprints. Laufende Arbeit ist sichtbar, erhält aber erst nach Done/Verified Completion-Credit."
+          />
+        </p>
+
+        <div className="mt-7 grid gap-3 lg:grid-cols-2">
+          {sprint.detail_items.map((item) => (
+            <article key={item.id} className="panel p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-200">{item.id}</div>
+                  <h3 className="mt-2 text-base font-semibold text-white">{item.title}</h3>
+                </div>
+                <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${detailStatusClass(item.status)}`}>
+                  {item.status.replaceAll("_", " ").toUpperCase()}
+                </span>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400">
+                <span><Dual en="Weight" de="Gewicht" />: {item.weight}%</span>
+                <span><Dual en="Evidence" de="Evidence" />: {item.evidence}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="shell pb-20">
         <div className="eyebrow"><Dual en="Readiness model" de="Readiness-Modell" /></div>
-        <h2 className="section-title mt-3"><Dual en="Evidence gates" de="Evidence-Gates" /></h2>
+        <h2 className="section-title mt-3"><Dual en="Delivery gates" de="Delivery-Gates" /></h2>
+        <p className="section-copy">
+          <Dual
+            en="These gates describe the formal sprint delivery process. Scope readiness above may already be high because verified work existed before the High-End sprint was scheduled."
+            de="Diese Gates beschreiben den formalen Sprint-Delivery-Prozess. Die Scope-Readiness oben kann bereits hoch sein, weil verifizierte Arbeit schon vor der High-End-Sprintplanung vorhanden war."
+          />
+        </p>
         <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {Object.entries(sprint.readiness_breakdown).map(([key, value]) => (
             <article key={key} className="panel p-5">
