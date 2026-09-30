@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 from datetime import date, datetime
@@ -54,6 +55,10 @@ def sprint_readiness(sprint_id, readiness_data):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true", help="Fail if committed snapshot differs semantically from generated data.")
+    args = parser.parse_args()
+
     program = load_yaml(ROOT / "data" / "high-end-program-v2.yaml")
     readiness = load_yaml(ROOT / "data" / "sprint-readiness-v2.yaml")
     effort = load_yaml(ROOT / "data" / "effort-log.yaml")
@@ -131,6 +136,15 @@ def main():
 
     out_path = ROOT / "control-center" / "program.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if args.check:
+        if not out_path.exists():
+            raise SystemExit("Committed control-center/program.json is missing")
+        committed = json.loads(out_path.read_text(encoding="utf-8"))
+        if committed != output:
+            raise SystemExit("Committed control-center/program.json is semantically out of date")
+        return
+
     out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
