@@ -9,12 +9,9 @@ portfolio:
   application_ready_target: 2027-02-28
 
   positioning:
-    - Data & AI Solutions Consultant
-    - Analytics Engineer
-    - Data & Analytics Consultant
-    - BI & Data Platform Engineer
-    - Microsoft Fabric / Power BI Consultant
-    - Decision Intelligence / Business Analytics
+    - Data & AI Solutions Engineer
+    - Analytics / Data Platform Engineer
+    - Business Central & Decision Intelligence
 
   principles:
     - Business value before technical novelty
@@ -26,9 +23,12 @@ portfolio:
   flagship_projects:
     - bcsentinel
     - eoip
-    - inventoryiq
-    - marginguard
-    - procureguard
+
+  platform_capabilities:
+    - inventory_intelligence
+    - margin_intelligence
+    - customer_intelligence
+    - procurement_intelligence
 
   canonical_sources:
     delivery_and_progress: data/roadmap.yaml
