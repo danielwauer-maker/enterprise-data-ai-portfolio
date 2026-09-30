@@ -46,25 +46,26 @@ website:
     company_context: data/companies/nordwerk.yaml
 
   initial_vertical_slice:
-    - hero
-    - portfolio_control_center
-    - ai_assisted_delivery_efficiency
-    - featured_projects
-    - eoip_architecture
-    - roadmap_timeline
+    - executive_hero
+    - flagship_platform
+    - engineering_evidence
+    - ai_assisted_engineering
+    - target_architecture
+    - phased_high_end_roadmap
 
   sections:
-    - {id: hero, name: Hero & Positioning, source: data/portfolio.yaml}
-    - {id: control-center, name: Portfolio Control Center, source: data/metrics.json}
-    - {id: delivery-efficiency, name: AI-Assisted Delivery Efficiency, source: data/metrics.json}
-    - {id: featured-projects, name: Featured Projects, source: data/projects/}
-    - {id: eoip-architecture, name: EOIP Architecture, source: data/projects/eoip.yaml}
-    - {id: roadmap, name: Roadmap & Plan vs Actual, source: data/roadmap.yaml}
-    - {id: business-impact, name: Business Impact, source: data/business-impact.yaml}
-    - {id: certifications, name: Certifications, source: data/certifications.yaml}
+    - {id: hero, name: Executive Hero & Live High-End Status, source: control-center/program.json}
+    - {id: building, name: BCSentinel + EOIP + Intelligence Capabilities, source: data/projects/}
+    - {id: evidence, name: Engineering Evidence, source: data/sprint-details-v2.yaml}
+    - {id: delivery, name: AI-Assisted Engineering, source: data/effort-log.yaml}
+    - {id: architecture, name: High-End Target Architecture, source: PORTFOLIO_BIBLE.md}
+    - {id: roadmap, name: Phased High-End Roadmap, source: data/high-end-program-v2.yaml}
 
   delivery_rules:
     - WEB-01 may start before its baseline date; the baseline dates remain frozen for plan-vs-actual evidence.
     - Website development must not block EOIP analytics delivery.
     - Initial slice should consume real data before visual polish expands.
     - No website-only copy of progress percentages, milestone dates or project statuses.
+    - Public pages optimize for executive clarity; internal PM metrics remain available in repository data and sprint drilldowns.
+    - Baseline-v1 cost, SPI, application-readiness and milestone-control metrics are not primary public-facing KPIs.
+    - BCSentinel is the flagship commercial product; EOIP is the Data/Analytics R&D foundation; intelligence modules are platform capabilities rather than separate flagship products.
