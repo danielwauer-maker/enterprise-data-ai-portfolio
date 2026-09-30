@@ -7,6 +7,7 @@ on:
       - "docs/CROSS_REPO_AUTHORITY_V2.md"
       - "data/high-end-program-v2.yaml"
       - "data/sprint-readiness-v2.yaml"
+      - "data/sprint-details-v2.yaml"
       - "data/effort-log.yaml"
       - "scripts/generate_high_end_control_center.py"
       - "scripts/validate_high_end_control_center.py"
