@@ -27,7 +27,14 @@
       "runtime_acceptance": 15,
       "documentation_evidence": 10,
       "merge_release_closeout": 5
-    }
+    },
+    "item_credit": {
+      "done": 1,
+      "not_started": 0,
+      "blocked": 0,
+      "in_progress": 0
+    },
+    "rule": "Add or split checklist items before claiming partial completion inside a category."
   },
   "sprints": [
     {
