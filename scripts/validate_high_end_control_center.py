@@ -20,6 +20,7 @@ def load_yaml(path):
 def main():
     program = load_yaml(ROOT / "data" / "high-end-program-v2.yaml")
     readiness = load_yaml(ROOT / "data" / "sprint-readiness-v2.yaml")
+    details = load_yaml(ROOT / "data" / "sprint-details-v2.yaml")
 
     sprints = program["sprints"]
     ids = [s["id"] for s in sprints]
@@ -43,6 +44,13 @@ def main():
 
     for sid in EXPECTED_SPRINT_IDS:
         assert sid in readiness["sprints"], f"Missing readiness record for {sid}"
+        assert sid in details["sprints"], f"Missing detail readiness record for {sid}"
+        items = details["sprints"][sid].get("items", [])
+        assert items, f"{sid} must define detail items"
+        weight_total = sum(float(item.get("weight", 0)) for item in items)
+        assert abs(weight_total - 100.0) < 0.001, f"{sid} detail weights must total 100, got {weight_total}"
+        item_ids = [item["id"] for item in items]
+        assert len(item_ids) == len(set(item_ids)), f"{sid} detail item IDs must be unique"
 
     required_files = [
         ROOT / "PORTFOLIO_BIBLE.md",
@@ -58,6 +66,9 @@ def main():
     snapshot = json.loads((ROOT / "control-center" / "program.json").read_text(encoding="utf-8"))
     assert [s["id"] for s in snapshot["sprints"]] == EXPECTED_SPRINT_IDS, "Generated snapshot sprint IDs drifted"
     assert float(snapshot["program"]["planned_hours"]) == EXPECTED_TOTAL_HOURS, "Generated snapshot total hours drifted"
+    for sprint in snapshot["sprints"]:
+        assert "scope_readiness_pct" in sprint, f"{sprint['id']} missing scope readiness"
+        assert "detail_items" in sprint, f"{sprint['id']} missing detail items"
 
     print("High-End v2 Control Center contracts: PASS")
 

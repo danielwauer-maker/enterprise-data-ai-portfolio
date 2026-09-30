@@ -39,8 +39,8 @@ sprints:
         - {id: S00-TST-01, title: Structured data validation, status: done}
         - {id: S00-TST-02, title: Generated JSON consistency check, status: done}
       runtime_acceptance:
-        - {id: S00-ACC-01, title: Control Center renders all S00-S19 sprints, status: not_started}
-        - {id: S00-ACC-02, title: Mobile and desktop smoke acceptance, status: not_started}
+        - {id: S00-ACC-01, title: Control Center renders all S00-S19 sprints, status: done}
+        - {id: S00-ACC-02, title: Mobile and desktop smoke acceptance, status: done}
       documentation_evidence:
         - {id: S00-DOC-01, title: Portfolio Bible documents Control Center model, status: done}
         - {id: S00-DOC-02, title: Cross-repository alignment PRs opened, status: done}

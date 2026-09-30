@@ -1,6 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
+export type SprintDetailItem = {
+  id: string;
+  title: string;
+  weight: number;
+  status: string;
+  evidence: string;
+};
+
 export type SprintRow = {
   id: string;
   title: string;
@@ -15,7 +23,12 @@ export type SprintRow = {
   objective: string;
   result: string;
   readiness_pct: number;
+  scope_readiness_pct: number;
+  delivery_gate_readiness_pct: number;
   readiness_breakdown: Record<string, number>;
+  detail_items: SprintDetailItem[];
+  detail_done_count: number;
+  detail_total_count: number;
   blocker_count: number;
 };
 
@@ -23,6 +36,7 @@ export type HighEndControlCenter = {
   schema_version: number;
   program: Record<string, any>;
   readiness_model: Record<string, any>;
+  scope_readiness_model: Record<string, any>;
   sprints: SprintRow[];
 };
 

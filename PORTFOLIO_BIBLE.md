@@ -423,6 +423,13 @@ Every sprint closes with a Sprint Closeout containing:
 
 ## 10. Sprint Readiness Model
 
+Two complementary readiness views are used:
+
+- **Scope Readiness** is calculated from evidence-backed weighted feature/sub-sprint items in `data/sprint-details-v2.yaml`. This may already be above zero before a scheduled sprint starts because verified historical work can satisfy part of the future scope.
+- **Delivery Gate Readiness** measures the formal sprint process: requirements, architecture, implementation, automated tests, runtime acceptance, documentation/evidence and closeout.
+
+Sprint status itself is maintained only in `data/high-end-program-v2.yaml` to avoid duplicate status truth.
+
 Sprint readiness must not be an arbitrary subjective percentage.
 
 Default weighted readiness:
