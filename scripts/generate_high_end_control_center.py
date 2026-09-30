@@ -110,10 +110,15 @@ def main():
     if current is None:
         current = next((row for row in sprint_rows if row["status"] == "READY"), None)
 
+    program_meta = dict(program["program"])
+    for key in ("baseline_date", "start_date", "target_date"):
+        if key in program_meta:
+            program_meta[key] = as_date(program_meta[key]).isoformat()
+
     output = {
         "schema_version": 2,
         "program": {
-            **program["program"],
+            **program_meta,
             "program_completion_pct": round(program_readiness, 2),
             "planned_hours": round(total_planned, 2),
             "actual_hours": round(total_actual, 2),
