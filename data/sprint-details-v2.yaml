@@ -21,7 +21,7 @@ sprints:
       - {id: S00-D05, title: Individual sprint detail pages, weight: 10, status: done, evidence: "static S00-S19 detail routes"}
       - {id: S00-D06, title: GitHub Pages build and deployment, weight: 10, status: done, evidence: "main Pages workflow PASS"}
       - {id: S00-D07, title: Desktop tablet mobile visual acceptance, weight: 10, status: done, evidence: "deployed artifact rendered at 1440 / 768 / 390 px; no horizontal overflow"}
-      - {id: S00-D08, title: S00 final closeout and alignment merge completion, weight: 5, status: in_progress, evidence: "Portfolio merged; BPS/BFB alignment review remains"}
+      - {id: S00-D08, title: S00 final closeout and alignment merge completion, weight: 5, status: done, evidence: "Portfolio readiness audit merged; BPS PR #2 and BFB PR #1 merged"}
 
   S01:
     items:
