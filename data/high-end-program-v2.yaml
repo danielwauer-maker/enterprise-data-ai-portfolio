@@ -9,7 +9,7 @@ program:
   timezone: Europe/Berlin
   planned_hours_per_week: 20
   planned_total_hours: 780
-  status: planned
+  status: IN_PROGRESS
   primary_product: BCSentinel
 
 scope:
