@@ -35,6 +35,8 @@ def main():
 
     seen = set()
     for sprint in sprints:
+        assert sprint.get("objective"), f"{sprint['id']} must define an objective"
+        assert sprint.get("result"), f"{sprint['id']} must define an expected result"
         for dep in sprint.get("depends_on", []):
             assert dep in seen, f"{sprint['id']} depends on unknown/future sprint {dep}"
         seen.add(sprint["id"])
