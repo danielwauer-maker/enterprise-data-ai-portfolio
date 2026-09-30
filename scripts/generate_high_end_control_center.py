@@ -42,7 +42,7 @@ def category_readiness(items):
     return done / len(items) * 100.0
 
 
-def sprint_readiness(sprint_id, readiness_data):
+def sprint_gate_readiness(sprint_id, readiness_data):
     sprint = readiness_data.get("sprints", {}).get(sprint_id, {})
     categories = sprint.get("categories", {})
     weighted = 0.0
@@ -54,6 +54,19 @@ def sprint_readiness(sprint_id, readiness_data):
     return round(weighted, 2), breakdown
 
 
+def sprint_scope_readiness(sprint_id, detail_data):
+    sprint = detail_data.get("sprints", {}).get(sprint_id, {})
+    items = sprint.get("items", [])
+    total_weight = sum(float(item.get("weight", 0)) for item in items)
+    done_weight = sum(
+        float(item.get("weight", 0))
+        for item in items
+        if item.get("status") in {"done", "verified"}
+    )
+    pct = (done_weight / total_weight * 100.0) if total_weight else 0.0
+    return round(pct, 2), items
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="Fail if committed snapshot differs semantically from generated data.")
@@ -61,6 +74,7 @@ def main():
 
     program = load_yaml(ROOT / "data" / "high-end-program-v2.yaml")
     readiness = load_yaml(ROOT / "data" / "sprint-readiness-v2.yaml")
+    details = load_yaml(ROOT / "data" / "sprint-details-v2.yaml")
     effort = load_yaml(ROOT / "data" / "effort-log.yaml")
 
     sprint_rows = []
@@ -79,8 +93,12 @@ def main():
         sid = sprint["id"]
         planned = float(sprint.get("planned_hours", 0))
         actual = effort_by_sprint.get(sid, 0.0)
-        readiness_pct, breakdown = sprint_readiness(sid, readiness)
-        state = readiness.get("sprints", {}).get(sid, {}).get("status", sprint.get("status", "PLANNED"))
+        delivery_gate_pct, breakdown = sprint_gate_readiness(sid, readiness)
+        scope_readiness_pct, detail_items = sprint_scope_readiness(sid, details)
+        state = details.get("sprints", {}).get(sid, {}).get(
+            "status",
+            readiness.get("sprints", {}).get(sid, {}).get("status", sprint.get("status", "PLANNED")),
+        )
 
         row = {
             "id": sid,
@@ -95,13 +113,21 @@ def main():
             "depends_on": sprint.get("depends_on", []),
             "objective": sprint.get("objective", ""),
             "result": sprint.get("result", ""),
-            "readiness_pct": readiness_pct,
+            "readiness_pct": scope_readiness_pct,
+            "scope_readiness_pct": scope_readiness_pct,
+            "delivery_gate_readiness_pct": delivery_gate_pct,
             "readiness_breakdown": breakdown,
-            "blocker_count": sum(
-                1
-                for items in readiness.get("sprints", {}).get(sid, {}).get("categories", {}).values()
-                for item in items
-                if item.get("status") == "blocked"
+            "detail_items": detail_items,
+            "detail_done_count": sum(1 for item in detail_items if item.get("status") in {"done", "verified"}),
+            "detail_total_count": len(detail_items),
+            "blocker_count": (
+                sum(1 for item in detail_items if item.get("status") == "blocked")
+                + sum(
+                    1
+                    for items in readiness.get("sprints", {}).get(sid, {}).get("categories", {}).values()
+                    for item in items
+                    if item.get("status") == "blocked"
+                )
             ),
         }
         sprint_rows.append(row)
@@ -131,6 +157,7 @@ def main():
             "current_sprint_id": current["id"] if current else None,
         },
         "readiness_model": readiness["readiness_method"],
+        "scope_readiness_model": details["method"],
         "sprints": sprint_rows,
     }
 
