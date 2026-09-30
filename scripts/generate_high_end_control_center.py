@@ -95,10 +95,7 @@ def main():
         actual = effort_by_sprint.get(sid, 0.0)
         delivery_gate_pct, breakdown = sprint_gate_readiness(sid, readiness)
         scope_readiness_pct, detail_items = sprint_scope_readiness(sid, details)
-        state = details.get("sprints", {}).get(sid, {}).get(
-            "status",
-            readiness.get("sprints", {}).get(sid, {}).get("status", sprint.get("status", "PLANNED")),
-        )
+        state = sprint.get("status", "PLANNED")
 
         row = {
             "id": sid,
