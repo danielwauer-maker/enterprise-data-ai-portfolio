@@ -218,6 +218,23 @@ Owns:
 
 ---
 
+## 4A. Cross-Repository Authority Hierarchy
+
+The High-End program adds one authority level above repository-local roadmaps.
+
+| Domain | Authority |
+|---|---|
+| Overall strategy, portfolio scope, sprint sequence, dates, capacity | Portfolio Bible + `data/high-end-program-v2.yaml` |
+| BCSentinel product model, terminology, entitlements, requirements, target UX | `bcsentinel-product-system` |
+| BCSentinel implemented/tested runtime truth | `bcsentinel` with evidence |
+| Figma/design rendering | `bcsentinel-figma-builder` as derived-only tooling |
+| EOIP implementation truth | `eoip` |
+| Program metrics and effort truth | Portfolio Control Center data |
+
+Repository-local roadmaps remain valid inside their domain, but they cannot activate work outside the current High-End sprint by themselves.
+
+The detailed contract is `docs/CROSS_REPO_AUTHORITY_V2.md`.
+
 ## 5. BCSentinel Safety Rule
 
 No destructive repository cleanup is allowed before a verified release baseline is secured.
@@ -611,7 +628,9 @@ Deliverables:
 - add historical/current/roadmap timeline model;
 - remove private projects from main portfolio scope;
 - add commercial, engineering and AI maturity metrics;
-- prepare historical BCSentinel evidence model.
+- prepare historical BCSentinel evidence model;
+- complete cross-repository authority alignment for Portfolio, BPS and BFB;
+- prevent Product System and Figma Builder roadmaps/copy from overriding active program priorities.
 
 Exit result:
 

@@ -27,3 +27,16 @@ Human-readable views:
 ## Target
 
 **Application Ready: 28 February 2027**
+
+## High-End Program v2
+
+The High-End program is governed by:
+
+- [Portfolio Bible](PORTFOLIO_BIBLE.md)
+- [Structured Sprint Program](data/high-end-program-v2.yaml)
+- [Sprint Readiness](data/sprint-readiness-v2.yaml)
+- [Cross-Repository Authority](docs/CROSS_REPO_AUTHORITY_V2.md)
+- [Control Center v2 data snapshot](control-center/program.json)
+- Portfolio website route: `/control-center/`
+
+The original Baseline v1 remains preserved for historical plan-vs-actual comparison.

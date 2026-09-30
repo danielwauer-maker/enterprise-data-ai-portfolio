@@ -5,7 +5,7 @@ effort_log:
   rules:
     - Record active human effort, not elapsed wall-clock time.
     - One entry may cover one focused working session.
-    - Every entry must reference at least one portfolio work package or cross-cutting activity.
+    - Every entry must reference at least one portfolio work package or cross-cutting activity.\n    - High-End v2 entries should include sprint_id (S00-S19) so effort can be shown per sprint.
     - AI-assisted work identifies the assistance category but does not subtract AI runtime from human effort.
     - Estimates must be marked estimated; measured or timer-based values should be preferred.
   entries: []

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Enterprise Data & AI — Control Center v2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Enterprise Data & AI Portfolio</p>
+      <h1>Control Center v2</h1>
+      <p class="subtitle">High-End Program · BCSentinel · EOIP · Decision Intelligence · AI Platform</p>
+    </div>
+    <div class="program-badge" id="program-status">Loading…</div>
+  </header>
+
+  <main class="shell">
+    <section class="metric-grid" id="metric-grid"></section>
+
+    <section class="panel current-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Current Sprint</p>
+          <h2 id="current-title">Loading…</h2>
+        </div>
+        <div class="readiness-big" id="current-readiness">0%</div>
+      </div>
+      <div class="progress"><span id="current-progress"></span></div>
+      <div class="current-meta" id="current-meta"></div>
+      <p id="current-objective" class="objective"></p>
+      <div class="breakdown" id="current-breakdown"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Roadmap</p>
+          <h2>Sprint Plan S00–S19</h2>
+        </div>
+        <div class="legend">
+          <span><i class="dot done"></i>Done</span>
+          <span><i class="dot active"></i>Active</span>
+          <span><i class="dot planned"></i>Planned</span>
+        </div>
+      </div>
+      <div id="sprint-board" class="sprint-board"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Timeline</p>
+          <h2>History · Current · Roadmap</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item history">
+          <span class="timeline-date">Jun–Sep 2026</span>
+          <strong>Historical foundation</strong>
+          <p>BCSentinel prototype, SaaS/backend architecture, monitoring, runtime hardening, EOIP foundation and Portfolio Baseline v1.</p>
+        </div>
+        <div class="timeline-item current">
+          <span class="timeline-date">01 Oct 2026</span>
+          <strong>High-End Baseline v2</strong>
+          <p>Measured 20 h/week program begins. Sprint readiness, effort, schedule variance and AI-assisted delivery become first-class metrics.</p>
+        </div>
+        <div class="timeline-item future">
+          <span class="timeline-date">30 Jun 2027</span>
+          <strong>BCSentinel Professional Beta</strong>
+          <p>Core + Decision Intelligence + AI Copilot + controlled agents/actions + enterprise engineering evidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel methodology">
+      <div>
+        <p class="eyebrow">Method</p>
+        <h2>Readiness is evidence-based</h2>
+      </div>
+      <p>Sprint readiness is calculated from explicit checklist items. In-progress work receives no completion credit until its checklist item is done. Historical effort is never invented from Git timestamps.</p>
+    </section>
+  </main>
+
+  <template id="sprint-card-template">
+    <article class="sprint-card">
+      <div class="sprint-card-top">
+        <span class="sprint-id"></span>
+        <span class="status-pill"></span>
+      </div>
+      <h3></h3>
+      <p class="date-range"></p>
+      <div class="progress small"><span></span></div>
+      <div class="sprint-stats">
+        <span class="readiness"></span>
+        <span class="hours"></span>
+      </div>
+      <p class="track"></p>
+      <p class="dependencies"></p>
+      <details>
+        <summary>Objective</summary>
+        <p class="card-objective"></p>
+      </details>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

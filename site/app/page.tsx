@@ -116,7 +116,7 @@ export default function Home() {
         </a>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
-          <a className="transition hover:text-white" href="#control-center">
+          <a className="transition hover:text-white" href="./control-center/">
             <Localized i18n={i18n} path="nav.control_center" />
           </a>
           <a className="transition hover:text-white" href="#delivery-efficiency">
@@ -264,6 +264,15 @@ export default function Home() {
         <div className="eyebrow"><Localized i18n={i18n} path="control.eyebrow" /></div>
         <h2 className="section-title mt-3"><Localized i18n={i18n} path="control.title" /></h2>
         <p className="section-copy"><Localized i18n={i18n} path="control.copy" /></p>
+        <div className="mt-5">
+          <a
+            href="./control-center/"
+            className="inline-flex rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+          >
+            <span className="lang-en">Open Control Center v2</span>
+            <span className="lang-de">Control Center v2 öffnen</span>
+          </a>
+        </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
