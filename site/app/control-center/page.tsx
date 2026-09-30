@@ -158,6 +158,10 @@ export default function ControlCenterPage() {
               <details className="mt-4 border-t hairline pt-3 text-sm">
                 <summary className="cursor-pointer font-medium text-slate-200"><Dual en="Sprint objective" de="Sprintziel" /></summary>
                 <p className="mt-3 leading-7 text-slate-400">{sprint.objective}</p>
+                <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-200">
+                  <Dual en="Expected result" de="Erwartetes Ergebnis" />
+                </div>
+                <p className="mt-2 leading-7 text-slate-400">{sprint.result}</p>
               </details>
             </article>
           ))}
