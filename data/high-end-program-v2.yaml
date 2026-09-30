@@ -62,7 +62,7 @@ sprints:
     end: 2026-10-07
     planned_hours: 20
     track: portfolio
-    status: IN_PROGRESS
+    status: DONE
     depends_on: []
     objective: Establish the permanent High-End program cockpit and baseline before further product development.
     result: Control Center shows S00–S19 with readiness, hours, dependencies and timeline.

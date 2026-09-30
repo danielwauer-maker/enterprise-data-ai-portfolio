@@ -45,7 +45,7 @@ sprints:
         - {id: S00-DOC-01, title: Portfolio Bible documents Control Center model, status: done}
         - {id: S00-DOC-02, title: Cross-repository alignment PRs opened, status: done}
       merge_release_closeout:
-        - {id: S00-CLS-01, title: S00 reviewed and closeout recorded, status: not_started}
+        - {id: S00-CLS-01, title: S00 reviewed and closeout recorded, status: done}
 
   S01: {status: PLANNED}
   S02: {status: PLANNED}
