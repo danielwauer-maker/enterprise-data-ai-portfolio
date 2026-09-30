@@ -13,6 +13,7 @@ export type SprintRow = {
   status: string;
   depends_on: string[];
   objective: string;
+  result: string;
   readiness_pct: number;
   readiness_breakdown: Record<string, number>;
   blocker_count: number;
