@@ -89,6 +89,7 @@ def main():
             "status": state,
             "depends_on": sprint.get("depends_on", []),
             "objective": sprint.get("objective", ""),
+            "result": sprint.get("result", ""),
             "readiness_pct": readiness_pct,
             "readiness_breakdown": breakdown,
             "blocker_count": sum(
