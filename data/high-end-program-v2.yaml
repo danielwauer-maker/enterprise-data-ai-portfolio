@@ -65,6 +65,15 @@ sprints:
     status: READY
     depends_on: []
     objective: Establish the permanent High-End program cockpit and baseline before further product development.
+    deliverables:
+      - preserve_baseline_v1
+      - establish_baseline_v2
+      - define_s00_s19_control_center_data
+      - sprint_readiness_model
+      - historical_current_roadmap_timeline
+      - cross_repository_authority_alignment
+      - bps_program_boundary
+      - bfb_derived_only_boundary
 
   - id: S01
     title: BCSentinel Permission Runtime Closure
