@@ -214,8 +214,8 @@ export default function ControlCenterPage() {
           <h2 className="mt-3 text-2xl font-semibold text-white"><Dual en="Readiness is evidence-based" de="Readiness basiert auf Evidence" /></h2>
           <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-400">
             <Dual
-              en="Readiness is calculated from explicit checklist items. Work in progress receives no completion credit. Historical effort is never fabricated from commit timestamps."
-              de="Readiness wird aus expliziten Checklistenpunkten berechnet. Laufende Arbeit erhält noch keinen Completion-Credit. Historischer Aufwand wird niemals aus Commit-Zeitstempeln erfunden."
+              en="Scope readiness is calculated from weighted evidence-backed feature details. Delivery gates are tracked separately. Work in progress receives no completion credit, and historical effort is never fabricated from commit timestamps."
+              de="Scope-Readiness wird aus gewichteten, evidenzbasierten Feature-Details berechnet. Delivery-Gates werden separat verfolgt. Laufende Arbeit erhält keinen Completion-Credit und historischer Aufwand wird niemals aus Commit-Zeitstempeln erfunden."
             />
           </p>
         </article>
