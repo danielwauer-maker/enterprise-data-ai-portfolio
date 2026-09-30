@@ -1,6 +1,7 @@
 import { LanguageToggle } from "../components/language-toggle";
 import { ThemeToggle } from "../components/theme-toggle";
 import { loadPortfolioData } from "../lib/portfolio-data";
+import { loadHighEndControlCenter } from "../lib/high-end-control-center";
 
 export const dynamic = "force-static";
 
@@ -85,6 +86,14 @@ function formatPct(value: number): string {
   return `${value.toFixed(value % 1 === 0 ? 0 : 2)}%`;
 }
 
+function highEndStatusClasses(status: string): string {
+  if (status === "DONE") return "border-emerald-400/25 bg-emerald-400/10 text-emerald-200";
+  if (status === "IN_PROGRESS") return "border-cyan-400/25 bg-cyan-400/10 text-cyan-100";
+  if (status === "BLOCKED") return "border-rose-400/25 bg-rose-400/10 text-rose-100";
+  if (status === "READY") return "border-indigo-400/25 bg-indigo-400/10 text-indigo-100";
+  return "border-slate-400/15 bg-slate-400/5 text-slate-400";
+}
+
 function statusClasses(status: string): string {
   if (status === "Complete") {
     return "border-emerald-400/20 bg-emerald-400/10 text-emerald-200";
@@ -100,8 +109,21 @@ function statusClasses(status: string): string {
 
 export default function Home() {
   const { portfolio, metrics, projects, eoip, i18n } = loadPortfolioData();
+  const highEnd = loadHighEndControlCenter();
+  const currentSprint = highEnd.sprints.find((sprint) => sprint.id === highEnd.program.current_sprint_id) ?? highEnd.sprints[0];
+  const activeSprints = highEnd.sprints.filter((sprint) => sprint.status === "IN_PROGRESS");
+  const completedSprints = highEnd.sprints.filter((sprint) => sprint.status === "DONE");
+  const auditedBlockers = highEnd.sprints.reduce((sum, sprint) => sum + sprint.blocker_count, 0);
+  const bcsentinelCoreSprints = highEnd.sprints.filter((sprint) => ["S01","S02","S03","S04","S05","S06"].includes(sprint.id));
+  const bcsentinelScope = bcsentinelCoreSprints.length
+    ? bcsentinelCoreSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) / bcsentinelCoreSprints.length
+    : 0;
+  const eoipSprint = highEnd.sprints.find((sprint) => sprint.id === "S08");
+  const aiSprints = highEnd.sprints.filter((sprint) => ["S12","S13","S14","S15","S16"].includes(sprint.id));
+  const aiScope = aiSprints.length
+    ? aiSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) / aiSprints.length
+    : 0;
   const efficiency = metrics.delivery_efficiency;
-  const milestones = metrics.milestones.items as Array<Record<string, any>>;
   const architecture = (eoip.architecture?.flow ?? []) as Array<Record<string, any>>;
   const repoUrl = `https://github.com/${portfolio.owner}/${portfolio.repository}`;
 
@@ -116,8 +138,9 @@ export default function Home() {
         </a>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
-          <a className="transition hover:text-white" href="./control-center/">
-            <Localized i18n={i18n} path="nav.control_center" />
+          <a className="transition hover:text-white" href="#program">
+            <span className="lang-en">Program</span>
+            <span className="lang-de">Programm</span>
           </a>
           <a className="transition hover:text-white" href="#delivery-efficiency">
             <Localized i18n={i18n} path="nav.delivery" />
@@ -188,158 +211,174 @@ export default function Home() {
         </div>
 
         <div className="panel p-6 md:p-7">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <div className="eyebrow">
-                <Localized i18n={i18n} path="live.eyebrow" />
+                <span className="lang-en">Live High-End Program</span>
+                <span className="lang-de">Live High-End-Programm</span>
               </div>
               <div className="mt-2 text-lg font-medium text-white">
-                <Localized i18n={i18n} path="live.title" />
+                {currentSprint.id} — {currentSprint.title}
               </div>
             </div>
-            <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[0.08] px-3 py-1 text-xs text-emerald-200">
-              <span className="status-dot mr-2" />
-              <Localized i18n={i18n} path="live.on_track" />
+            <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${highEndStatusClasses(currentSprint.status)}`}>
+              {currentSprint.status}
             </span>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-5">
             <div>
               <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <Localized i18n={i18n} path="live.readiness" />
+                <span className="lang-en">Program complete</span>
+                <span className="lang-de">Programmfortschritt</span>
               </div>
-              <div className="mt-2 text-3xl font-semibold text-white">
-                {formatPct(metrics.progress.application_readiness_pct)}
-              </div>
+              <div className="mt-2 text-3xl font-semibold text-white">{formatPct(highEnd.program.program_completion_pct)}</div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <Localized i18n={i18n} path="live.scope_done" />
+                <span className="lang-en">Current sprint</span>
+                <span className="lang-de">Aktueller Sprint</span>
               </div>
-              <div className="mt-2 text-3xl font-semibold text-white">
-                {formatPct(metrics.progress.portfolio_scope_pct)}
-              </div>
+              <div className="mt-2 text-3xl font-semibold text-cyan-200">{formatPct(currentSprint.scope_readiness_pct)}</div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <Localized i18n={i18n} path="live.ahead_baseline" />
+                <span className="lang-en">Sprints done</span>
+                <span className="lang-de">Sprints fertig</span>
               </div>
-              <div className="mt-2 text-3xl font-semibold text-cyan-200">
-                {metrics.schedule.schedule_delta_days}d
-              </div>
+              <div className="mt-2 text-3xl font-semibold text-white">{completedSprints.length}/20</div>
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <Localized i18n={i18n} path="live.blockers" />
+                <span className="lang-en">Audited blockers</span>
+                <span className="lang-de">Auditierte Blocker</span>
               </div>
-              <div className="mt-2 text-3xl font-semibold text-white">{metrics.blockers.count}</div>
+              <div className="mt-2 text-3xl font-semibold text-white">{auditedBlockers}</div>
             </div>
           </div>
 
           <div className="mt-8 border-t hairline pt-5">
-            <div className="flex items-center justify-between text-xs text-slate-500">
-              <span><Localized i18n={i18n} path="live.application_readiness" /></span>
-              <span><LocalizedDate value={metrics.schedule.target_date} /></span>
+            <div className="flex items-center justify-between gap-4 text-xs text-slate-500">
+              <span>
+                <span className="lang-en">Current sprint scope</span>
+                <span className="lang-de">Aktueller Sprint-Scope</span>
+              </span>
+              <span>{currentSprint.detail_done_count}/{currentSprint.detail_total_count} <span className="lang-en">details done</span><span className="lang-de">Details fertig</span></span>
             </div>
             <div className="progress-track mt-3">
-              <div
-                className="progress-fill"
-                style={{ width: `${Math.min(100, metrics.progress.application_readiness_pct)}%` }}
-              />
+              <div className="progress-fill" style={{ width: `${currentSprint.scope_readiness_pct}%` }} />
             </div>
-            <div className="mt-4 flex items-center justify-between text-sm">
-              <span className="text-slate-400"><Localized i18n={i18n} path="live.forecast" /></span>
-              <span className="font-medium text-white">
-                <LocalizedDate value={metrics.schedule.forecast_completion_date} />
-                <span className="ml-2 text-xs font-normal text-amber-200">
-                  {metrics.schedule.forecast_confidence} <Localized i18n={i18n} path="live.confidence" />
-                </span>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm">
+              <span className="text-slate-400">
+                <span className="lang-en">Target</span>
+                <span className="lang-de">Ziel</span>
               </span>
+              <span className="font-medium text-white"><LocalizedDate value={String(highEnd.program.target_date)} /></span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="control-center" className="shell py-14 md:py-20">
-        <div className="eyebrow"><Localized i18n={i18n} path="control.eyebrow" /></div>
-        <h2 className="section-title mt-3"><Localized i18n={i18n} path="control.title" /></h2>
-        <p className="section-copy"><Localized i18n={i18n} path="control.copy" /></p>
-        <div className="mt-5">
-          <a
-            href="./control-center/"
-            className="inline-flex rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-          >
-            <span className="lang-en">Open Control Center v2</span>
-            <span className="lang-de">Control Center v2 öffnen</span>
-          </a>
+      <section id="program" className="shell py-14 md:py-20">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="eyebrow">
+              <span className="lang-en">Program at a glance</span>
+              <span className="lang-de">Programm auf einen Blick</span>
+            </div>
+            <h2 className="section-title mt-3">
+              <span className="lang-en">One portfolio. One delivery truth.</span>
+              <span className="lang-de">Ein Portfolio. Eine Delivery-Wahrheit.</span>
+            </h2>
+            <p className="section-copy">
+              <span className="lang-en">The public portfolio and delivery control center now use the same structured GitHub data: program progress, BCSentinel readiness, EOIP, AI roadmap, sprint detail and evidence.</span>
+              <span className="lang-de">Portfolio und Delivery Control Center nutzen dieselben strukturierten GitHub-Daten: Programmfortschritt, BCSentinel-Readiness, EOIP, AI-Roadmap, Sprintdetails und Evidence.</span>
+            </p>
+          </div>
+          <div className="rounded-2xl border hairline bg-white/[0.025] px-5 py-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
+              <span className="lang-en">Active delivery</span>
+              <span className="lang-de">Aktive Delivery</span>
+            </div>
+            <div className="mt-1 font-semibold text-white">{activeSprints.length} <span className="lang-en">active sprints</span><span className="lang-de">aktive Sprints</span></div>
+          </div>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {[
-            ["control.portfolio_scope", formatPct(metrics.progress.portfolio_scope_pct), "control.portfolio_scope_copy"],
-            ["control.app_readiness", formatPct(metrics.progress.application_readiness_pct), "control.app_readiness_copy"],
-            ["control.planned_readiness", formatPct(metrics.progress.planned_application_readiness_pct), "control.planned_readiness_copy"],
-          ].map(([label, value, copy]) => (
-            <article key={label} className="panel p-5 md:p-6">
-              <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                <Localized i18n={i18n} path={label} />
-              </div>
-              <div className="metric-value mt-3">{value}</div>
-              <p className="mt-3 text-sm leading-6 text-slate-400">
-                <Localized i18n={i18n} path={copy} />
-              </p>
+            ["Program", highEnd.program.program_completion_pct, "S00–S19"],
+            ["BCSentinel Core", bcsentinelScope, "S01–S06"],
+            ["EOIP / Data", eoipSprint?.scope_readiness_pct ?? 0, "S08"],
+            ["AI Platform", aiScope, "S12–S16"],
+          ].map(([label, value, scope]) => (
+            <article key={String(label)} className="panel p-5 md:p-6">
+              <div className="text-xs uppercase tracking-[0.14em] text-slate-500">{label}</div>
+              <div className="metric-value mt-3">{formatPct(Number(value))}</div>
+              <div className="mt-2 text-xs text-slate-500">{scope}</div>
             </article>
           ))}
           <article className="panel p-5 md:p-6">
-            <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-              <Localized i18n={i18n} path="control.milestone_reliability" />
+            <div className="text-xs uppercase tracking-[0.14em] text-slate-500">
+              <span className="lang-en">Capacity baseline</span>
+              <span className="lang-de">Kapazitäts-Baseline</span>
             </div>
-            <div className="metric-value mt-3">{formatPct(metrics.milestones.reliability_pct ?? 0)}</div>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              {metrics.milestones.on_time_count}/{metrics.milestones.considered_count}{" "}
-              <Localized i18n={i18n} path="control.considered_on_time" />
-            </p>
+            <div className="metric-value mt-3">{highEnd.program.planned_hours_per_week} h</div>
+            <div className="mt-2 text-xs text-slate-500">
+              <span className="lang-en">per week · measured</span>
+              <span className="lang-de">pro Woche · gemessen</span>
+            </div>
           </article>
         </div>
 
-        <div className="mt-4 grid gap-4 lg:grid-cols-3">
-          <article className="panel p-6">
-            <div className="text-sm font-medium text-white">
-              <Localized i18n={i18n} path="control.schedule_position" />
+        <article className="panel mt-5 p-6 md:p-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <div className="eyebrow">
+                <span className="lang-en">Now building</span>
+                <span className="lang-de">Aktuell in Arbeit</span>
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">{currentSprint.id} — {currentSprint.title}</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">{currentSprint.objective}</p>
             </div>
-            <div className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-cyan-200">
-              +{metrics.schedule.schedule_delta_days} <Localized i18n={i18n} path="units.days" />
+            <div className="text-left lg:text-right">
+              <div className="text-4xl font-semibold tracking-[-0.04em] text-cyan-200">{formatPct(currentSprint.scope_readiness_pct)}</div>
+              <div className="mt-1 text-xs text-slate-500">
+                <span className="lang-en">scope readiness</span>
+                <span className="lang-de">Scope-Readiness</span>
+              </div>
             </div>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              <Localized i18n={i18n} path="control.ahead_text" />{" "}
-              <Localized i18n={i18n} path="control.spi" />: {metrics.schedule.performance_index}.
-            </p>
-          </article>
-          <article className="panel p-6">
-            <div className="text-sm font-medium text-white">
-              <Localized i18n={i18n} path="control.critical_path" />
-            </div>
-            <div className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-white">
-              {metrics.critical_path.completed_count}/{metrics.critical_path.total_count}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              <Localized i18n={i18n} path="control.first_unresolved" />:{" "}
-              <span className="text-slate-200">{metrics.critical_path.first_unresolved}</span>.
-            </p>
-          </article>
-          <article className="panel p-6">
-            <div className="text-sm font-medium text-white">
-              <Localized i18n={i18n} path="control.risk_posture" />
-            </div>
-            <div className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-white">
-              {metrics.risks.critical_open_count}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              <Localized i18n={i18n} path="control.critical_risks_copy" />, {metrics.blockers.count}{" "}
-              <Localized i18n={i18n} path="control.active_blockers_copy" />.
-            </p>
-          </article>
-        </div>
+          </div>
+          <div className="progress-track mt-6">
+            <div className="progress-fill" style={{ width: `${currentSprint.scope_readiness_pct}%` }} />
+          </div>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {currentSprint.detail_items.slice(0, 6).map((item) => (
+              <div key={item.id} className="rounded-2xl border hairline bg-white/[0.025] p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200">{item.id}</div>
+                    <div className="mt-1 text-sm font-medium text-slate-200">{item.title}</div>
+                  </div>
+                  <span className={`rounded-full border px-2 py-1 text-[10px] font-semibold ${item.status === "done" || item.status === "verified" ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-200" : item.status === "in_progress" ? "border-cyan-400/20 bg-cyan-400/10 text-cyan-100" : item.status === "blocked" ? "border-rose-400/20 bg-rose-400/10 text-rose-100" : "border-slate-400/15 bg-white/[0.025] text-slate-400"}`}>
+                    {item.status.replaceAll("_", " ").toUpperCase()}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={`./control-center/${currentSprint.id}/`} className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+              <span className="lang-en">Open full sprint detail</span>
+              <span className="lang-de">Vollständige Sprintdetails</span>
+            </a>
+            <a href="#roadmap" className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
+              <span className="lang-en">See full roadmap</span>
+              <span className="lang-de">Gesamte Roadmap</span>
+            </a>
+          </div>
+        </article>
       </section>
 
       <section id="delivery-efficiency" className="shell py-14 md:py-20">
@@ -597,53 +636,45 @@ export default function Home() {
       </section>
 
       <section id="roadmap" className="shell py-14 md:py-20">
-        <div className="eyebrow"><Localized i18n={i18n} path="roadmap.eyebrow" /></div>
-        <h2 className="section-title mt-3"><Localized i18n={i18n} path="roadmap.title" /></h2>
-        <p className="section-copy"><Localized i18n={i18n} path="roadmap.copy" /></p>
+        <div className="eyebrow">
+          <span className="lang-en">High-End roadmap</span>
+          <span className="lang-de">High-End-Roadmap</span>
+        </div>
+        <h2 className="section-title mt-3">
+          <span className="lang-en">S00–S19 from Core to Professional Beta.</span>
+          <span className="lang-de">S00–S19 von Core bis Professional Beta.</span>
+        </h2>
+        <p className="section-copy">
+          <span className="lang-en">Every sprint shows evidence-backed scope readiness. Existing verified work is credited; in-progress work remains visible but receives no completion credit.</span>
+          <span className="lang-de">Jeder Sprint zeigt evidenzbasierte Scope-Readiness. Bereits verifizierte Arbeit wird angerechnet; laufende Arbeit bleibt sichtbar, erhält aber noch keinen Completion-Credit.</span>
+        </p>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {milestones.map((milestone) => (
-            <article
-              key={milestone.id}
-              className={`rounded-2xl border p-5 ${
-                milestone.complete
-                  ? "border-emerald-300/15 bg-emerald-300/[0.045]"
-                  : "hairline bg-white/[0.02]"
-              }`}
+        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {highEnd.sprints.map((sprint) => (
+            <a
+              key={sprint.id}
+              href={`./control-center/${sprint.id}/`}
+              className={`rounded-2xl border p-5 transition hover:-translate-y-0.5 hover:border-cyan-300/25 ${sprint.id === currentSprint.id ? "border-cyan-300/30 bg-cyan-300/[0.055]" : sprint.status === "DONE" ? "border-emerald-300/15 bg-emerald-300/[0.04]" : "hairline bg-white/[0.02]"}`}
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="text-xs font-bold text-cyan-200">{sprint.id}</div>
+                <span className={`rounded-full border px-2 py-1 text-[9px] font-semibold ${highEndStatusClasses(sprint.status)}`}>{sprint.status}</span>
+              </div>
+              <div className="mt-3 min-h-12 text-sm font-semibold leading-6 text-white">{sprint.title}</div>
+              <div className="mt-5 flex items-end justify-between gap-4">
                 <div>
-                  <div className="text-xs font-semibold text-slate-500">{milestone.id}</div>
-                  <div className="mt-2 text-sm font-medium text-white">
-                    <Localized i18n={i18n} path={`milestones.${milestone.id}`} />
+                  <div className="text-2xl font-semibold tracking-[-0.04em] text-white">{formatPct(sprint.scope_readiness_pct)}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-slate-500">
+                    <span className="lang-en">scope readiness</span>
+                    <span className="lang-de">Scope-Readiness</span>
                   </div>
                 </div>
-                <span
-                  className={`rounded-full px-2.5 py-1 text-[11px] ${
-                    milestone.complete
-                      ? "bg-emerald-300/10 text-emerald-200"
-                      : "bg-white/[0.04] text-slate-500"
-                  }`}
-                >
-                  <Localized i18n={i18n} path={milestone.complete ? "roadmap.complete" : "roadmap.planned"} />
-                </span>
+                <div className="text-right text-[11px] text-slate-500">{sprint.detail_done_count}/{sprint.detail_total_count}</div>
               </div>
-              <div className="mt-5 flex items-center justify-between border-t hairline pt-4 text-xs">
-                <span className="text-slate-500">
-                  <Localized i18n={i18n} path="roadmap.target" /> <LocalizedDate value={milestone.target} />
-                </span>
-                <span className={milestone.actual_completion ? "text-emerald-200" : "text-slate-600"}>
-                  {milestone.actual_completion ? (
-                    <>
-                      <Localized i18n={i18n} path="roadmap.actual" />{" "}
-                      <LocalizedDate value={milestone.actual_completion} />
-                    </>
-                  ) : (
-                    <Localized i18n={i18n} path="roadmap.pending" />
-                  )}
-                </span>
+              <div className="progress-track mt-3">
+                <div className="progress-fill" style={{ width: `${sprint.scope_readiness_pct}%` }} />
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </section>
