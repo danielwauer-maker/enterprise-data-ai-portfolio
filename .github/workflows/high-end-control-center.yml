@@ -1,0 +1,28 @@
+name: High-End v2 Control Center
+
+on:
+  pull_request:
+    paths:
+      - "PORTFOLIO_BIBLE.md"
+      - "docs/CROSS_REPO_AUTHORITY_V2.md"
+      - "data/high-end-program-v2.yaml"
+      - "data/sprint-readiness-v2.yaml"
+      - "data/effort-log.yaml"
+      - "scripts/generate_high_end_control_center.py"
+      - "scripts/validate_high_end_control_center.py"
+      - "control-center/**"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install PyYAML
+      - run: python scripts/generate_high_end_control_center.py
+      - run: python scripts/validate_high_end_control_center.py
+      - name: Ensure generated snapshot is committed
+        run: git diff --exit-code -- control-center/program.json
