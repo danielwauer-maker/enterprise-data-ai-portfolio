@@ -52,7 +52,8 @@
         "documentation_evidence": 100,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Control Center shows S00–S19 with readiness, hours, dependencies and timeline."
     },
     {
       "id": "S01",
@@ -78,7 +79,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Documented real BC SaaS PASS/FAIL role matrix for all BCSentinel roles without SUPER."
     },
     {
       "id": "S02",
@@ -104,7 +106,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "One consistent customer-facing product truth across BC, dashboard, reports, access and pricing."
     },
     {
       "id": "S03",
@@ -130,7 +133,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Pilot invitation → registration → BC connection → dashboard works reproducibly and securely."
     },
     {
       "id": "S04",
@@ -156,7 +160,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Dashboard and Executive Reports are pilot-presentable across product states, languages and devices."
     },
     {
       "id": "S05",
@@ -182,7 +187,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "A potential pilot customer can understand the product, trust its claims and request participation."
     },
     {
       "id": "S06",
@@ -208,7 +214,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence."
     },
     {
       "id": "S07",
@@ -234,7 +241,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "A professional canonical product baseline with historical development evidence preserved and traceable."
     },
     {
       "id": "S08",
@@ -260,7 +268,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "EOIP V1 complete and a shared structured insight contract ready for reusable intelligence modules."
     },
     {
       "id": "S09",
@@ -286,7 +295,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Explainable inventory and working-capital recommendations based on deterministic evidence."
     },
     {
       "id": "S10",
@@ -312,7 +322,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Evidence-based profitability, margin-leakage and customer-risk insights."
     },
     {
       "id": "S11",
@@ -338,7 +349,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Procurement Intelligence delivered and the professional portfolio reaches the job-ready milestone."
     },
     {
       "id": "S12",
@@ -364,7 +376,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Evidence-grounded Ask BCSentinel Copilot Alpha using approved tools and structured business data."
     },
     {
       "id": "S13",
@@ -390,7 +403,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Measured AI quality across groundedness, accuracy, latency, cost and user experience."
     },
     {
       "id": "S14",
@@ -416,7 +430,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Controlled multi-agent analytical workflows with specialized domain agents and orchestration."
     },
     {
       "id": "S15",
@@ -442,7 +457,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Observable and auditable AI operations with traces, metrics, policy checks and PII controls."
     },
     {
       "id": "S16",
@@ -468,7 +484,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Policy-controlled, human-approved Business Central actions generated from recommendations."
     },
     {
       "id": "S17",
@@ -494,7 +511,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Enterprise-oriented multi-company, security, audit, retention, backup and recovery architecture."
     },
     {
       "id": "S18",
@@ -520,7 +538,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "Measured cloud architecture, infrastructure-as-code, performance and cost baseline."
     },
     {
       "id": "S19",
@@ -546,7 +565,8 @@
         "documentation_evidence": 0,
         "merge_release_closeout": 0
       },
-      "blocker_count": 0
+      "blocker_count": 0,
+      "result": "BCSentinel Professional Beta and the complete High-End Data & AI portfolio case study."
     }
   ]
 }
