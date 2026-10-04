@@ -1,0 +1,99 @@
+name: Sync BCSentinel Readiness
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync_bcsentinel_readiness.py"
+      - "data/integrations/bcsentinel-readiness-map.yaml"
+      - ".github/workflows/sync-bcsentinel-readiness.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "bcsentinel-readiness-pages"
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install sync dependencies
+        run: python -m pip install PyYAML
+
+      - name: Pull BCSentinel evidence into sprint source data
+        run: python scripts/sync_bcsentinel_readiness.py
+
+      - name: Regenerate Control Center snapshot
+        run: python scripts/generate_high_end_control_center.py
+
+      - name: Validate generated Control Center
+        run: python scripts/validate_high_end_control_center.py
+
+      - name: Detect generated changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data/sprint-details-v2.yaml control-center/program.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit synchronized readiness
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sprint-details-v2.yaml control-center/program.json
+          git commit -m "sync: BCSentinel readiness evidence"
+          git push origin HEAD:main
+
+      - uses: actions/setup-node@v4
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          node-version: "22"
+
+      - name: Install website dependencies
+        if: steps.changes.outputs.changed == 'true'
+        working-directory: site
+        run: npm install --no-audit --no-fund
+
+      - name: Build synchronized portfolio
+        if: steps.changes.outputs.changed == 'true'
+        working-directory: site
+        run: npm run build
+
+      - name: Upload Pages artifact
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/out
+
+  deploy:
+    if: needs.sync.outputs.changed == 'true'
+    needs: sync
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy synchronized portfolio
+        id: deployment
+        uses: actions/deploy-pages@v4
