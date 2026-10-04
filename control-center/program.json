@@ -11,7 +11,7 @@
     "planned_total_hours": 780,
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
-    "program_completion_pct": 28.21,
+    "program_completion_pct": 30.26,
     "planned_hours": 780,
     "actual_hours": 0,
     "remaining_hours": 780,
@@ -440,20 +440,20 @@
         "S03"
       ],
       "objective": "Make all customer-facing dashboard and report states pilot-presentable.",
-      "readiness_pct": 55,
+      "readiness_pct": 75,
       "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
+        "requirements": 100,
+        "architecture": 100,
+        "implementation": 100,
+        "automated_tests": 100,
         "runtime_acceptance": 0,
-        "documentation_evidence": 0,
+        "documentation_evidence": 100,
         "merge_release_closeout": 0
       },
       "blocker_count": 0,
       "result": "Dashboard and Executive Reports are pilot-presentable across product states, languages and devices.",
-      "scope_readiness_pct": 55,
-      "delivery_gate_readiness_pct": 0,
+      "scope_readiness_pct": 75,
+      "delivery_gate_readiness_pct": 80,
       "detail_items": [
         {
           "id": "S04-D01",
@@ -498,36 +498,57 @@
           "evidence": "PR #35/#36 implemented; manual BC recheck remains"
         },
         {
-          "id": "S04-D07",
-          "title": "DE EN dark light and responsive customer QA",
-          "weight": 10,
-          "status": "planned",
-          "evidence": "full matrix not yet evidenced"
+          "id": "S04-D07A",
+          "title": "Automated DE EN dark light responsive contract",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel PR #49 / test_s04_customer_ux_contract.py"
         },
         {
-          "id": "S04-D08",
-          "title": "Loading empty error and locked-state QA",
-          "weight": 10,
+          "id": "S04-D07B",
+          "title": "Real tenant DE EN dark light mobile visual acceptance",
+          "weight": 5,
           "status": "planned",
-          "evidence": "full state matrix not yet evidenced"
+          "evidence": "manual customer visual acceptance remains"
         },
         {
-          "id": "S04-D09",
-          "title": "Executive PDF multi-state browser QA",
-          "weight": 10,
+          "id": "S04-D08A",
+          "title": "Automated loading empty and locked-state UI contract",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel PR #49 / shell state hooks contract"
+        },
+        {
+          "id": "S04-D08B",
+          "title": "Live API error and state transition acceptance",
+          "weight": 5,
           "status": "planned",
-          "evidence": "hardening sprint pending"
+          "evidence": "runtime state acceptance remains"
+        },
+        {
+          "id": "S04-D09A",
+          "title": "Automated Executive PDF Chromium and edge-case coverage",
+          "weight": 5,
+          "status": "done",
+          "evidence": "existing Playwright/PDF regressions + PR #49 contract"
+        },
+        {
+          "id": "S04-D09B",
+          "title": "Visual Executive PDF acceptance with real BC scan",
+          "weight": 5,
+          "status": "planned",
+          "evidence": "manual visual acceptance remains"
         },
         {
           "id": "S04-D10",
           "title": "Encoding large-number and formatting QA",
           "weight": 5,
-          "status": "planned",
-          "evidence": "known visible encoding cleanup remains"
+          "status": "done",
+          "evidence": "PR #49 UTF-8 guard; existing large currency edge-case tests"
         }
       ],
-      "detail_done_count": 5,
-      "detail_total_count": 10
+      "detail_done_count": 9,
+      "detail_total_count": 13
     },
     {
       "id": "S05",
@@ -639,7 +660,7 @@
         "S05"
       ],
       "objective": "Freeze and verify a known-good pilot release candidate.",
-      "readiness_pct": 50,
+      "readiness_pct": 70,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -651,7 +672,7 @@
       },
       "blocker_count": 0,
       "result": "A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence.",
-      "scope_readiness_pct": 50,
+      "scope_readiness_pct": 70,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -693,15 +714,15 @@
           "id": "S06-D06",
           "title": "Fresh BC SaaS installation runtime PASS",
           "weight": 10,
-          "status": "planned",
-          "evidence": "PR #28 awaits manual BC evidence"
+          "status": "done",
+          "evidence": "quality/release/ext-50-02-fresh-installation-evidence.json — VERIFIED_WITH_KNOWN_DEFECTS"
         },
         {
           "id": "S06-D07",
           "title": "Real BC upgrade and data-preservation PASS",
           "weight": 10,
-          "status": "planned",
-          "evidence": "PR #29 awaits manual BC evidence"
+          "status": "done",
+          "evidence": "quality/release/ext-50-03-upgrade-evidence.json — PASS_WITH_KNOWN_DEFECTS"
         },
         {
           "id": "S06-D08",
@@ -725,7 +746,7 @@
           "evidence": "requires role onboarding and runtime closure"
         }
       ],
-      "detail_done_count": 5,
+      "detail_done_count": 7,
       "detail_total_count": 10
     },
     {
