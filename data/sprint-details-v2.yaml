@@ -45,7 +45,7 @@ sprints:
       - {id: S02-D05, title: Free versus Full findings entitlement protection, weight: 10, status: done, evidence: "BCSentinel PR #34"}
       - {id: S02-D06, title: Effective Product Access Until cleanup, weight: 5, status: done, evidence: "BCSentinel PR #36"}
       - {id: S02-D07, title: Legacy product-code mapping and migration closure, weight: 15, status: blocked, evidence: "BPS DRIFT-003 OPEN"}
-      - {id: S02-D08, title: Pricing and checkout truth audit, weight: 10, status: planned, evidence: "current landing pricing still exposes legacy billing codes"}
+      - {id: S02-D08, title: Pricing and checkout truth audit, weight: 10, status: done, evidence: "BCSentinel PR #47 merged to staging; pricing/product-truth contracts and public claims hardening PASS"}
       - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: planned, evidence: "requires DRIFT-003 resolution"}
 
   S03:
@@ -54,10 +54,10 @@ sprints:
       - {id: S03-D02, title: Login invite and SMTP contract implementation, weight: 15, status: done, evidence: "BCSentinel PR #25 P0-08 implementation"}
       - {id: S03-D03, title: Dashboard report route session and tenant binding, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-07 PASS"}
       - {id: S03-D04, title: Pilot onboarding and offboarding operator checklists, weight: 10, status: done, evidence: "BCSentinel PR #26"}
-      - {id: S03-D05, title: One-time expiring pilot enrollment and revocation, weight: 15, status: planned, evidence: "no complete release evidence found"}
-      - {id: S03-D06, title: Password reset and login throttling, weight: 10, status: planned, evidence: "explicitly open in PR #25"}
+      - {id: S03-D05, title: One-time expiring pilot enrollment and revocation, weight: 15, status: done, evidence: "BCSentinel PR #48 merged; expiring enrollment/reset-token lifecycle and revocation hardening in staging"}
+      - {id: S03-D06, title: Password reset and login throttling, weight: 10, status: done, evidence: "BCSentinel PR #48 merged; reset-token, lockout and authentication hardening PASS"}
       - {id: S03-D07, title: SMTP retry real delivery SPF DKIM DMARC and bounce handling, weight: 10, status: planned, evidence: "explicitly open in PR #25"}
-      - {id: S03-D08, title: Pilot lifecycle suspend reactivate and status handling, weight: 10, status: planned, evidence: "not yet evidenced end to end"}
+      - {id: S03-D08, title: Pilot lifecycle suspend reactivate and status handling, weight: 10, status: done, evidence: "BCSentinel PR #48 merged; tenant lifecycle and audit handling implemented and automated gates PASS"}
       - {id: S03-D09, title: Real invitation registration BC connection dashboard journey, weight: 10, status: planned, evidence: "pilot E2E runtime gate pending"}
 
   S04:
@@ -68,10 +68,13 @@ sprints:
       - {id: S04-D04, title: Free versus Full customer-visible findings protection, weight: 10, status: done, evidence: "BCSentinel PR #34"}
       - {id: S04-D05, title: Report routes tenant session and share-token contracts, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-07 PASS"}
       - {id: S04-D06, title: Finding remediation and correction UX manual recheck, weight: 10, status: in_progress, evidence: "PR #35/#36 implemented; manual BC recheck remains"}
-      - {id: S04-D07, title: DE EN dark light and responsive customer QA, weight: 10, status: planned, evidence: "full matrix not yet evidenced"}
-      - {id: S04-D08, title: Loading empty error and locked-state QA, weight: 10, status: planned, evidence: "full state matrix not yet evidenced"}
-      - {id: S04-D09, title: Executive PDF multi-state browser QA, weight: 10, status: planned, evidence: "hardening sprint pending"}
-      - {id: S04-D10, title: Encoding large-number and formatting QA, weight: 5, status: planned, evidence: "known visible encoding cleanup remains"}
+      - {id: S04-D07A, title: DE EN dark light and responsive automated QA, weight: 5, status: done, evidence: "BCSentinel PR #49 merged; translation parity, controls and responsive contracts PASS"}
+      - {id: S04-D07B, title: DE EN dark light and responsive real-tenant visual acceptance, weight: 5, status: planned, evidence: "manual customer-facing visual acceptance remains open"}
+      - {id: S04-D08A, title: Loading empty error and locked-state automated QA, weight: 5, status: done, evidence: "BCSentinel PR #49 merged; state hooks and automated contracts PASS"}
+      - {id: S04-D08B, title: Loading error and locked-state live API acceptance, weight: 5, status: planned, evidence: "manual live API acceptance remains open"}
+      - {id: S04-D09A, title: Executive PDF automated browser and edge-case QA, weight: 5, status: done, evidence: "BCSentinel PR #49 binds existing Playwright/PDF/multi-state regression evidence"}
+      - {id: S04-D09B, title: Executive PDF real BC visual acceptance, weight: 5, status: planned, evidence: "final visual acceptance with real BC scan remains open"}
+      - {id: S04-D10, title: Encoding large-number and formatting QA, weight: 5, status: done, evidence: "BCSentinel PR #49 merged; UTF-8/mojibake guard and existing large-number regression evidence PASS"}
 
   S05:
     items:
@@ -79,11 +82,11 @@ sprints:
       - {id: S05-D02, title: Pricing page exists, weight: 15, status: done, evidence: "landingpage_neu/pricing.html"}
       - {id: S05-D03, title: Executive Reports sales page exists, weight: 10, status: done, evidence: "landingpage_neu/executive-reports.html"}
       - {id: S05-D04, title: Why BCSentinel page exists, weight: 10, status: done, evidence: "landingpage_neu/why-bcsentinel.html"}
-      - {id: S05-D05, title: Claims audit against actual runtime evidence, weight: 10, status: planned, evidence: "public claims must be evidence-bound before launch"}
-      - {id: S05-D06, title: Security and Trust page, weight: 10, status: planned, evidence: "not confirmed"}
+      - {id: S05-D05, title: Claims audit against actual runtime evidence, weight: 10, status: done, evidence: "BCSentinel PR #47 merged; unsupported AppSource/Azure/GDPR/Enterprise/support-hour claims removed or downgraded"}
+      - {id: S05-D06, title: Security and Trust page, weight: 10, status: done, evidence: "landingpage_neu/trust.html exists and was evidence-hardened in BCSentinel PR #47"}
       - {id: S05-D07, title: Pilot or Design Partner page, weight: 10, status: planned, evidence: "dedicated page not confirmed on staging"}
       - {id: S05-D08, title: Contact FAQ legal and privacy polish, weight: 10, status: in_progress, evidence: "contact flows exist but complete launch QA not evidenced"}
-      - {id: S05-D09, title: Pricing feature truth and commercial-copy audit, weight: 10, status: planned, evidence: "current pricing advertises Alerts and BC actions; must match shipped capability"}
+      - {id: S05-D09, title: Pricing feature truth and commercial-copy audit, weight: 10, status: done, evidence: "BCSentinel PR #47 merged; future BC actions removed from current Monitoring offer and pricing truth contracts PASS"}
 
   S06:
     items:
@@ -92,10 +95,10 @@ sprints:
       - {id: S06-D03, title: Isolated PostgreSQL backup restore CI gate, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-05 PASS"}
       - {id: S06-D04, title: Operator alerting and route security contracts, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-06/P0-07 PASS"}
       - {id: S06-D05, title: Operator support and known-limitations package, weight: 10, status: done, evidence: "BCSentinel PR #26"}
-      - {id: S06-D06, title: Fresh BC SaaS installation runtime PASS, weight: 10, status: planned, evidence: "PR #28 awaits manual BC evidence"}
-      - {id: S06-D07, title: Real BC upgrade and data-preservation PASS, weight: 10, status: planned, evidence: "PR #29 awaits manual BC evidence"}
-      - {id: S06-D08, title: Restore and rollback operational drill, weight: 10, status: planned, evidence: "BPS pilot gates remain open"}
-      - {id: S06-D09, title: Fixed RC artifact SHA and release manifest, weight: 10, status: planned, evidence: "release manifest still incomplete"}
+      - {id: S06-D06, title: Fresh BC SaaS installation runtime PASS, weight: 10, status: verified, evidence: "quality/release/ext-50-02-fresh-installation-evidence.json: VERIFIED_WITH_KNOWN_DEFECTS"}
+      - {id: S06-D07, title: Real BC upgrade and data-preservation PASS, weight: 10, status: verified, evidence: "quality/release/ext-50-03-upgrade-evidence.json: PASS_WITH_KNOWN_DEFECTS"}
+      - {id: S06-D08, title: Restore and rollback operational drill, weight: 10, status: planned, evidence: "PostgreSQL restore is VERIFIED_IN_CI; real pilot-infrastructure restore and BC rollback/roll-forward drill remain open"}
+      - {id: S06-D09, title: Fixed RC artifact SHA and release manifest, weight: 10, status: planned, evidence: "S06 PR #51 adds current machine-readable release-readiness manifest; final frozen RC SHA/app hash remains open"}
       - {id: S06-D10, title: Final pilot journey and monitoring acceptance, weight: 10, status: planned, evidence: "requires role onboarding and runtime closure"}
 
   S07:
