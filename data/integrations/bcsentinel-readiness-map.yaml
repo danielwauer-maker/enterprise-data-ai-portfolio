@@ -1,0 +1,40 @@
+schema_version: 1
+source:
+  repository: danielwauer-maker/bcsentinel
+  branch: staging
+  evidence_url: https://raw.githubusercontent.com/danielwauer-maker/bcsentinel/staging/quality/portfolio-readiness-evidence.json
+
+rules:
+  - fact: s02_pricing_checkout_truth_audit
+    targets:
+      - {id: S02-D08, true_status: done, false_status: planned}
+
+  - fact: s03_security_lifecycle_automated
+    targets:
+      - {id: S03-D05, true_status: done, false_status: planned}
+      - {id: S03-D06, true_status: done, false_status: planned}
+      - {id: S03-D08, true_status: done, false_status: planned}
+
+  - fact: s04_customer_ux_automated_qa
+    targets:
+      - {id: S04-D07A, true_status: done, false_status: planned}
+      - {id: S04-D08A, true_status: done, false_status: planned}
+      - {id: S04-D09A, true_status: done, false_status: planned}
+      - {id: S04-D10, true_status: done, false_status: planned}
+
+  - fact: s05_public_claims_audit
+    targets:
+      - {id: S05-D05, true_status: done, false_status: planned}
+      - {id: S05-D09, true_status: done, false_status: planned}
+
+  - fact: s05_trust_page_present_and_guarded
+    targets:
+      - {id: S05-D06, true_status: done, false_status: planned}
+
+  - fact: s06_fresh_installation
+    targets:
+      - {id: S06-D06, true_status: verified, false_status: planned}
+
+  - fact: s06_upgrade_data_preservation
+    targets:
+      - {id: S06-D07, true_status: verified, false_status: planned}
