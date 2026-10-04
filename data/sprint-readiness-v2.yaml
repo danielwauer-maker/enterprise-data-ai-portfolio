@@ -99,7 +99,27 @@ sprints:
       merge_release_closeout:
         - {id: S02-CLS-01, title: DRIFT-003 resolved and S02 closeout recorded, status: not_started}
   S03: {status: PLANNED}
-  S04: {status: PLANNED}
+  S04:
+    status: PLANNED
+    categories:
+      requirements:
+        - {id: S04-REQ-01, title: Dashboard and report hardening acceptance scope defined, status: done}
+      architecture:
+        - {id: S04-ARCH-01, title: Customer shell localization theme and state contracts established, status: done}
+      implementation:
+        - {id: S04-IMP-01, title: Dashboard customer surfaces and Executive Report implemented, status: done}
+        - {id: S04-IMP-02, title: Free Full access protection and share-token routes implemented, status: done}
+      automated_tests:
+        - {id: S04-TST-01, title: UTF-8 DE EN theme responsive and state contract tests, status: done}
+        - {id: S04-TST-02, title: Executive HTML PDF Chromium edge-case regression coverage, status: done}
+      runtime_acceptance:
+        - {id: S04-ACC-01, title: Real tenant DE EN dark light responsive visual acceptance, status: not_started}
+        - {id: S04-ACC-02, title: Live loading error locked and remediation state acceptance, status: not_started}
+        - {id: S04-ACC-03, title: Real BC scan Executive PDF visual acceptance, status: not_started}
+      documentation_evidence:
+        - {id: S04-DOC-01, title: Automated customer UX QA evidence documented, status: done}
+      merge_release_closeout:
+        - {id: S04-CLS-01, title: Final S04 runtime evidence and closeout recorded, status: not_started}
   S05: {status: PLANNED}
   S06: {status: PLANNED}
   S07: {status: PLANNED}
