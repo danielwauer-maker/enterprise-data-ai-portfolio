@@ -44,9 +44,10 @@ sprints:
       - {id: S02-D04, title: Dashboard report and landing copy aligned to Assessment Validation Monitoring, weight: 15, status: done, evidence: "BCSentinel PR #10"}
       - {id: S02-D05, title: Free versus Full findings entitlement protection, weight: 10, status: done, evidence: "BCSentinel PR #34"}
       - {id: S02-D06, title: Effective Product Access Until cleanup, weight: 5, status: done, evidence: "BCSentinel PR #36"}
-      - {id: S02-D07, title: Legacy product-code mapping and migration closure, weight: 15, status: blocked, evidence: "BPS DRIFT-003 OPEN"}
-      - {id: S02-D08, title: Pricing and checkout truth audit, weight: 10, status: planned, evidence: "current landing pricing still exposes legacy billing codes"}
-      - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: planned, evidence: "requires DRIFT-003 resolution"}
+      - {id: S02-D07A, title: Legacy product-code to canonical-offer mapping with no-rights-loss compatibility, weight: 10, status: done, evidence: "BPS PR #3 + BCSentinel PR #47 product contract metadata and compatibility aliases"}
+      - {id: S02-D07B, title: Final migration and checkout runtime smoke, weight: 5, status: planned, evidence: "manual runtime checkout/grant smoke remains"}
+      - {id: S02-D08, title: Pricing and checkout truth audit, weight: 10, status: done, evidence: "BCSentinel docs/product/S02_PRICING_CHECKOUT_TRUTH_AUDIT.md + public pricing contract tests"}
+      - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: in_progress, evidence: "BPS DRIFT-003 IN_PROGRESS; final runtime evidence required before RESOLVED"}
 
   S03:
     items:
