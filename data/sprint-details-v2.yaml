@@ -69,10 +69,13 @@ sprints:
       - {id: S04-D04, title: Free versus Full customer-visible findings protection, weight: 10, status: done, evidence: "BCSentinel PR #34"}
       - {id: S04-D05, title: Report routes tenant session and share-token contracts, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-07 PASS"}
       - {id: S04-D06, title: Finding remediation and correction UX manual recheck, weight: 10, status: in_progress, evidence: "PR #35/#36 implemented; manual BC recheck remains"}
-      - {id: S04-D07, title: DE EN dark light and responsive customer QA, weight: 10, status: planned, evidence: "full matrix not yet evidenced"}
-      - {id: S04-D08, title: Loading empty error and locked-state QA, weight: 10, status: planned, evidence: "full state matrix not yet evidenced"}
-      - {id: S04-D09, title: Executive PDF multi-state browser QA, weight: 10, status: planned, evidence: "hardening sprint pending"}
-      - {id: S04-D10, title: Encoding large-number and formatting QA, weight: 5, status: planned, evidence: "known visible encoding cleanup remains"}
+      - {id: S04-D07A, title: Automated DE EN dark light responsive contract, weight: 5, status: done, evidence: "BCSentinel PR #49 / test_s04_customer_ux_contract.py"}
+      - {id: S04-D07B, title: Real tenant DE EN dark light mobile visual acceptance, weight: 5, status: planned, evidence: "manual customer visual acceptance remains"}
+      - {id: S04-D08A, title: Automated loading empty and locked-state UI contract, weight: 5, status: done, evidence: "BCSentinel PR #49 / shell state hooks contract"}
+      - {id: S04-D08B, title: Live API error and state transition acceptance, weight: 5, status: planned, evidence: "runtime state acceptance remains"}
+      - {id: S04-D09A, title: Automated Executive PDF Chromium and edge-case coverage, weight: 5, status: done, evidence: "existing Playwright/PDF regressions + PR #49 contract"}
+      - {id: S04-D09B, title: Visual Executive PDF acceptance with real BC scan, weight: 5, status: planned, evidence: "manual visual acceptance remains"}
+      - {id: S04-D10, title: Encoding large-number and formatting QA, weight: 5, status: done, evidence: "PR #49 UTF-8 guard; existing large currency edge-case tests"}
 
   S05:
     items:
@@ -93,8 +96,8 @@ sprints:
       - {id: S06-D03, title: Isolated PostgreSQL backup restore CI gate, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-05 PASS"}
       - {id: S06-D04, title: Operator alerting and route security contracts, weight: 10, status: done, evidence: "BCSentinel PR #25 P0-06/P0-07 PASS"}
       - {id: S06-D05, title: Operator support and known-limitations package, weight: 10, status: done, evidence: "BCSentinel PR #26"}
-      - {id: S06-D06, title: Fresh BC SaaS installation runtime PASS, weight: 10, status: planned, evidence: "PR #28 awaits manual BC evidence"}
-      - {id: S06-D07, title: Real BC upgrade and data-preservation PASS, weight: 10, status: planned, evidence: "PR #29 awaits manual BC evidence"}
+      - {id: S06-D06, title: Fresh BC SaaS installation runtime PASS, weight: 10, status: done, evidence: "quality/release/ext-50-02-fresh-installation-evidence.json — VERIFIED_WITH_KNOWN_DEFECTS"}
+      - {id: S06-D07, title: Real BC upgrade and data-preservation PASS, weight: 10, status: done, evidence: "quality/release/ext-50-03-upgrade-evidence.json — PASS_WITH_KNOWN_DEFECTS"}
       - {id: S06-D08, title: Restore and rollback operational drill, weight: 10, status: planned, evidence: "BPS pilot gates remain open"}
       - {id: S06-D09, title: Fixed RC artifact SHA and release manifest, weight: 10, status: planned, evidence: "release manifest still incomplete"}
       - {id: S06-D10, title: Final pilot journey and monitoring acceptance, weight: 10, status: planned, evidence: "requires role onboarding and runtime closure"}
