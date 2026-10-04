@@ -12,9 +12,9 @@
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
     "program_completion_pct": 33.08,
-    "planned_hours": 780,
-    "actual_hours": 0,
-    "remaining_hours": 780,
+    "planned_hours": 780.0,
+    "actual_hours": 0.0,
+    "remaining_hours": 780.0,
     "current_sprint_id": "S01"
   },
   "readiness_model": {
@@ -29,12 +29,23 @@
       "merge_release_closeout": 5
     },
     "item_credit": {
-      "done": 1,
-      "not_started": 0,
-      "blocked": 0,
-      "in_progress": 0
+      "done": 1.0,
+      "not_started": 0.0,
+      "blocked": 0.0,
+      "in_progress": 0.0
     },
     "rule": "Add or split checklist items before claiming partial completion inside a category."
+  },
+  "scope_readiness_model": {
+    "principle": "Scope readiness is calculated from evidence-backed weighted detail items.",
+    "credits": {
+      "done": 1.0,
+      "verified": 1.0,
+      "in_progress": 0.0,
+      "blocked": 0.0,
+      "planned": 0.0
+    },
+    "note": "In-progress work is shown explicitly but receives no completion credit. Split items when reliable partial credit is needed."
   },
   "sprints": [
     {
@@ -42,27 +53,26 @@
       "title": "Control Center v2 & High-End Baseline",
       "start": "2026-10-01",
       "end": "2026-10-07",
-      "planned_hours": 20,
-      "actual_hours": 0,
-      "remaining_hours": 20,
+      "planned_hours": 20.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 20.0,
       "track": "portfolio",
       "status": "DONE",
       "depends_on": [],
       "objective": "Establish the permanent High-End program cockpit and baseline before further product development.",
-      "readiness_pct": 100,
-      "readiness_breakdown": {
-        "requirements": 100,
-        "architecture": 100,
-        "implementation": 100,
-        "automated_tests": 100,
-        "runtime_acceptance": 100,
-        "documentation_evidence": 100,
-        "merge_release_closeout": 100
-      },
-      "blocker_count": 0,
       "result": "Control Center shows S00–S19 with readiness, hours, dependencies and timeline.",
-      "scope_readiness_pct": 100,
-      "delivery_gate_readiness_pct": 100,
+      "readiness_pct": 100.0,
+      "scope_readiness_pct": 100.0,
+      "delivery_gate_readiness_pct": 100.0,
+      "readiness_breakdown": {
+        "requirements": 100.0,
+        "architecture": 100.0,
+        "implementation": 100.0,
+        "automated_tests": 100.0,
+        "runtime_acceptance": 100.0,
+        "documentation_evidence": 100.0,
+        "merge_release_closeout": 100.0
+      },
       "detail_items": [
         {
           "id": "S00-D01",
@@ -122,36 +132,36 @@
         }
       ],
       "detail_done_count": 8,
-      "detail_total_count": 8
+      "detail_total_count": 8,
+      "blocker_count": 0
     },
     {
       "id": "S01",
       "title": "BCSentinel Permission Runtime Closure",
       "start": "2026-10-08",
       "end": "2026-10-21",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "core",
       "status": "IN_PROGRESS",
       "depends_on": [
         "S00"
       ],
       "objective": "Complete real BC SaaS least-privilege runtime evidence for all product roles without SUPER.",
-      "readiness_pct": 70,
-      "readiness_breakdown": {
-        "requirements": 100,
-        "architecture": 100,
-        "implementation": 100,
-        "automated_tests": 100,
-        "runtime_acceptance": 50,
-        "documentation_evidence": 100,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Documented real BC SaaS PASS/FAIL role matrix for all BCSentinel roles without SUPER.",
-      "scope_readiness_pct": 70,
+      "readiness_pct": 70.0,
+      "scope_readiness_pct": 70.0,
       "delivery_gate_readiness_pct": 87.5,
+      "readiness_breakdown": {
+        "requirements": 100.0,
+        "architecture": 100.0,
+        "implementation": 100.0,
+        "automated_tests": 100.0,
+        "runtime_acceptance": 50.0,
+        "documentation_evidence": 100.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S01-D01",
@@ -225,36 +235,36 @@
         }
       ],
       "detail_done_count": 6,
-      "detail_total_count": 10
+      "detail_total_count": 10,
+      "blocker_count": 0
     },
     {
       "id": "S02",
       "title": "Product Model & Entitlement Closure",
       "start": "2026-10-22",
       "end": "2026-11-04",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "core",
       "status": "PLANNED",
       "depends_on": [
         "S01"
       ],
       "objective": "Align visible offers, access states, entitlements, dashboard, reports and pricing to one product truth.",
-      "readiness_pct": 80,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 1,
       "result": "One consistent customer-facing product truth across BC, dashboard, reports, access and pricing.",
-      "scope_readiness_pct": 80,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 80.0,
+      "scope_readiness_pct": 80.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S02-D01",
@@ -310,7 +320,7 @@
           "title": "Pricing and checkout truth audit",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel PR #47 merged to staging; pricing/product-truth contracts and public claims hardening PASS"
+          "evidence": "BCSentinel automated evidence: docs/product/S02_PRICING_CHECKOUT_TRUTH_AUDIT.md"
         },
         {
           "id": "S02-D09",
@@ -321,36 +331,36 @@
         }
       ],
       "detail_done_count": 7,
-      "detail_total_count": 9
+      "detail_total_count": 9,
+      "blocker_count": 1
     },
     {
       "id": "S03",
       "title": "Pilot Onboarding",
       "start": "2026-11-05",
       "end": "2026-11-18",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "commercialization",
       "status": "PLANNED",
       "depends_on": [
         "S02"
       ],
       "objective": "Deliver secure pilot enrollment, identity binding, invitation, login and tenant administration.",
-      "readiness_pct": 80,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Pilot invitation → registration → BC connection → dashboard works reproducibly and securely.",
-      "scope_readiness_pct": 80,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 80.0,
+      "scope_readiness_pct": 80.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S03-D01",
@@ -385,14 +395,14 @@
           "title": "One-time expiring pilot enrollment and revocation",
           "weight": 15,
           "status": "done",
-          "evidence": "BCSentinel PR #48 merged; expiring enrollment/reset-token lifecycle and revocation hardening in staging"
+          "evidence": "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"
         },
         {
           "id": "S03-D06",
           "title": "Password reset and login throttling",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel PR #48 merged; reset-token, lockout and authentication hardening PASS"
+          "evidence": "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"
         },
         {
           "id": "S03-D07",
@@ -406,7 +416,7 @@
           "title": "Pilot lifecycle suspend reactivate and status handling",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel PR #48 merged; tenant lifecycle and audit handling implemented and automated gates PASS"
+          "evidence": "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"
         },
         {
           "id": "S03-D09",
@@ -417,36 +427,36 @@
         }
       ],
       "detail_done_count": 7,
-      "detail_total_count": 9
+      "detail_total_count": 9,
+      "blocker_count": 0
     },
     {
       "id": "S04",
       "title": "Dashboard & Executive Report Product Hardening",
       "start": "2026-11-19",
       "end": "2026-12-02",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "product_ux",
       "status": "PLANNED",
       "depends_on": [
         "S03"
       ],
       "objective": "Make all customer-facing dashboard and report states pilot-presentable.",
-      "readiness_pct": 75,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Dashboard and Executive Reports are pilot-presentable across product states, languages and devices.",
-      "scope_readiness_pct": 75,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 75.0,
+      "scope_readiness_pct": 75.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S04-D01",
@@ -495,7 +505,7 @@
           "title": "DE EN dark light and responsive automated QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel PR #49 merged; translation parity, controls and responsive contracts PASS"
+          "evidence": "BCSentinel automated evidence: docs/S04_CUSTOMER_UX_AUTOMATED_QA.md"
         },
         {
           "id": "S04-D07B",
@@ -509,7 +519,7 @@
           "title": "Loading empty error and locked-state automated QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel PR #49 merged; state hooks and automated contracts PASS"
+          "evidence": "BCSentinel automated evidence: docs/S04_CUSTOMER_UX_AUTOMATED_QA.md"
         },
         {
           "id": "S04-D08B",
@@ -523,7 +533,7 @@
           "title": "Executive PDF automated browser and edge-case QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel PR #49 binds existing Playwright/PDF/multi-state regression evidence"
+          "evidence": "BCSentinel automated evidence: docs/S04_CUSTOMER_UX_AUTOMATED_QA.md"
         },
         {
           "id": "S04-D09B",
@@ -537,40 +547,40 @@
           "title": "Encoding large-number and formatting QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel PR #49 merged; UTF-8/mojibake guard and existing large-number regression evidence PASS"
+          "evidence": "BCSentinel automated evidence: docs/S04_CUSTOMER_UX_AUTOMATED_QA.md"
         }
       ],
       "detail_done_count": 9,
-      "detail_total_count": 13
+      "detail_total_count": 13,
+      "blocker_count": 0
     },
     {
       "id": "S05",
       "title": "Salespage, Pricing & Pilotpage",
       "start": "2026-12-03",
       "end": "2026-12-16",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "commercialization",
       "status": "PLANNED",
       "depends_on": [
         "S04"
       ],
       "objective": "Produce truthful professional external product presentation and Design Partner journey.",
-      "readiness_pct": 80,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "A potential pilot customer can understand the product, trust its claims and request participation.",
-      "scope_readiness_pct": 80,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 80.0,
+      "scope_readiness_pct": 80.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S05-D01",
@@ -605,14 +615,14 @@
           "title": "Claims audit against actual runtime evidence",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel PR #47 merged; unsupported AppSource/Azure/GDPR/Enterprise/support-hour claims removed or downgraded"
+          "evidence": "BCSentinel automated evidence: docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md"
         },
         {
           "id": "S05-D06",
           "title": "Security and Trust page",
           "weight": 10,
           "status": "done",
-          "evidence": "landingpage_neu/trust.html exists and was evidence-hardened in BCSentinel PR #47"
+          "evidence": "BCSentinel automated evidence: landingpage_neu/trust.html + backend/tests/test_public_claims_contract.py"
         },
         {
           "id": "S05-D07",
@@ -633,40 +643,40 @@
           "title": "Pricing feature truth and commercial-copy audit",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel PR #47 merged; future BC actions removed from current Monitoring offer and pricing truth contracts PASS"
+          "evidence": "BCSentinel automated evidence: docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md"
         }
       ],
       "detail_done_count": 7,
-      "detail_total_count": 9
+      "detail_total_count": 9,
+      "blocker_count": 0
     },
     {
       "id": "S06",
       "title": "BCSentinel Core Release Candidate",
       "start": "2026-12-17",
       "end": "2026-12-30",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "core",
       "status": "PLANNED",
       "depends_on": [
         "S05"
       ],
       "objective": "Freeze and verify a known-good pilot release candidate.",
-      "readiness_pct": 70,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence.",
-      "scope_readiness_pct": 70,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 70.0,
+      "scope_readiness_pct": 70.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S06-D01",
@@ -708,14 +718,14 @@
           "title": "Fresh BC SaaS installation runtime PASS",
           "weight": 10,
           "status": "verified",
-          "evidence": "quality/release/ext-50-02-fresh-installation-evidence.json: VERIFIED_WITH_KNOWN_DEFECTS"
+          "evidence": "BCSentinel automated evidence: quality/release/ext-50-02-fresh-installation-evidence.json"
         },
         {
           "id": "S06-D07",
           "title": "Real BC upgrade and data-preservation PASS",
           "weight": 10,
           "status": "verified",
-          "evidence": "quality/release/ext-50-03-upgrade-evidence.json: PASS_WITH_KNOWN_DEFECTS"
+          "evidence": "BCSentinel automated evidence: quality/release/ext-50-03-upgrade-evidence.json"
         },
         {
           "id": "S06-D08",
@@ -740,36 +750,36 @@
         }
       ],
       "detail_done_count": 7,
-      "detail_total_count": 10
+      "detail_total_count": 10,
+      "blocker_count": 0
     },
     {
       "id": "S07",
       "title": "Design Partner & Canonical Repository",
       "start": "2026-12-31",
       "end": "2027-01-13",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "commercialization",
       "status": "PLANNED",
       "depends_on": [
         "S06"
       ],
       "objective": "Preserve history, establish the canonical verified repository baseline and support Design Partner operation.",
-      "readiness_pct": 10,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "A professional canonical product baseline with historical development evidence preserved and traceable.",
-      "scope_readiness_pct": 10,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 10.0,
+      "scope_readiness_pct": 10.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S07-D01",
@@ -815,36 +825,36 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 6
+      "detail_total_count": 6,
+      "blocker_count": 0
     },
     {
       "id": "S08",
       "title": "EOIP V1 + Shared Intelligence Contract",
       "start": "2027-01-14",
       "end": "2027-01-27",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "data",
       "status": "PLANNED",
       "depends_on": [
         "S07"
       ],
       "objective": "Complete EOIP V1 and establish the shared structured insight contract.",
-      "readiness_pct": 50,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "EOIP V1 complete and a shared structured insight contract ready for reusable intelligence modules.",
-      "scope_readiness_pct": 50,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 50.0,
+      "scope_readiness_pct": 50.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S08-D01",
@@ -918,36 +928,36 @@
         }
       ],
       "detail_done_count": 4,
-      "detail_total_count": 10
+      "detail_total_count": 10,
+      "blocker_count": 0
     },
     {
       "id": "S09",
       "title": "Inventory Intelligence V1",
       "start": "2027-01-28",
       "end": "2027-02-10",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "decision",
       "status": "PLANNED",
       "depends_on": [
         "S08"
       ],
       "objective": "Deliver deterministic explainable inventory and working-capital recommendations.",
-      "readiness_pct": 15,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Explainable inventory and working-capital recommendations based on deterministic evidence.",
-      "scope_readiness_pct": 15,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 15.0,
+      "scope_readiness_pct": 15.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S09-D01",
@@ -1007,36 +1017,36 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 8
+      "detail_total_count": 8,
+      "blocker_count": 0
     },
     {
       "id": "S10",
       "title": "Margin & Customer Intelligence",
       "start": "2027-02-11",
       "end": "2027-02-24",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "decision",
       "status": "PLANNED",
       "depends_on": [
         "S09"
       ],
       "objective": "Deliver profitability, margin-leakage and customer-risk intelligence.",
-      "readiness_pct": 15,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Evidence-based profitability, margin-leakage and customer-risk insights.",
-      "scope_readiness_pct": 15,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 15.0,
+      "scope_readiness_pct": 15.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S10-D01",
@@ -1096,36 +1106,36 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 8
+      "detail_total_count": 8,
+      "blocker_count": 0
     },
     {
       "id": "S11",
       "title": "Procurement Intelligence + Job-Ready Portfolio",
       "start": "2027-02-25",
       "end": "2027-03-10",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "decision",
       "status": "PLANNED",
       "depends_on": [
         "S10"
       ],
       "objective": "Deliver procurement intelligence and reach the job-ready portfolio milestone.",
-      "readiness_pct": 5,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Procurement Intelligence delivered and the professional portfolio reaches the job-ready milestone.",
-      "scope_readiness_pct": 5,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 5.0,
+      "scope_readiness_pct": 5.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S11-D01",
@@ -1185,36 +1195,36 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 8
+      "detail_total_count": 8,
+      "blocker_count": 0
     },
     {
       "id": "S12",
       "title": "AI Copilot Foundation",
       "start": "2027-03-11",
       "end": "2027-03-24",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "ai",
       "status": "PLANNED",
       "depends_on": [
         "S11"
       ],
       "objective": "Build an evidence-grounded Ask BCSentinel Copilot using approved structured tools.",
-      "readiness_pct": 0,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Evidence-grounded Ask BCSentinel Copilot Alpha using approved tools and structured business data.",
-      "scope_readiness_pct": 0,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 0.0,
+      "scope_readiness_pct": 0.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S12-D01",
@@ -1260,36 +1270,36 @@
         }
       ],
       "detail_done_count": 0,
-      "detail_total_count": 6
+      "detail_total_count": 6,
+      "blocker_count": 0
     },
     {
       "id": "S13",
       "title": "AI Evaluation & Copilot UX",
       "start": "2027-03-25",
       "end": "2027-04-07",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "ai",
       "status": "PLANNED",
       "depends_on": [
         "S12"
       ],
       "objective": "Quantify Copilot quality, groundedness, latency, cost and user experience.",
-      "readiness_pct": 0,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Measured AI quality across groundedness, accuracy, latency, cost and user experience.",
-      "scope_readiness_pct": 0,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 0.0,
+      "scope_readiness_pct": 0.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S13-D01",
@@ -1335,36 +1345,36 @@
         }
       ],
       "detail_done_count": 0,
-      "detail_total_count": 6
+      "detail_total_count": 6,
+      "blocker_count": 0
     },
     {
       "id": "S14",
       "title": "Agent Platform V1",
       "start": "2027-04-08",
       "end": "2027-04-21",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "ai",
       "status": "PLANNED",
       "depends_on": [
         "S13"
       ],
       "objective": "Build controlled specialized agents and orchestration.",
-      "readiness_pct": 0,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Controlled multi-agent analytical workflows with specialized domain agents and orchestration.",
-      "scope_readiness_pct": 0,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 0.0,
+      "scope_readiness_pct": 0.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S14-D01",
@@ -1417,36 +1427,36 @@
         }
       ],
       "detail_done_count": 0,
-      "detail_total_count": 7
+      "detail_total_count": 7,
+      "blocker_count": 0
     },
     {
       "id": "S15",
       "title": "AI Observability & Security",
       "start": "2027-04-22",
       "end": "2027-05-05",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "enterprise",
       "status": "PLANNED",
       "depends_on": [
         "S14"
       ],
       "objective": "Add traces, metrics, cost visibility, policy checks, PII controls and AI auditability.",
-      "readiness_pct": 0,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Observable and auditable AI operations with traces, metrics, policy checks and PII controls.",
-      "scope_readiness_pct": 0,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 0.0,
+      "scope_readiness_pct": 0.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S15-D01",
@@ -1492,36 +1502,36 @@
         }
       ],
       "detail_done_count": 0,
-      "detail_total_count": 6
+      "detail_total_count": 6,
+      "blocker_count": 0
     },
     {
       "id": "S16",
       "title": "Human-Approved BC Actions",
       "start": "2027-05-06",
       "end": "2027-05-19",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "ai",
       "status": "PLANNED",
       "depends_on": [
         "S15"
       ],
       "objective": "Convert recommendations into policy-controlled, human-approved Business Central actions.",
-      "readiness_pct": 0,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Policy-controlled, human-approved Business Central actions generated from recommendations.",
-      "scope_readiness_pct": 0,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 0.0,
+      "scope_readiness_pct": 0.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S16-D01",
@@ -1567,36 +1577,36 @@
         }
       ],
       "detail_done_count": 0,
-      "detail_total_count": 6
+      "detail_total_count": 6,
+      "blocker_count": 0
     },
     {
       "id": "S17",
       "title": "Multi-Company & Enterprise Hardening",
       "start": "2027-05-20",
       "end": "2027-06-02",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "enterprise",
       "status": "PLANNED",
       "depends_on": [
         "S16"
       ],
       "objective": "Harden multi-company, security, audit, retention, backup and recovery architecture.",
-      "readiness_pct": 20,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Enterprise-oriented multi-company, security, audit, retention, backup and recovery architecture.",
-      "scope_readiness_pct": 20,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 20.0,
+      "scope_readiness_pct": 20.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S17-D01",
@@ -1649,36 +1659,36 @@
         }
       ],
       "detail_done_count": 2,
-      "detail_total_count": 7
+      "detail_total_count": 7,
+      "blocker_count": 0
     },
     {
       "id": "S18",
       "title": "Cloud, Infrastructure & Scale",
       "start": "2027-06-03",
       "end": "2027-06-16",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "platform",
       "status": "PLANNED",
       "depends_on": [
         "S17"
       ],
       "objective": "Establish justified cloud architecture, IaC, CI/CD and measured scale/cost baselines.",
-      "readiness_pct": 10,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "Measured cloud architecture, infrastructure-as-code, performance and cost baseline.",
-      "scope_readiness_pct": 10,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 10.0,
+      "scope_readiness_pct": 10.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S18-D01",
@@ -1731,36 +1741,36 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 7
+      "detail_total_count": 7,
+      "blocker_count": 0
     },
     {
       "id": "S19",
       "title": "BCSentinel Professional Beta / High-End Release",
       "start": "2027-06-17",
       "end": "2027-06-30",
-      "planned_hours": 40,
-      "actual_hours": 0,
-      "remaining_hours": 40,
+      "planned_hours": 40.0,
+      "actual_hours": 0.0,
+      "remaining_hours": 40.0,
       "track": "commercialization",
       "status": "PLANNED",
       "depends_on": [
         "S18"
       ],
       "objective": "Release the BCSentinel Professional Beta and final High-End portfolio case study.",
-      "readiness_pct": 15,
-      "readiness_breakdown": {
-        "requirements": 0,
-        "architecture": 0,
-        "implementation": 0,
-        "automated_tests": 0,
-        "runtime_acceptance": 0,
-        "documentation_evidence": 0,
-        "merge_release_closeout": 0
-      },
-      "blocker_count": 0,
       "result": "BCSentinel Professional Beta and the complete High-End Data & AI portfolio case study.",
-      "scope_readiness_pct": 15,
-      "delivery_gate_readiness_pct": 0,
+      "readiness_pct": 15.0,
+      "scope_readiness_pct": 15.0,
+      "delivery_gate_readiness_pct": 0.0,
+      "readiness_breakdown": {
+        "requirements": 0.0,
+        "architecture": 0.0,
+        "implementation": 0.0,
+        "automated_tests": 0.0,
+        "runtime_acceptance": 0.0,
+        "documentation_evidence": 0.0,
+        "merge_release_closeout": 0.0
+      },
       "detail_items": [
         {
           "id": "S19-D01",
@@ -1827,18 +1837,8 @@
         }
       ],
       "detail_done_count": 1,
-      "detail_total_count": 9
+      "detail_total_count": 9,
+      "blocker_count": 0
     }
-  ],
-  "scope_readiness_model": {
-    "principle": "Scope readiness is calculated from evidence-backed weighted detail items.",
-    "credits": {
-      "done": 1,
-      "verified": 1,
-      "in_progress": 0,
-      "blocked": 0,
-      "planned": 0
-    },
-    "note": "In-progress work is shown explicitly but receives no completion credit. Split items when reliable partial credit is needed."
-  }
+  ]
 }
