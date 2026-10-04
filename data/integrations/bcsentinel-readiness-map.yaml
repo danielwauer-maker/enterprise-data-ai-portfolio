@@ -50,3 +50,28 @@ rules:
   - fact: s07_legacy_canonical_traceability
     targets:
       - {id: S07-D05, true_status: done, false_status: planned}
+
+  - fact: s02_legacy_compatibility_closure
+    targets:
+      - {id: S02-D07A, true_status: done, false_status: planned}
+      - {id: S02-D09, true_status: done, false_status: planned}
+
+  - fact: s03_core_mail_user_flow
+    targets:
+      - {id: S03-D07A, true_status: done, false_status: planned}
+
+  - fact: s05_pilot_launch_surface
+    targets:
+      - {id: S05-D07, true_status: done, false_status: planned}
+
+  - fact: s05_contact_legal_docs_surface
+    targets:
+      - {id: S05-D08A, true_status: done, false_status: planned}
+
+  - fact: s06_rc_build_manifest_automation
+    targets:
+      - {id: S06-D09A, true_status: done, false_status: planned}
+
+  - fact: s06_core_50_tenant_preflight
+    targets:
+      - {id: S06-D10A, true_status: done, false_status: planned}
