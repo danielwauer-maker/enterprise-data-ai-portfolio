@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import re
 import urllib.request
@@ -19,10 +20,19 @@ def load_source(*, source_file: str | None, source_url: str) -> dict:
         return json.loads(Path(source_file).read_text(encoding="utf-8"))
     request = urllib.request.Request(
         source_url,
-        headers={"User-Agent": "enterprise-data-ai-portfolio-readiness-sync"},
+        headers={
+            "User-Agent": "enterprise-data-ai-portfolio-readiness-sync",
+            "Accept": "application/vnd.github.raw+json",
+        },
     )
     with urllib.request.urlopen(request, timeout=20) as response:
-        return json.loads(response.read().decode("utf-8"))
+        body = response.read().decode("utf-8")
+
+    payload = json.loads(body)
+    if isinstance(payload, dict) and "content" in payload and payload.get("encoding") == "base64":
+        decoded = base64.b64decode(payload["content"]).decode("utf-8")
+        return json.loads(decoded)
+    return payload
 
 
 def replace_detail_line(text: str, target_id: str, status: str, evidence: str) -> str:
