@@ -105,9 +105,9 @@ sprints:
     items:
       - {id: S07-D01, title: Non-destructive migration and history-preservation strategy, weight: 10, status: done, evidence: "Portfolio Bible safety rule"}
       - {id: S07-D02, title: Verified RC baseline selected for migration, weight: 20, status: planned, evidence: "depends on S06"}
-      - {id: S07-D03, title: Legacy PR commit and release evidence catalog, weight: 20, status: planned, evidence: "forensic reconstruction not complete"}
-      - {id: S07-D04, title: Canonical repository structure created, weight: 20, status: planned, evidence: "not started"}
-      - {id: S07-D05, title: Legacy-to-canonical traceability mapping, weight: 15, status: planned, evidence: "not started"}
+      - {id: S07-D03, title: Legacy PR commit and release evidence catalog, weight: 20, status: done, evidence: "BCSentinel automated evidence: quality/s07/legacy-pr-catalog.json"}
+      - {id: S07-D04, title: Canonical repository structure created, weight: 20, status: done, evidence: "BCSentinel automated evidence: config/canonical-repository.yaml"}
+      - {id: S07-D05, title: Legacy-to-canonical traceability mapping, weight: 15, status: done, evidence: "BCSentinel automated evidence: quality/s07/legacy-canonical-traceability.json"}
       - {id: S07-D06, title: Design Partner operating feedback integrated, weight: 15, status: planned, evidence: "external dependency"}
 
   S08:

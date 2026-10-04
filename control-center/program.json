@@ -11,7 +11,7 @@
     "planned_total_hours": 780,
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
-    "program_completion_pct": 33.08,
+    "program_completion_pct": 35.9,
     "planned_hours": 780.0,
     "actual_hours": 0.0,
     "remaining_hours": 780.0,
@@ -768,8 +768,8 @@
       ],
       "objective": "Preserve history, establish the canonical verified repository baseline and support Design Partner operation.",
       "result": "A professional canonical product baseline with historical development evidence preserved and traceable.",
-      "readiness_pct": 10.0,
-      "scope_readiness_pct": 10.0,
+      "readiness_pct": 65.0,
+      "scope_readiness_pct": 65.0,
       "delivery_gate_readiness_pct": 0.0,
       "readiness_breakdown": {
         "requirements": 0.0,
@@ -799,22 +799,22 @@
           "id": "S07-D03",
           "title": "Legacy PR commit and release evidence catalog",
           "weight": 20,
-          "status": "planned",
-          "evidence": "forensic reconstruction not complete"
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: quality/s07/legacy-pr-catalog.json"
         },
         {
           "id": "S07-D04",
           "title": "Canonical repository structure created",
           "weight": 20,
-          "status": "planned",
-          "evidence": "not started"
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: config/canonical-repository.yaml"
         },
         {
           "id": "S07-D05",
           "title": "Legacy-to-canonical traceability mapping",
           "weight": 15,
-          "status": "planned",
-          "evidence": "not started"
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: quality/s07/legacy-canonical-traceability.json"
         },
         {
           "id": "S07-D06",
@@ -824,7 +824,7 @@
           "evidence": "external dependency"
         }
       ],
-      "detail_done_count": 1,
+      "detail_done_count": 4,
       "detail_total_count": 6,
       "blocker_count": 0
     },
