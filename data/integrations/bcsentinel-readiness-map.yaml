@@ -2,7 +2,7 @@ schema_version: 1
 source:
   repository: danielwauer-maker/bcsentinel
   branch: staging
-  evidence_url: https://raw.githubusercontent.com/danielwauer-maker/bcsentinel/staging/quality/portfolio-readiness-evidence.json
+  evidence_url: https://api.github.com/repos/danielwauer-maker/bcsentinel/contents/quality/portfolio-readiness-evidence.json?ref=staging
 
 rules:
   - fact: s02_pricing_checkout_truth_audit
