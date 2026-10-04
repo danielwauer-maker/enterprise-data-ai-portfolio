@@ -44,10 +44,10 @@ sprints:
       - {id: S02-D04, title: Dashboard report and landing copy aligned to Assessment Validation Monitoring, weight: 15, status: done, evidence: "BCSentinel PR #10"}
       - {id: S02-D05, title: Free versus Full findings entitlement protection, weight: 10, status: done, evidence: "BCSentinel PR #34"}
       - {id: S02-D06, title: Effective Product Access Until cleanup, weight: 5, status: done, evidence: "BCSentinel PR #36"}
-      - {id: S02-D07A, title: Legacy product-code compatibility and migration closure, weight: 10, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S02-D07A, title: Legacy product-code compatibility and migration closure, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py"}
       - {id: S02-D07B, title: Real checkout and grant runtime smoke, weight: 5, status: planned, evidence: "manual pilot runtime gate"}
       - {id: S02-D08, title: Pricing and checkout truth audit, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/product/S02_PRICING_CHECKOUT_TRUTH_AUDIT.md"}
-      - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S02-D09, title: Product-model drift closure with test and evidence binding, weight: 5, status: done, evidence: "BCSentinel automated evidence: docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py"}
 
   S03:
     items:
@@ -57,7 +57,7 @@ sprints:
       - {id: S03-D04, title: Pilot onboarding and offboarding operator checklists, weight: 10, status: done, evidence: "BCSentinel PR #26"}
       - {id: S03-D05, title: One-time expiring pilot enrollment and revocation, weight: 15, status: done, evidence: "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"}
       - {id: S03-D06, title: Password reset and login throttling, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"}
-      - {id: S03-D07A, title: Invite reset welcome templates and SMTP retry/failure handling, weight: 5, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S03-D07A, title: Invite reset welcome templates and SMTP retry/failure handling, weight: 5, status: done, evidence: "BCSentinel automated evidence: backend/tests/test_core_public_platform_flows.py + backend/app/services/email_template_service.py"}
       - {id: S03-D07B, title: Real delivery SPF DKIM DMARC and provider bounce validation, weight: 5, status: planned, evidence: "manual mail/domain gate"}
       - {id: S03-D08, title: Pilot lifecycle suspend reactivate and status handling, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"}
       - {id: S03-D09, title: Real invitation registration BC connection dashboard journey, weight: 10, status: planned, evidence: "pilot E2E runtime gate pending"}
@@ -86,8 +86,8 @@ sprints:
       - {id: S05-D04, title: Why BCSentinel page exists, weight: 10, status: done, evidence: "landingpage_neu/why-bcsentinel.html"}
       - {id: S05-D05, title: Claims audit against actual runtime evidence, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md"}
       - {id: S05-D06, title: Security and Trust page, weight: 10, status: done, evidence: "BCSentinel automated evidence: landingpage_neu/trust.html + backend/tests/test_public_claims_contract.py"}
-      - {id: S05-D07, title: Pilot or Design Partner page, weight: 10, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
-      - {id: S05-D08A, title: Contact support legal privacy terms DPA and docs technical surfaces, weight: 7, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S05-D07, title: Pilot or Design Partner page, weight: 10, status: done, evidence: "BCSentinel automated evidence: landingpage_neu/pilot.html + docs/go-live/S05_PILOT_LAUNCH_SURFACE.md"}
+      - {id: S05-D08A, title: Contact support legal privacy terms DPA and docs technical surfaces, weight: 7, status: done, evidence: "BCSentinel automated evidence: landingpage_neu/contact.html + legal/docs surfaces + backend /public/contact"}
       - {id: S05-D08B, title: Final legal tax operator identity and visual signoff, weight: 3, status: planned, evidence: "manual business/legal/design gate"}
       - {id: S05-D09, title: Pricing feature truth and commercial-copy audit, weight: 10, status: done, evidence: "BCSentinel automated evidence: docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md"}
 
@@ -101,9 +101,9 @@ sprints:
       - {id: S06-D06, title: Fresh BC SaaS installation runtime PASS, weight: 10, status: verified, evidence: "BCSentinel automated evidence: quality/release/ext-50-02-fresh-installation-evidence.json"}
       - {id: S06-D07, title: Real BC upgrade and data-preservation PASS, weight: 10, status: verified, evidence: "BCSentinel automated evidence: quality/release/ext-50-03-upgrade-evidence.json"}
       - {id: S06-D08, title: Restore and rollback operational drill, weight: 10, status: planned, evidence: "PostgreSQL restore is VERIFIED_IN_CI; real pilot-infrastructure restore and BC rollback/roll-forward drill remain open"}
-      - {id: S06-D09A, title: Reproducible RC build manifest with source SHA and APP SHA-256, weight: 5, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S06-D09A, title: Reproducible RC build manifest with source SHA and APP SHA-256, weight: 5, status: done, evidence: "BCSentinel automated evidence: .github/workflows/bc-al-compile.yml"}
       - {id: S06-D09B, title: Final frozen pilot RC approval and artifact binding, weight: 5, status: planned, evidence: "manual after runtime acceptance"}
-      - {id: S06-D10A, title: Automated 50-tenant isolation and admission preflight, weight: 5, status: planned, evidence: "awaiting automated BCSentinel evidence sync"}
+      - {id: S06-D10A, title: Automated 50-tenant isolation and admission preflight, weight: 5, status: done, evidence: "BCSentinel automated evidence: backend/tests/test_core_pilot_50_tenant_preflight.py + quality/pilot/core-pilot-50-readiness.json"}
       - {id: S06-D10B, title: Final real pilot journey monitoring and staged operational acceptance, weight: 5, status: planned, evidence: "manual runtime/soak gate"}
 
   S07:

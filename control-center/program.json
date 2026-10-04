@@ -11,7 +11,7 @@
     "planned_total_hours": 780,
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
-    "program_completion_pct": 35.9,
+    "program_completion_pct": 38.31,
     "planned_hours": 780.0,
     "actual_hours": 0.0,
     "remaining_hours": 780.0,
@@ -253,8 +253,8 @@
       ],
       "objective": "Align visible offers, access states, entitlements, dashboard, reports and pricing to one product truth.",
       "result": "One consistent customer-facing product truth across BC, dashboard, reports, access and pricing.",
-      "readiness_pct": 80.0,
-      "scope_readiness_pct": 80.0,
+      "readiness_pct": 95.0,
+      "scope_readiness_pct": 95.0,
       "delivery_gate_readiness_pct": 0.0,
       "readiness_breakdown": {
         "requirements": 0.0,
@@ -309,11 +309,18 @@
           "evidence": "BCSentinel PR #36"
         },
         {
-          "id": "S02-D07",
-          "title": "Legacy product-code mapping and migration closure",
-          "weight": 15,
-          "status": "blocked",
-          "evidence": "BPS DRIFT-003 OPEN"
+          "id": "S02-D07A",
+          "title": "Legacy product-code compatibility and migration closure",
+          "weight": 10,
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py"
+        },
+        {
+          "id": "S02-D07B",
+          "title": "Real checkout and grant runtime smoke",
+          "weight": 5,
+          "status": "planned",
+          "evidence": "manual pilot runtime gate"
         },
         {
           "id": "S02-D08",
@@ -326,13 +333,13 @@
           "id": "S02-D09",
           "title": "Product-model drift closure with test and evidence binding",
           "weight": 5,
-          "status": "planned",
-          "evidence": "requires DRIFT-003 resolution"
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py"
         }
       ],
-      "detail_done_count": 7,
-      "detail_total_count": 9,
-      "blocker_count": 1
+      "detail_done_count": 9,
+      "detail_total_count": 10,
+      "blocker_count": 0
     },
     {
       "id": "S03",
@@ -349,8 +356,8 @@
       ],
       "objective": "Deliver secure pilot enrollment, identity binding, invitation, login and tenant administration.",
       "result": "Pilot invitation → registration → BC connection → dashboard works reproducibly and securely.",
-      "readiness_pct": 80.0,
-      "scope_readiness_pct": 80.0,
+      "readiness_pct": 85.0,
+      "scope_readiness_pct": 85.0,
       "delivery_gate_readiness_pct": 0.0,
       "readiness_breakdown": {
         "requirements": 0.0,
@@ -405,11 +412,18 @@
           "evidence": "BCSentinel automated evidence: docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md"
         },
         {
-          "id": "S03-D07",
-          "title": "SMTP retry real delivery SPF DKIM DMARC and bounce handling",
-          "weight": 10,
+          "id": "S03-D07A",
+          "title": "Invite reset welcome templates and SMTP retry/failure handling",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: backend/tests/test_core_public_platform_flows.py + backend/app/services/email_template_service.py"
+        },
+        {
+          "id": "S03-D07B",
+          "title": "Real delivery SPF DKIM DMARC and provider bounce validation",
+          "weight": 5,
           "status": "planned",
-          "evidence": "explicitly open in PR #25"
+          "evidence": "manual mail/domain gate"
         },
         {
           "id": "S03-D08",
@@ -426,8 +440,8 @@
           "evidence": "pilot E2E runtime gate pending"
         }
       ],
-      "detail_done_count": 7,
-      "detail_total_count": 9,
+      "detail_done_count": 8,
+      "detail_total_count": 10,
       "blocker_count": 0
     },
     {
@@ -569,8 +583,8 @@
       ],
       "objective": "Produce truthful professional external product presentation and Design Partner journey.",
       "result": "A potential pilot customer can understand the product, trust its claims and request participation.",
-      "readiness_pct": 80.0,
-      "scope_readiness_pct": 80.0,
+      "readiness_pct": 97.0,
+      "scope_readiness_pct": 97.0,
       "delivery_gate_readiness_pct": 0.0,
       "readiness_breakdown": {
         "requirements": 0.0,
@@ -628,15 +642,22 @@
           "id": "S05-D07",
           "title": "Pilot or Design Partner page",
           "weight": 10,
-          "status": "planned",
-          "evidence": "dedicated page not confirmed on staging"
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: landingpage_neu/pilot.html + docs/go-live/S05_PILOT_LAUNCH_SURFACE.md"
         },
         {
-          "id": "S05-D08",
-          "title": "Contact FAQ legal and privacy polish",
-          "weight": 10,
-          "status": "in_progress",
-          "evidence": "contact flows exist but complete launch QA not evidenced"
+          "id": "S05-D08A",
+          "title": "Contact support legal privacy terms DPA and docs technical surfaces",
+          "weight": 7,
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: landingpage_neu/contact.html + legal/docs surfaces + backend /public/contact"
+        },
+        {
+          "id": "S05-D08B",
+          "title": "Final legal tax operator identity and visual signoff",
+          "weight": 3,
+          "status": "planned",
+          "evidence": "manual business/legal/design gate"
         },
         {
           "id": "S05-D09",
@@ -646,8 +667,8 @@
           "evidence": "BCSentinel automated evidence: docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md"
         }
       ],
-      "detail_done_count": 7,
-      "detail_total_count": 9,
+      "detail_done_count": 9,
+      "detail_total_count": 10,
       "blocker_count": 0
     },
     {
@@ -665,8 +686,8 @@
       ],
       "objective": "Freeze and verify a known-good pilot release candidate.",
       "result": "A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence.",
-      "readiness_pct": 70.0,
-      "scope_readiness_pct": 70.0,
+      "readiness_pct": 80.0,
+      "scope_readiness_pct": 80.0,
       "delivery_gate_readiness_pct": 0.0,
       "readiness_breakdown": {
         "requirements": 0.0,
@@ -735,22 +756,36 @@
           "evidence": "PostgreSQL restore is VERIFIED_IN_CI; real pilot-infrastructure restore and BC rollback/roll-forward drill remain open"
         },
         {
-          "id": "S06-D09",
-          "title": "Fixed RC artifact SHA and release manifest",
-          "weight": 10,
-          "status": "planned",
-          "evidence": "S06 PR #51 adds current machine-readable release-readiness manifest; final frozen RC SHA/app hash remains open"
+          "id": "S06-D09A",
+          "title": "Reproducible RC build manifest with source SHA and APP SHA-256",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: .github/workflows/bc-al-compile.yml"
         },
         {
-          "id": "S06-D10",
-          "title": "Final pilot journey and monitoring acceptance",
-          "weight": 10,
+          "id": "S06-D09B",
+          "title": "Final frozen pilot RC approval and artifact binding",
+          "weight": 5,
           "status": "planned",
-          "evidence": "requires role onboarding and runtime closure"
+          "evidence": "manual after runtime acceptance"
+        },
+        {
+          "id": "S06-D10A",
+          "title": "Automated 50-tenant isolation and admission preflight",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel automated evidence: backend/tests/test_core_pilot_50_tenant_preflight.py + quality/pilot/core-pilot-50-readiness.json"
+        },
+        {
+          "id": "S06-D10B",
+          "title": "Final real pilot journey monitoring and staged operational acceptance",
+          "weight": 5,
+          "status": "planned",
+          "evidence": "manual runtime/soak gate"
         }
       ],
-      "detail_done_count": 7,
-      "detail_total_count": 10,
+      "detail_done_count": 9,
+      "detail_total_count": 12,
       "blocker_count": 0
     },
     {
