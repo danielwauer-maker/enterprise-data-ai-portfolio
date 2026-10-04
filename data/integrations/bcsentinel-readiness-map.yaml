@@ -38,3 +38,15 @@ rules:
   - fact: s06_upgrade_data_preservation
     targets:
       - {id: S06-D07, true_status: verified, false_status: planned}
+
+  - fact: s07_legacy_pr_release_catalog
+    targets:
+      - {id: S07-D03, true_status: done, false_status: planned}
+
+  - fact: s07_canonical_repository_contract
+    targets:
+      - {id: S07-D04, true_status: done, false_status: planned}
+
+  - fact: s07_legacy_canonical_traceability
+    targets:
+      - {id: S07-D05, true_status: done, false_status: planned}
