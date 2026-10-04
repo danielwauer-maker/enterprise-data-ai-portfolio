@@ -11,7 +11,7 @@
     "planned_total_hours": 780,
     "status": "IN_PROGRESS",
     "primary_product": "BCSentinel",
-    "program_completion_pct": 27.18,
+    "program_completion_pct": 33.08,
     "planned_hours": 780,
     "actual_hours": 0,
     "remaining_hours": 780,
@@ -241,7 +241,7 @@
         "S01"
       ],
       "objective": "Align visible offers, access states, entitlements, dashboard, reports and pricing to one product truth.",
-      "readiness_pct": 70,
+      "readiness_pct": 80,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -253,7 +253,7 @@
       },
       "blocker_count": 1,
       "result": "One consistent customer-facing product truth across BC, dashboard, reports, access and pricing.",
-      "scope_readiness_pct": 70,
+      "scope_readiness_pct": 80,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -309,8 +309,8 @@
           "id": "S02-D08",
           "title": "Pricing and checkout truth audit",
           "weight": 10,
-          "status": "planned",
-          "evidence": "current landing pricing still exposes legacy billing codes"
+          "status": "done",
+          "evidence": "BCSentinel PR #47 merged to staging; pricing/product-truth contracts and public claims hardening PASS"
         },
         {
           "id": "S02-D09",
@@ -320,7 +320,7 @@
           "evidence": "requires DRIFT-003 resolution"
         }
       ],
-      "detail_done_count": 6,
+      "detail_done_count": 7,
       "detail_total_count": 9
     },
     {
@@ -337,7 +337,7 @@
         "S02"
       ],
       "objective": "Deliver secure pilot enrollment, identity binding, invitation, login and tenant administration.",
-      "readiness_pct": 45,
+      "readiness_pct": 80,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -349,7 +349,7 @@
       },
       "blocker_count": 0,
       "result": "Pilot invitation → registration → BC connection → dashboard works reproducibly and securely.",
-      "scope_readiness_pct": 45,
+      "scope_readiness_pct": 80,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -384,15 +384,15 @@
           "id": "S03-D05",
           "title": "One-time expiring pilot enrollment and revocation",
           "weight": 15,
-          "status": "planned",
-          "evidence": "no complete release evidence found"
+          "status": "done",
+          "evidence": "BCSentinel PR #48 merged; expiring enrollment/reset-token lifecycle and revocation hardening in staging"
         },
         {
           "id": "S03-D06",
           "title": "Password reset and login throttling",
           "weight": 10,
-          "status": "planned",
-          "evidence": "explicitly open in PR #25"
+          "status": "done",
+          "evidence": "BCSentinel PR #48 merged; reset-token, lockout and authentication hardening PASS"
         },
         {
           "id": "S03-D07",
@@ -405,8 +405,8 @@
           "id": "S03-D08",
           "title": "Pilot lifecycle suspend reactivate and status handling",
           "weight": 10,
-          "status": "planned",
-          "evidence": "not yet evidenced end to end"
+          "status": "done",
+          "evidence": "BCSentinel PR #48 merged; tenant lifecycle and audit handling implemented and automated gates PASS"
         },
         {
           "id": "S03-D09",
@@ -416,7 +416,7 @@
           "evidence": "pilot E2E runtime gate pending"
         }
       ],
-      "detail_done_count": 4,
+      "detail_done_count": 7,
       "detail_total_count": 9
     },
     {
@@ -433,7 +433,7 @@
         "S03"
       ],
       "objective": "Make all customer-facing dashboard and report states pilot-presentable.",
-      "readiness_pct": 55,
+      "readiness_pct": 75,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -445,7 +445,7 @@
       },
       "blocker_count": 0,
       "result": "Dashboard and Executive Reports are pilot-presentable across product states, languages and devices.",
-      "scope_readiness_pct": 55,
+      "scope_readiness_pct": 75,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -491,36 +491,57 @@
           "evidence": "PR #35/#36 implemented; manual BC recheck remains"
         },
         {
-          "id": "S04-D07",
-          "title": "DE EN dark light and responsive customer QA",
-          "weight": 10,
-          "status": "planned",
-          "evidence": "full matrix not yet evidenced"
+          "id": "S04-D07A",
+          "title": "DE EN dark light and responsive automated QA",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel PR #49 merged; translation parity, controls and responsive contracts PASS"
         },
         {
-          "id": "S04-D08",
-          "title": "Loading empty error and locked-state QA",
-          "weight": 10,
+          "id": "S04-D07B",
+          "title": "DE EN dark light and responsive real-tenant visual acceptance",
+          "weight": 5,
           "status": "planned",
-          "evidence": "full state matrix not yet evidenced"
+          "evidence": "manual customer-facing visual acceptance remains open"
         },
         {
-          "id": "S04-D09",
-          "title": "Executive PDF multi-state browser QA",
-          "weight": 10,
+          "id": "S04-D08A",
+          "title": "Loading empty error and locked-state automated QA",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel PR #49 merged; state hooks and automated contracts PASS"
+        },
+        {
+          "id": "S04-D08B",
+          "title": "Loading error and locked-state live API acceptance",
+          "weight": 5,
           "status": "planned",
-          "evidence": "hardening sprint pending"
+          "evidence": "manual live API acceptance remains open"
+        },
+        {
+          "id": "S04-D09A",
+          "title": "Executive PDF automated browser and edge-case QA",
+          "weight": 5,
+          "status": "done",
+          "evidence": "BCSentinel PR #49 binds existing Playwright/PDF/multi-state regression evidence"
+        },
+        {
+          "id": "S04-D09B",
+          "title": "Executive PDF real BC visual acceptance",
+          "weight": 5,
+          "status": "planned",
+          "evidence": "final visual acceptance with real BC scan remains open"
         },
         {
           "id": "S04-D10",
           "title": "Encoding large-number and formatting QA",
           "weight": 5,
-          "status": "planned",
-          "evidence": "known visible encoding cleanup remains"
+          "status": "done",
+          "evidence": "BCSentinel PR #49 merged; UTF-8/mojibake guard and existing large-number regression evidence PASS"
         }
       ],
-      "detail_done_count": 5,
-      "detail_total_count": 10
+      "detail_done_count": 9,
+      "detail_total_count": 13
     },
     {
       "id": "S05",
@@ -536,7 +557,7 @@
         "S04"
       ],
       "objective": "Produce truthful professional external product presentation and Design Partner journey.",
-      "readiness_pct": 50,
+      "readiness_pct": 80,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -548,7 +569,7 @@
       },
       "blocker_count": 0,
       "result": "A potential pilot customer can understand the product, trust its claims and request participation.",
-      "scope_readiness_pct": 50,
+      "scope_readiness_pct": 80,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -583,15 +604,15 @@
           "id": "S05-D05",
           "title": "Claims audit against actual runtime evidence",
           "weight": 10,
-          "status": "planned",
-          "evidence": "public claims must be evidence-bound before launch"
+          "status": "done",
+          "evidence": "BCSentinel PR #47 merged; unsupported AppSource/Azure/GDPR/Enterprise/support-hour claims removed or downgraded"
         },
         {
           "id": "S05-D06",
           "title": "Security and Trust page",
           "weight": 10,
-          "status": "planned",
-          "evidence": "not confirmed"
+          "status": "done",
+          "evidence": "landingpage_neu/trust.html exists and was evidence-hardened in BCSentinel PR #47"
         },
         {
           "id": "S05-D07",
@@ -611,11 +632,11 @@
           "id": "S05-D09",
           "title": "Pricing feature truth and commercial-copy audit",
           "weight": 10,
-          "status": "planned",
-          "evidence": "current pricing advertises Alerts and BC actions; must match shipped capability"
+          "status": "done",
+          "evidence": "BCSentinel PR #47 merged; future BC actions removed from current Monitoring offer and pricing truth contracts PASS"
         }
       ],
-      "detail_done_count": 4,
+      "detail_done_count": 7,
       "detail_total_count": 9
     },
     {
@@ -632,7 +653,7 @@
         "S05"
       ],
       "objective": "Freeze and verify a known-good pilot release candidate.",
-      "readiness_pct": 50,
+      "readiness_pct": 70,
       "readiness_breakdown": {
         "requirements": 0,
         "architecture": 0,
@@ -644,7 +665,7 @@
       },
       "blocker_count": 0,
       "result": "A frozen, verified BCSentinel Core Pilot Release Candidate with operational runbooks and evidence.",
-      "scope_readiness_pct": 50,
+      "scope_readiness_pct": 70,
       "delivery_gate_readiness_pct": 0,
       "detail_items": [
         {
@@ -686,29 +707,29 @@
           "id": "S06-D06",
           "title": "Fresh BC SaaS installation runtime PASS",
           "weight": 10,
-          "status": "planned",
-          "evidence": "PR #28 awaits manual BC evidence"
+          "status": "verified",
+          "evidence": "quality/release/ext-50-02-fresh-installation-evidence.json: VERIFIED_WITH_KNOWN_DEFECTS"
         },
         {
           "id": "S06-D07",
           "title": "Real BC upgrade and data-preservation PASS",
           "weight": 10,
-          "status": "planned",
-          "evidence": "PR #29 awaits manual BC evidence"
+          "status": "verified",
+          "evidence": "quality/release/ext-50-03-upgrade-evidence.json: PASS_WITH_KNOWN_DEFECTS"
         },
         {
           "id": "S06-D08",
           "title": "Restore and rollback operational drill",
           "weight": 10,
           "status": "planned",
-          "evidence": "BPS pilot gates remain open"
+          "evidence": "PostgreSQL restore is VERIFIED_IN_CI; real pilot-infrastructure restore and BC rollback/roll-forward drill remain open"
         },
         {
           "id": "S06-D09",
           "title": "Fixed RC artifact SHA and release manifest",
           "weight": 10,
           "status": "planned",
-          "evidence": "release manifest still incomplete"
+          "evidence": "S06 PR #51 adds current machine-readable release-readiness manifest; final frozen RC SHA/app hash remains open"
         },
         {
           "id": "S06-D10",
@@ -718,7 +739,7 @@
           "evidence": "requires role onboarding and runtime closure"
         }
       ],
-      "detail_done_count": 5,
+      "detail_done_count": 7,
       "detail_total_count": 10
     },
     {
