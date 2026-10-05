@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-05",
+  "product": "BCSentinel",
+  "source_of_truth": {
+    "repository": "danielwauer-maker/bcsentinel",
+    "branch": "design/go-live-mockups-v1",
+    "pull_request": 55,
+    "path": "docs/design/go-live"
+  },
+  "design_scope": [
+    {"id":"landingpage","title":"Main Landingpage","status":"final","score":9.8,"implementation":"pending"},
+    {"id":"pilotpage","title":"Pilotpage","status":"final","score":9.8,"implementation":"pending"},
+    {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"actions","title":"Measures / Actions — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"financial-impact","title":"Financial Impact","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"scans","title":"Scans","status":"final","score":9.8,"implementation":"pending"},
+    {"id":"monitoring","title":"Monitoring Detail","status":"final","score":9.9,"implementation":"pending"},
+    {"id":"settings-security","title":"Settings / Tenant / Security","status":"final","score":9.7,"implementation":"pending"},
+    {"id":"subscription-billing","title":"Subscription / Billing","status":"final","score":9.7,"implementation":"pending"},
+    {"id":"auth","title":"Authentication Flows","status":"final","score":9.8,"implementation":"pending"},
+    {"id":"docs-support","title":"Documentation / Support","status":"final","score":9.7,"implementation":"pending"}
+  ],
+  "manual_pilot_gates": [
+    "BC SaaS role matrix: SETUP / SCHEDULER / ADMIN",
+    "Real checkout and entitlement grant smoke",
+    "SMTP delivery + SPF / DKIM / DMARC / bounce",
+    "Invitation → registration → BC → dashboard journey",
+    "Real-tenant visual / responsive / PDF acceptance",
+    "Real restore / rollback / recovery drill",
+    "Staged 1 → 5 → 10 → 25 → 50 tenant soak",
+    "Final release candidate freeze and sign-off"
+  ],
+  "latest_developments": [
+    "BCSentinel Core automated pilot gates green on staging after PR #54 merge.",
+    "Complete Go-Live design source-of-truth created in BCSentinel PR #55.",
+    "Free / Assessment / Monitoring UX defined consistently across Overview, Findings, Actions and reports.",
+    "Executive Summary Report finalized as HTML-first design with print-safe PDF derivatives; Free limited to two A4 pages without paid details."
+  ]
+}
