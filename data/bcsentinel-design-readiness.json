@@ -24,19 +24,19 @@
     {"id":"docs-support","title":"Documentation / Support","status":"final","score":9.7,"implementation":"pending"}
   ],
   "manual_pilot_gates": [
-    "BC SaaS role matrix: SETUP / SCHEDULER / ADMIN",
-    "Real checkout and entitlement grant smoke",
-    "SMTP delivery + SPF / DKIM / DMARC / bounce",
-    "Invitation → registration → BC → dashboard journey",
-    "Real-tenant visual / responsive / PDF acceptance",
-    "Real restore / rollback / recovery drill",
-    "Staged 1 → 5 → 10 → 25 → 50 tenant soak",
-    "Final release candidate freeze and sign-off"
+    {"en":"BC SaaS role matrix: SETUP / SCHEDULER / ADMIN","de":"BC-SaaS-Rollenmatrix: SETUP / SCHEDULER / ADMIN"},
+    {"en":"Real checkout and entitlement grant smoke","de":"Realer Checkout- und Entitlement-Grant-Smoke-Test"},
+    {"en":"SMTP delivery + SPF / DKIM / DMARC / bounce","de":"SMTP-Zustellung + SPF / DKIM / DMARC / Bounce"},
+    {"en":"Invitation → registration → BC → dashboard journey","de":"Einladung → Registrierung → BC → Dashboard Journey"},
+    {"en":"Real-tenant visual / responsive / PDF acceptance","de":"Real-Tenant Visual-/Responsive-/PDF-Abnahme"},
+    {"en":"Real restore / rollback / recovery drill","de":"Realer Restore-/Rollback-/Recovery-Drill"},
+    {"en":"Staged 1 → 5 → 10 → 25 → 50 tenant soak","de":"Gestufter 1 → 5 → 10 → 25 → 50 Tenant-Soak"},
+    {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
-    "BCSentinel Core automated pilot gates green on staging after PR #54 merge.",
-    "Complete Go-Live design source-of-truth created in BCSentinel PR #55.",
-    "Free / Assessment / Monitoring UX defined consistently across Overview, Findings, Actions and reports.",
-    "Executive Summary Report finalized as HTML-first design with print-safe PDF derivatives; Free limited to two A4 pages without paid details."
+    {"en":"BCSentinel Core automated pilot gates are green on staging after the PR #54 merge.","de":"Die automatisierten BCSentinel-Core-Pilot-Gates sind nach Merge von PR #54 auf staging vollständig grün."},
+    {"en":"A complete Go-Live design source of truth now exists in BCSentinel PR #55.","de":"In BCSentinel PR #55 liegt jetzt eine vollständige Go-Live-Design-Source-of-Truth vor."},
+    {"en":"Free / Assessment / Monitoring UX is defined consistently across Overview, Findings, Actions and reports.","de":"Free / Assessment / Monitoring sind über Overview, Findings, Maßnahmen und Reports konsistent definiert."},
+    {"en":"The Executive Summary Report is finalized as HTML-first with print-safe PDF derivatives; Free is limited to two A4 pages without paid details.","de":"Der Executive Summary Report ist HTML-first mit drucksicherer PDF-Ableitung finalisiert; Free bleibt auf maximal zwei A4-Seiten ohne Paid-Details begrenzt."}
   ]
 }
