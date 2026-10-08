@@ -60,6 +60,10 @@ export type CoreGoLivePlan = {
   status: string;
   readiness: {
     current_go_live_readiness_pct: number;
+    program_completion_pct: number;
+    core_scope_readiness_pct: number;
+    design_template_readiness_pct: number;
+    core_design_readiness_pct: number;
     note_en: string;
     note_de: string;
   };
@@ -70,6 +74,14 @@ export type CoreGoLivePlan = {
     title_de: string;
   }>;
   sprints: CoreGoLiveSprint[];
+};
+
+type CoreGoLivePlanSource = Omit<CoreGoLivePlan, "readiness"> & {
+  readiness: {
+    current_go_live_readiness_pct: number;
+    note_en: string;
+    note_de: string;
+  };
 };
 
 export type BCSentinelDesignReadiness = {
@@ -112,10 +124,28 @@ export function loadHighEndControlCenter(): HighEndControlCenter {
   return readJson<HighEndControlCenter>(path.join("control-center", "program.json"));
 }
 
-export function loadBCSentinelCoreGoLivePlan(): CoreGoLivePlan {
-  return readJson<CoreGoLivePlan>(path.join("data", "bcsentinel-core-go-live-plan.json"));
-}
-
 export function loadBCSentinelDesignReadiness(): BCSentinelDesignReadiness {
   return readJson<BCSentinelDesignReadiness>(path.join("data", "bcsentinel-design-readiness.json"));
+}
+
+export function loadBCSentinelCoreGoLivePlan(): CoreGoLivePlan {
+  const plan = readJson<CoreGoLivePlanSource>(path.join("data", "bcsentinel-core-go-live-plan.json"));
+  const highEnd = loadHighEndControlCenter();
+  const design = loadBCSentinelDesignReadiness();
+  const coreSprintIds = new Set(["S01", "S02", "S03", "S04", "S05", "S06"]);
+  const coreSprints = highEnd.sprints.filter((sprint) => coreSprintIds.has(sprint.id));
+  const coreScopeReadiness = coreSprints.length
+    ? coreSprints.reduce((sum, sprint) => sum + Number(sprint.scope_readiness_pct ?? 0), 0) / coreSprints.length
+    : 0;
+
+  return {
+    ...plan,
+    readiness: {
+      ...plan.readiness,
+      program_completion_pct: Number(highEnd.program.program_completion_pct ?? 0),
+      core_scope_readiness_pct: Math.round(coreScopeReadiness * 100) / 100,
+      design_template_readiness_pct: Number(design.summary.design_template_readiness_pct ?? 0),
+      core_design_readiness_pct: Number(design.summary.core_product_design_readiness_pct ?? 0),
+    },
+  };
 }
