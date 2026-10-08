@@ -60,10 +60,6 @@ export type CoreGoLivePlan = {
   status: string;
   readiness: {
     current_go_live_readiness_pct: number;
-    program_completion_pct: number;
-    core_scope_readiness_pct: number;
-    design_template_readiness_pct: number;
-    core_design_readiness_pct: number;
     note_en: string;
     note_de: string;
   };
