@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PortfolioReadinessUpdate } from "../components/portfolio-readiness-update";
+import { PilotGoLiveLink } from "../components/pilot-go-live-link";
 
 export const metadata: Metadata = {
   title: "Enterprise Data & AI Portfolio 2027",
@@ -51,6 +52,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <PilotGoLiveLink />
         <PortfolioReadinessUpdate />
       </body>
     </html>
