@@ -40,6 +40,67 @@ export type HighEndControlCenter = {
   sprints: SprintRow[];
 };
 
+export type CoreGoLiveSprint = {
+  id: string;
+  phase: string;
+  title_en: string;
+  title_de: string;
+  priority: string;
+  status: string;
+  readiness_after_pass_pct: number;
+  objective_en: string;
+  objective_de: string;
+};
+
+export type CoreGoLivePlan = {
+  schema_version: number;
+  updated_at: string;
+  product: string;
+  goal: string;
+  status: string;
+  readiness: {
+    current_go_live_readiness_pct: number;
+    program_completion_pct: number;
+    core_scope_readiness_pct: number;
+    design_template_readiness_pct: number;
+    core_design_readiness_pct: number;
+    note_en: string;
+    note_de: string;
+  };
+  principles: string[];
+  phases: Array<{
+    id: string;
+    title_en: string;
+    title_de: string;
+  }>;
+  sprints: CoreGoLiveSprint[];
+};
+
+type CoreGoLivePlanSource = Omit<CoreGoLivePlan, "readiness"> & {
+  readiness: {
+    current_go_live_readiness_pct: number;
+    note_en: string;
+    note_de: string;
+  };
+};
+
+export type BCSentinelDesignReadiness = {
+  schema_version: number;
+  updated_at: string;
+  product: string;
+  summary: {
+    visual_design_readiness_pct: number;
+    design_system_consistency_readiness_pct: number;
+    product_truth_readiness_pct: number;
+    implementation_readiness_pct: number;
+    design_template_readiness_pct: number;
+    core_product_design_readiness_pct: number;
+    target_min_page_readiness_pct: number;
+  };
+  design_scope: Array<Record<string, any>>;
+  missing_design_scope: Array<Record<string, any>>;
+};
+
 function findPortfolioRoot(): string {
   let current = process.cwd();
   while (true) {
@@ -54,8 +115,37 @@ function findPortfolioRoot(): string {
   }
 }
 
-export function loadHighEndControlCenter(): HighEndControlCenter {
+function readJson<T>(relativePath: string): T {
   const root = findPortfolioRoot();
-  const file = path.join(root, "control-center", "program.json");
-  return JSON.parse(fs.readFileSync(file, "utf8")) as HighEndControlCenter;
+  return JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8")) as T;
+}
+
+export function loadHighEndControlCenter(): HighEndControlCenter {
+  return readJson<HighEndControlCenter>(path.join("control-center", "program.json"));
+}
+
+export function loadBCSentinelDesignReadiness(): BCSentinelDesignReadiness {
+  return readJson<BCSentinelDesignReadiness>(path.join("data", "bcsentinel-design-readiness.json"));
+}
+
+export function loadBCSentinelCoreGoLivePlan(): CoreGoLivePlan {
+  const plan = readJson<CoreGoLivePlanSource>(path.join("data", "bcsentinel-core-go-live-plan.json"));
+  const highEnd = loadHighEndControlCenter();
+  const design = loadBCSentinelDesignReadiness();
+  const coreSprintIds = new Set(["S01", "S02", "S03", "S04", "S05", "S06"]);
+  const coreSprints = highEnd.sprints.filter((sprint) => coreSprintIds.has(sprint.id));
+  const coreScopeReadiness = coreSprints.length
+    ? coreSprints.reduce((sum, sprint) => sum + Number(sprint.scope_readiness_pct ?? 0), 0) / coreSprints.length
+    : 0;
+
+  return {
+    ...plan,
+    readiness: {
+      ...plan.readiness,
+      program_completion_pct: Number(highEnd.program.program_completion_pct ?? 0),
+      core_scope_readiness_pct: Math.round(coreScopeReadiness * 100) / 100,
+      design_template_readiness_pct: Number(design.summary.design_template_readiness_pct ?? 0),
+      core_design_readiness_pct: Number(design.summary.core_product_design_readiness_pct ?? 0),
+    },
+  };
 }

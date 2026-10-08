@@ -1,27 +1,43 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-10-05",
+  "schema_version": 2,
+  "updated_at": "2026-10-08",
   "product": "BCSentinel",
   "source_of_truth": {
     "repository": "danielwauer-maker/bcsentinel",
-    "branch": "design/go-live-mockups-v1",
-    "pull_request": 55,
-    "path": "docs/design/go-live"
+    "design_path": "docs/design/go-live",
+    "audit_basis": "Finaldesign.zip + frozen mockups + Product Master Book review on 2026-10-08"
+  },
+  "summary": {
+    "visual_design_readiness_pct": 94,
+    "design_system_consistency_readiness_pct": 86,
+    "product_truth_readiness_pct": 84,
+    "implementation_readiness_pct": 85,
+    "design_template_readiness_pct": 91,
+    "core_product_design_readiness_pct": 95,
+    "target_min_page_readiness_pct": 98
   },
   "design_scope": [
-    {"id":"landingpage","title":"Main Landingpage","status":"final","score":9.8,"implementation":"pending"},
-    {"id":"pilotpage","title":"Pilotpage","status":"final","score":9.8,"implementation":"pending"},
-    {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"actions","title":"Measures / Actions — Free / Assessment / Monitoring","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"financial-impact","title":"Financial Impact","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"scans","title":"Scans","status":"final","score":9.8,"implementation":"pending"},
-    {"id":"monitoring","title":"Monitoring Detail","status":"final","score":9.9,"implementation":"pending"},
-    {"id":"settings-security","title":"Settings / Tenant / Security","status":"final","score":9.7,"implementation":"pending"},
-    {"id":"subscription-billing","title":"Subscription / Billing","status":"final","score":9.7,"implementation":"pending"},
-    {"id":"auth","title":"Authentication Flows","status":"final","score":9.8,"implementation":"pending"},
-    {"id":"docs-support","title":"Documentation / Support","status":"final","score":9.7,"implementation":"pending"}
+    {"id":"landingpage","title":"Main Landingpage","status":"frozen_needs_truth_pass","readiness_pct":97,"target_pct":99,"implementation":"pending","required_fix":"Pricing, verified claims, product-truth and token alignment"},
+    {"id":"pilotpage","title":"Pilotpage","status":"frozen_needs_truth_pass","readiness_pct":97,"target_pct":99,"implementation":"pending","required_fix":"Claims, pilot scope and canonical product terminology"},
+    {"id":"login","title":"Login","status":"frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Token and responsive acceptance only"},
+    {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"rework_required","readiness_pct":82,"target_pct":99,"implementation":"pending","required_fix":"Consolidate final variants; remove scan actions and Monitoring-only content from Assessment"},
+    {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"frozen_needs_truth_pass","readiness_pct":96,"target_pct":99,"implementation":"pending","required_fix":"Entitlement and BC-deeplink alignment"},
+    {"id":"actions","title":"Measures / Actions — Free / Assessment / Monitoring","status":"depends_on_remediation_contract","readiness_pct":93,"target_pct":99,"implementation":"pending","required_fix":"Bind to real remediation entity; dashboard remains read-only"},
+    {"id":"financial-impact","title":"Financial Impact","status":"frozen_needs_truth_pass","readiness_pct":94,"target_pct":99,"implementation":"pending","required_fix":"Estimated/Potential/Validated/Realized semantics"},
+    {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"frozen_needs_truth_pass","readiness_pct":94,"target_pct":99,"implementation":"pending","required_fix":"Financial outcome semantics and one backend data contract"},
+    {"id":"scans","title":"Scans","status":"frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Ensure all web-side scan actions are absent"},
+    {"id":"monitoring","title":"Monitoring Detail","status":"frozen_needs_truth_pass","readiness_pct":97,"target_pct":99,"implementation":"pending","required_fix":"Validated/realized outcome and forecast methodology"},
+    {"id":"monitoring-locked","title":"Monitoring Locked — Free / Assessment","status":"frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Final access-state and token pass"},
+    {"id":"settings-security","title":"Settings / Tenant / Security","status":"rework_required","readiness_pct":94,"target_pct":99,"implementation":"pending","required_fix":"BC/Entra authority and notification summary must be read-only"},
+    {"id":"subscription-billing","title":"Subscription / Billing","status":"rework_required","readiness_pct":92,"target_pct":99,"implementation":"pending","required_fix":"One-time Assessment/Validation vs recurring Monitoring and canonical pricing"},
+    {"id":"docs-support","title":"Documentation / Support","status":"rework_required","readiness_pct":92,"target_pct":98,"implementation":"pending","required_fix":"Remove unsupported/phantom support and API features"}
+  ],
+  "missing_design_scope": [
+    {"id":"auth-onboarding","title":"Invite / Registration / Verification / Password Reset / Access States","priority":"P0","status":"missing"},
+    {"id":"legal-public","title":"Impressum / Datenschutz / Terms / DPA-AVV / Cookie Settings if required","priority":"P0","status":"missing"},
+    {"id":"commerce-states","title":"Checkout / Payment / Activation / Cancellation / Invoice states","priority":"P1","status":"missing"},
+    {"id":"global-states","title":"403 / 404 / 500 / Maintenance / Loading / Empty / Partial Data","priority":"P1","status":"missing"},
+    {"id":"responsive-acceptance","title":"Desktop / Tablet / Mobile final acceptance","priority":"P0","status":"missing"}
   ],
   "manual_pilot_gates": [
     {"en":"BC SaaS role matrix: SETUP / SCHEDULER / ADMIN","de":"BC-SaaS-Rollenmatrix: SETUP / SCHEDULER / ADMIN"},
@@ -34,9 +50,9 @@
     {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
-    {"en":"BCSentinel Core automated pilot gates are green on staging after the PR #54 merge.","de":"Die automatisierten BCSentinel-Core-Pilot-Gates sind nach Merge von PR #54 auf staging vollständig grün."},
-    {"en":"A complete Go-Live design source of truth now exists in BCSentinel PR #55.","de":"In BCSentinel PR #55 liegt jetzt eine vollständige Go-Live-Design-Source-of-Truth vor."},
-    {"en":"Free / Assessment / Monitoring UX is defined consistently across Overview, Findings, Actions and reports.","de":"Free / Assessment / Monitoring sind über Overview, Findings, Maßnahmen und Reports konsistent definiert."},
-    {"en":"The Executive Summary Report is finalized as HTML-first with print-safe PDF derivatives; Free is limited to two A4 pages without paid details.","de":"Der Executive Summary Report ist HTML-first mit drucksicherer PDF-Ableitung finalisiert; Free bleibt auf maximal zwei A4-Seiten ohne Paid-Details begrenzt."}
+    {"en":"The BCSentinel Product Master Book now defines BC as the operational control plane and the web dashboard as primarily read-only.","de":"Das BCSentinel Product Master Book definiert BC jetzt als operative Steuerungsebene und das Web-Dashboard als primär read-only."},
+    {"en":"A detailed A1–F1 Core Pilot Go-Live closure plan has been added, covering product truth, >=98% design freeze, missing screens, implementation and runtime acceptance.","de":"Ein detaillierter A1–F1-Core-Pilot-Go-Live-Plan wurde ergänzt: Product Truth, >=98% Design-Freeze, fehlende Screens, Umsetzung und Runtime-Abnahme."},
+    {"en":"Remediation/Actions will become a real BC-managed entity so the high-end Actions dashboard can remain largely unchanged but truthful.","de":"Remediation/Actions wird als echte, in BC verwaltete Entität umgesetzt, damit das hochwertige Actions-Dashboard weitgehend unverändert und zugleich produktwahr bleiben kann."},
+    {"en":"Tenant-wide notification settings are planned to be authoritative in Business Central and read-only in the web dashboard.","de":"Tenantweite Benachrichtigungen sollen autoritativ in Business Central konfiguriert und im Web-Dashboard nur read-only angezeigt werden."}
   ]
 }
