@@ -1,6 +1,10 @@
 import { LanguageToggle } from "../../components/language-toggle";
 import { ThemeToggle } from "../../components/theme-toggle";
-import { loadHighEndControlCenter } from "../../lib/high-end-control-center";
+import {
+  loadBCSentinelCoreGoLivePlan,
+  loadBCSentinelDesignReadiness,
+  loadHighEndControlCenter,
+} from "../../lib/high-end-control-center";
 
 export const dynamic = "force-static";
 
@@ -37,8 +41,13 @@ function statusClass(status: string) {
 
 export default function ControlCenterPage() {
   const data = loadHighEndControlCenter();
+  const corePlan = loadBCSentinelCoreGoLivePlan();
+  const designReadiness = loadBCSentinelDesignReadiness();
   const p = data.program;
   const current = data.sprints.find((s) => s.id === p.current_sprint_id) ?? data.sprints[0];
+  const pagesBelowTarget = designReadiness.design_scope.filter(
+    (page) => Number(page.readiness_pct ?? 0) < Number(page.target_pct ?? designReadiness.summary.target_min_page_readiness_pct),
+  );
 
   return (
     <main>
@@ -67,8 +76,8 @@ export default function ControlCenterPage() {
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-8 text-slate-400">
               <Dual
-                en="S00–S19, sprint readiness, planned vs. actual effort, dependencies and the complete journey from BCSentinel Core to Professional Beta."
-                de="S00–S19, Sprint-Readiness, Plan-vs.-Ist-Aufwand, Abhängigkeiten und die komplette Reise von BCSentinel Core bis zur Professional Beta."
+                en="S00–S19 evidence-backed program delivery plus the detailed BCSentinel Core Pilot Go-Live closure plan from Product Truth through runtime acceptance."
+                de="Evidenzbasierte S00–S19-Programmdelivery plus der detaillierte BCSentinel-Core-Pilot-Go-Live-Plan von Product Truth bis zur Runtime-Abnahme."
               />
             </p>
           </div>
@@ -97,7 +106,7 @@ export default function ControlCenterPage() {
         <article className="panel p-6 md:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div>
-              <div className="eyebrow"><Dual en="Current sprint" de="Aktueller Sprint" /></div>
+              <div className="eyebrow"><Dual en="Current program sprint" de="Aktueller Programmsprint" /></div>
               <h2 className="mt-3 text-2xl font-semibold text-white md:text-3xl">{current.id} — {current.title}</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">{current.objective}</p>
             </div>
@@ -127,6 +136,120 @@ export default function ControlCenterPage() {
                 </div>
                 <div className="mt-1 text-xl font-semibold text-white">{pct(value)}</div>
               </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="shell py-10">
+        <div className="eyebrow"><Dual en="BCSentinel Core · Pilot Go-Live Closure" de="BCSentinel Core · Pilot-Go-Live-Abschluss" /></div>
+        <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <h2 className="section-title"><Dual en="A1–F1: from product truth to controlled pilot launch" de="A1–F1: von Product Truth bis zum kontrollierten Pilot-Start" /></h2>
+            <p className="section-copy">
+              <Dual
+                en="This detailed closure plan does not replace S00–S19. It decomposes the remaining BCSentinel Core work without double-counting it in program completion."
+                de="Dieser detaillierte Abschlussplan ersetzt S00–S19 nicht. Er zerlegt die verbleibende BCSentinel-Core-Arbeit, ohne sie im Programmfortschritt doppelt zu zählen."
+              />
+            </p>
+          </div>
+          <span className="w-fit rounded-full border border-indigo-400/30 bg-indigo-400/10 px-4 py-2 text-xs font-semibold text-indigo-100">
+            <Dual en="Next: A1 Authority Freeze" de="Als Nächstes: A1 Authority Freeze" />
+          </span>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Pilot Go-Live readiness" de="Pilot-Go-Live-Readiness" /></div>
+            <div className="mt-2 text-3xl font-semibold text-cyan-200">{pct(corePlan.readiness.current_go_live_readiness_pct)}</div>
+            <div className="mt-3 progress-track"><div className="progress-fill" style={{ width: `${corePlan.readiness.current_go_live_readiness_pct}%` }} /></div>
+          </article>
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Evidence-backed Core scope" de="Evidenzbasierter Core-Scope" /></div>
+            <div className="mt-2 text-3xl font-semibold text-white">{pct(corePlan.readiness.core_scope_readiness_pct)}</div>
+            <p className="mt-2 text-xs leading-5 text-slate-500"><Dual en="Existing S01–S06 weighted scope" de="Bestehender gewichteter S01–S06-Scope" /></p>
+          </article>
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Design templates" de="Design-Vorlagen" /></div>
+            <div className="mt-2 text-3xl font-semibold text-white">{pct(designReadiness.summary.design_template_readiness_pct)}</div>
+            <p className="mt-2 text-xs leading-5 text-slate-500"><Dual en="All templates incl. missing flows" de="Gesamt inkl. fehlender Flows" /></p>
+          </article>
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Core product design" de="Kernprodukt-Design" /></div>
+            <div className="mt-2 text-3xl font-semibold text-white">{pct(designReadiness.summary.core_product_design_readiness_pct)}</div>
+            <p className="mt-2 text-xs leading-5 text-slate-500"><Dual en="Existing visible SaaS core" de="Bestehender sichtbarer SaaS-Kern" /></p>
+          </article>
+          <article className="panel p-5">
+            <div className="text-xs text-slate-400"><Dual en="Pages below target" de="Pages unter Ziel" /></div>
+            <div className="mt-2 text-3xl font-semibold text-white">{pagesBelowTarget.length}</div>
+            <p className="mt-2 text-xs leading-5 text-slate-500"><Dual en={`Target >=${designReadiness.summary.target_min_page_readiness_pct}%`} de={`Ziel >=${designReadiness.summary.target_min_page_readiness_pct}%`} /></p>
+          </article>
+        </div>
+
+        <article className="panel mt-5 p-5 md:p-6">
+          <div className="text-sm leading-7 text-slate-400">
+            <Dual en={corePlan.readiness.note_en} de={corePlan.readiness.note_de} />
+          </div>
+        </article>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          {corePlan.phases.map((phase) => {
+            const phaseSprints = corePlan.sprints.filter((sprint) => sprint.phase === phase.id);
+            return (
+              <details key={phase.id} className="panel p-5" open={phase.id === "A"}>
+                <summary className="cursor-pointer list-none">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="text-xs font-bold text-cyan-200">PHASE {phase.id}</div>
+                      <h3 className="mt-2 text-lg font-semibold text-white"><Dual en={phase.title_en} de={phase.title_de} /></h3>
+                    </div>
+                    <span className="rounded-full border hairline bg-white/[0.03] px-3 py-1 text-[10px] text-slate-400">{phaseSprints.length} sprints</span>
+                  </div>
+                </summary>
+                <div className="mt-5 space-y-3 border-t hairline pt-4">
+                  {phaseSprints.map((sprint) => (
+                    <div key={sprint.id} className="rounded-2xl border hairline bg-white/[0.02] p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-cyan-200">{sprint.id}</span>
+                          <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold ${statusClass(sprint.status)}`}>{sprint.status}</span>
+                          <span className="text-[10px] font-semibold text-slate-500">{sprint.priority}</span>
+                        </div>
+                        <span className="text-xs font-semibold text-slate-200"><Dual en="After PASS" de="Nach PASS" /> {pct(sprint.readiness_after_pass_pct)}</span>
+                      </div>
+                      <div className="mt-3 text-sm font-semibold text-white"><Dual en={sprint.title_en} de={sprint.title_de} /></div>
+                      <p className="mt-2 text-xs leading-6 text-slate-400"><Dual en={sprint.objective_en} de={sprint.objective_de} /></p>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="shell py-10">
+        <div className="eyebrow"><Dual en="Design readiness · 08 Oct 2026" de="Design-Readiness · 08.10.2026" /></div>
+        <h2 className="section-title mt-3"><Dual en="Pages requiring closure before Figma/Codex freeze" de="Pages, die vor Figma/Codex-Freeze noch geschlossen werden müssen" /></h2>
+        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {pagesBelowTarget.map((page) => (
+            <article key={String(page.id)} className="panel p-5">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-sm font-semibold text-white">{String(page.title)}</h3>
+                <span className="text-lg font-semibold text-cyan-200">{pct(Number(page.readiness_pct))}</span>
+              </div>
+              <p className="mt-3 text-xs leading-6 text-slate-400">{String(page.required_fix)}</p>
+              <div className="mt-4 text-[10px] uppercase tracking-[0.14em] text-slate-500"><Dual en="Target" de="Ziel" /> {pct(Number(page.target_pct))}</div>
+            </article>
+          ))}
+        </div>
+        <article className="panel mt-5 p-5">
+          <div className="text-xs font-semibold text-slate-200"><Dual en="Missing design packages" de="Noch fehlende Designpakete" /></div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {designReadiness.missing_design_scope.map((item) => (
+              <span key={String(item.id)} className="rounded-full border hairline bg-white/[0.025] px-3 py-1.5 text-xs text-slate-300">
+                {String(item.title)} · {String(item.priority)}
+              </span>
             ))}
           </div>
         </article>
@@ -192,10 +315,10 @@ export default function ControlCenterPage() {
             </p>
           </article>
           <article className="panel border-t-2 border-t-cyan-300 p-6">
-            <div className="text-xs text-slate-400">01 Oct 2026</div>
-            <h3 className="mt-3 text-lg font-semibold text-white">High-End Baseline v2</h3>
+            <div className="text-xs text-slate-400">08 Oct 2026</div>
+            <h3 className="mt-3 text-lg font-semibold text-white"><Dual en="Core Pilot closure plan active" de="Core-Pilot-Abschlussplan aktiv" /></h3>
             <p className="mt-3 text-sm leading-7 text-slate-400">
-              <Dual en="Measured 20 h/week delivery begins with sprint, effort and AI-assisted engineering metrics." de="Die gemessene 20-h/Woche-Delivery startet mit Sprint-, Aufwand- und AI-assisted-Engineering-Metriken." />
+              <Dual en="Product truth, >=98% design closure, remediation, notifications, implementation and runtime evidence are now tracked as one A1–F1 closure sequence." de="Product Truth, >=98% Design-Abschluss, Remediation, Notifications, Umsetzung und Runtime-Evidence werden jetzt als eine A1–F1-Abschlusssequenz verfolgt." />
             </p>
           </article>
           <article className="panel border-t-2 border-t-emerald-300 p-6">
@@ -211,11 +334,11 @@ export default function ControlCenterPage() {
       <section className="shell py-10 pb-20">
         <article className="panel p-6 md:p-8">
           <div className="eyebrow"><Dual en="Methodology" de="Methodik" /></div>
-          <h2 className="mt-3 text-2xl font-semibold text-white"><Dual en="Readiness is evidence-based" de="Readiness basiert auf Evidence" /></h2>
+          <h2 className="mt-3 text-2xl font-semibold text-white"><Dual en="Readiness is evidence-based where evidence exists" de="Readiness ist evidenzbasiert, wo Evidence vorliegt" /></h2>
           <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-400">
             <Dual
-              en="Scope readiness is calculated from weighted evidence-backed feature details. Delivery gates are tracked separately. Work in progress receives no completion credit, and historical effort is never fabricated from commit timestamps."
-              de="Scope-Readiness wird aus gewichteten, evidenzbasierten Feature-Details berechnet. Delivery-Gates werden separat verfolgt. Laufende Arbeit erhält keinen Completion-Credit und historischer Aufwand wird niemals aus Commit-Zeitstempeln erfunden."
+              en="S00–S19 program completion and core scope readiness remain evidence-backed. The 61% Pilot Go-Live readiness is an explicitly labelled planning baseline that includes newly identified product, design, implementation and manual runtime work. It must not be confused with evidence-backed completion."
+              de="S00–S19-Programmfortschritt und Core-Scope-Readiness bleiben evidenzbasiert. Die 61% Pilot-Go-Live-Readiness ist ausdrücklich als Planungsbaseline gekennzeichnet und berücksichtigt neu identifizierte Produkt-, Design-, Implementierungs- und manuelle Runtime-Arbeit. Sie darf nicht mit evidenzbasierter Completion verwechselt werden."
             />
           </p>
         </article>
