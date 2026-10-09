@@ -53,6 +53,18 @@
         "Landing prices are explicitly rendered as Ab/From prices",
         "generated fallback remains drift-checked"
       ]
+    },
+    "admin_provider_sync_warning": {
+      "repository": "danielwauer-maker/bcsentinel",
+      "pull_request": 59,
+      "merge_sha": "ec4528ce129b495de60a2c5050d160ccd3d2b341",
+      "quality_gate": "PASS",
+      "scope": [
+        "Admin Product Pricing remains manually editable",
+        "Admin explicitly warns that BCSentinel price edits do not update Stripe automatically",
+        "Admin tells operators to update and verify Stripe Price objects and Price-ID mappings",
+        "Admin states that production checkout is blocked while runtime and Stripe prices differ"
+      ]
     }
   },
   "provider_policy": {
