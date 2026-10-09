@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-09",
+  "product": "BCSentinel",
+  "correction_id": "B6.1",
+  "status": "DONE",
+  "readiness_delta_pct": 0.0,
+  "reason": "Correct B6 fixed-price interpretation to the approved record-volume pricing model without inflating Go-Live readiness.",
+  "pricing_metric": {
+    "id": "bcsentinel_analyzed_record_volume",
+    "short_name": "ARV",
+    "rule": "A distinct record in enabled scan scope counts once per scan regardless of the number of rules evaluating it."
+  },
+  "tiers": [
+    {"code":"small","max_records":250000,"assessment_eur":249,"validation_eur":129,"monitoring_monthly_eur":199,"monitoring_annual_eur":1990},
+    {"code":"medium","max_records":1000000,"assessment_eur":399,"validation_eur":199,"monitoring_monthly_eur":299,"monitoring_annual_eur":2990},
+    {"code":"large","max_records":5000000,"assessment_eur":699,"validation_eur":349,"monitoring_monthly_eur":499,"monitoring_annual_eur":4990},
+    {"code":"enterprise","max_records":20000000,"assessment_eur":1190,"validation_eur":590,"monitoring_monthly_eur":799,"monitoring_annual_eur":7990},
+    {"code":"enterprise_plus","min_records":20000001,"pricing":"custom_quote"}
+  ],
+  "public_from_prices_eur": {
+    "assessment": 249,
+    "validation": 129,
+    "monitoring_monthly": 199,
+    "monitoring_annual": 1990
+  },
+  "evidence": {
+    "product_system": {
+      "repository": "danielwauer-maker/bcsentinel-product-system",
+      "pull_request": 16,
+      "merge_sha": "bfc3f43e7cc9491015a7fcc29c1e83c65f37f78f",
+      "quality_gate": "PASS",
+      "contract": "00-core/RECORD_BASED_PRICING_CONTRACT.md",
+      "machine_contract": "00-core/record-based-pricing-contract.yaml"
+    },
+    "core_runtime": {
+      "repository": "danielwauer-maker/bcsentinel",
+      "pull_request": 57,
+      "merge_sha": "ea11b9bc7d62fdba5becc2b6b9bdf33cf0e5b6d4",
+      "quality_gate": "PASS",
+      "runtime_pricing_service": "backend/app/services/product_pricing_service.py",
+      "public_quote_api": "/pricing/quote",
+      "bc_pricing_client": "bc-extension/app/src/codeunits/DHPricingMgt.Codeunit.al"
+    },
+    "core_consistency_followup": {
+      "repository": "danielwauer-maker/bcsentinel",
+      "pull_request": 58,
+      "merge_sha": "2cec1d485ef32a4c49a6e6f36e00cf0b8ff4c649",
+      "quality_gate": "PASS",
+      "scope": [
+        "scan commercials resolve Monitoring price with scan total_records/ARV",
+        "Executive Report receives the tier-correct stored commercial projection",
+        "Landing prices are explicitly rendered as Ab/From prices",
+        "generated fallback remains drift-checked"
+      ]
+    }
+  },
+  "provider_policy": {
+    "stripe_is_pricing_authority": false,
+    "price_mapping_must_match_runtime": true,
+    "mismatch_blocks_checkout": true,
+    "admin_changes_require_provider_sync": true
+  },
+  "next_sprint": "B7"
+}
