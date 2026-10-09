@@ -5,7 +5,7 @@
   "source_of_truth": {
     "repository": "danielwauer-maker/bcsentinel-product-system",
     "design_path": "05-pages/existing-pages-product-truth-sweep.yaml",
-    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep + B3 Actions final design + B4 Settings final design + B5 Financial/Report/Monitoring semantics"
+    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep + B3 Actions final design + B4 Settings final design + B5 Financial/Report/Monitoring semantics + B6 Landing/Pilot/Pricing/Claims"
   },
   "summary": {
     "visual_design_readiness_pct": 94,
@@ -17,8 +17,8 @@
     "target_min_page_readiness_pct": 98
   },
   "design_scope": [
-    {"id":"landingpage","title":"Main Landingpage","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B6 finalizes verified claims, pricing presentation and pilot/public scope without changing the B2 product-truth baseline"},
-    {"id":"pilotpage","title":"Pilotpage","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B6 finalizes pilot claims and public conversion copy against canonical product terminology"},
+    {"id":"landingpage","title":"Main Landingpage","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B6 final public Product/Claim Truth frozen; D9 migrates production copy and pricing projection, while C2/C3/C5 own Legal, Commerce states and responsive acceptance."},
+    {"id":"pilotpage","title":"Pilotpage","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B6 final pilot semantics frozen as controlled pilot, not General Availability or AppSource-live; production implementation remains D9."},
     {"id":"login","title":"Login","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Runtime/auth implementation remains C1/D8; no further existing-page product decision required"},
     {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Product/design truth frozen in B1; runtime implementation remains D6/D7 and final responsive acceptance remains C5"},
     {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Final global component/token alignment remains B7; entitlement gating and BC operational boundaries are fixed by B2"},
@@ -29,7 +29,7 @@
     {"id":"monitoring","title":"Monitoring Detail","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B5 final monitoring semantics frozen: comparable-scope histories only, methodology-version aware, no summed Potential Saving and no Estimated Loss delta labeled as Realized Saving. Runtime remains D7."},
     {"id":"monitoring-locked","title":"Monitoring Locked — Free / Assessment","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Canonical Monitoring access state frozen in B2; Premium terminology is not allowed"},
     {"id":"settings-security","title":"Settings / Tenant / Security","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B4 final design frozen: only web-owned account preferences are editable; BC/Entra/Notifications remain read-only. Runtime remains D4/D8 and Auth/Onboarding C1."},
-    {"id":"subscription-billing","title":"Subscription / Billing","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B6 finalizes commerce presentation; Assessment/Validation remain one-time and Monitoring recurring using canonical Product Model pricing"},
+    {"id":"subscription-billing","title":"Subscription / Billing","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B6 final commerce/product presentation frozen: Assessment and Validation are one-time, Monitoring recurring with monthly/annual variants, prices come from Product Model, and Free Entry is not a subscription. Checkout states remain C3."},
     {"id":"docs-support","title":"Documentation / Support","status":"baseline_frozen","readiness_pct":98,"target_pct":98,"implementation":"pending","required_fix":"Existing support surface is product-truth safe in B2; B7 may only align final UI tokens/components and must not add phantom API/SLA/support channels"}
   ],
   "missing_design_scope": [
@@ -50,9 +50,9 @@
     {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
+    {"en":"B6 freezes Main Landingpage, Pilotpage and Subscription/Billing at 99%: Product Model is the only pricing authority, Free Entry is not a subscription, financial claims follow fin-v1, money examples must be illustrative, and AppSource/SLA/partner/customer-proof claims require evidence.","de":"B6 friert Main Landingpage, Pilotpage und Subscription/Billing bei 99% ein: Das Product Model ist die einzige Pricing-Authority, Free Entry ist kein Abo, Financial Claims folgen fin-v1, Geldbeispiele muessen illustrativ sein und AppSource-/SLA-/Partner-/Customer-Proof-Claims benoetigen Evidence."},
     {"en":"B5 freezes Financial Impact, Executive Report and Monitoring Detail at 99% on one fin-v1 semantic model: shared backend projection only, no report/client recalculation, legacy roi_eur is not presented as realized ROI, and Realized Saving remains gated.","de":"B5 friert Financial Impact, Executive Report und Monitoring Detail bei 99% auf einer einheitlichen fin-v1-Semantik ein: nur gemeinsame Backend-Projektion, keine Report-/Client-Neuberechnung, Legacy roi_eur wird nicht als realisierter ROI dargestellt und Realized Saving bleibt gegated."},
-    {"en":"B4 freezes Settings / Tenant / Security at 99%: only web-owned account preferences are editable; Business Central, tenant-wide Notifications and Entra/identity administration remain read-only summaries, with no secrets or duplicate Billing truth in Settings.","de":"B4 friert Settings / Tenant / Security bei 99% ein: Nur web-owned Account-Praeferenzen sind editierbar; Business Central, tenantweite Notifications und Entra-/Identity-Administration bleiben read-only Zusammenfassungen, ohne Secrets oder doppelte Billing-Wahrheit in Settings."},
-    {"en":"B3 freezes Actions at 99% design readiness: real Remediation Actions only, read-only dashboard, Completion separate from Validation, and operational editing only via a safe Business Central deep link.","de":"B3 friert Actions bei 99% Design-Readiness ein: nur echte Remediation Actions, read-only Dashboard, Completion getrennt von Validation und operative Bearbeitung ausschließlich über einen sicheren Business-Central-Deep-Link."},
+    {"en":"B4 freezes Settings / Tenant / Security at 99%: only web-owned account preferences are editable; Business Central, tenant-wide Notifications and Entra/identity administration remain read-only summaries.","de":"B4 friert Settings / Tenant / Security bei 99% ein: Nur web-owned Account-Praeferenzen sind editierbar; Business Central, tenantweite Notifications und Entra-/Identity-Administration bleiben read-only Zusammenfassungen."},
     {"en":"Business Central remains the operational write authority while the web dashboard is primarily read-only.","de":"Business Central bleibt die operative Write-Authority, während das Web-Dashboard primär read-only ist."}
   ]
 }
