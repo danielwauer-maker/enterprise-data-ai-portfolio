@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-08",
+  "updated_at": "2026-10-09",
   "product": "BCSentinel",
   "goal": "Controlled Pilot Go-Live",
   "status": "IN_PROGRESS",
   "readiness": {
-    "current_go_live_readiness_pct": 61.0,
+    "current_go_live_readiness_pct": 62.0,
     "note_en": "Go-Live readiness is a planning baseline across product truth, design, implementation and remaining runtime gates. Program completion and Core scope readiness are read from the evidence-backed S00-S19 program source; design readiness is read from bcsentinel-design-readiness.json.",
     "note_de": "Die Go-Live-Readiness ist eine Planungsbaseline über Product Truth, Design, Umsetzung und verbleibende Runtime-Gates. Programmfortschritt und Core-Scope-Readiness werden aus der evidenzbasierten S00-S19-Programmquelle gelesen; Design-Readiness stammt aus bcsentinel-design-readiness.json."
   },
@@ -25,7 +25,7 @@
     {"id":"F","title_en":"Controlled Pilot Launch","title_de":"Kontrollierter Pilot-Start"}
   ],
   "sprints": [
-    {"id":"A1","phase":"A","title_en":"Product Master Book & Authority Freeze","title_de":"Product Master Book & Authority Freeze","priority":"P0","status":"READY","readiness_after_pass_pct":62.0,"objective_en":"Freeze the integrated product definition and cross-repository authority rules.","objective_de":"Integrierte Produktdefinition und Cross-Repo-Authority verbindlich einfrieren."},
+    {"id":"A1","phase":"A","title_en":"Product Master Book & Authority Freeze","title_de":"Product Master Book & Authority Freeze","priority":"P0","status":"DONE","readiness_after_pass_pct":62.0,"objective_en":"Freeze the integrated product definition and cross-repository authority rules.","objective_de":"Integrierte Produktdefinition und Cross-Repo-Authority verbindlich einfrieren.","evidence":{"repository":"danielwauer-maker/bcsentinel-product-system","pull_request":4,"merge_sha":"705a7907fb3d9fd38a98f51bc92a3788fec0e6e9","quality_gate":"PASS"}},
     {"id":"A2","phase":"A","title_en":"Actions / Remediation Contract","title_de":"Actions / Remediation Contract","priority":"P0","status":"PLANNED","readiness_after_pass_pct":64.0,"objective_en":"Define the real remediation entity so the current Actions UX has a truthful data model.","objective_de":"Eine echte Remediation-Entität definieren, damit das Actions-UX auf einem realen Datenmodell basiert."},
     {"id":"A3","phase":"A","title_en":"Notifications Contract","title_de":"Notifications Contract","priority":"P0","status":"PLANNED","readiness_after_pass_pct":65.5,"objective_en":"Make Business Central the single authority for tenant-wide BCSentinel notifications.","objective_de":"Business Central zur einzigen Authority für tenantweite BCSentinel-Benachrichtigungen machen."},
     {"id":"A4","phase":"A","title_en":"Product Model & Pricing Consolidation","title_de":"Product Model & Pricing Konsolidierung","priority":"P0","status":"PLANNED","readiness_after_pass_pct":67.0,"objective_en":"Consolidate Free Entry, Assessment, Validation and Monitoring into one pricing and access truth.","objective_de":"Free Entry, Assessment, Validation und Monitoring in einer Pricing- und Access-Wahrheit konsolidieren."},
