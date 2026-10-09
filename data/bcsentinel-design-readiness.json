@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-10-08",
+  "updated_at": "2026-10-09",
   "product": "BCSentinel",
   "source_of_truth": {
     "repository": "danielwauer-maker/bcsentinel",
     "design_path": "docs/design/go-live",
-    "audit_basis": "Finaldesign.zip + frozen mockups + Product Master Book review on 2026-10-08"
+    "audit_basis": "Finaldesign.zip + frozen mockups + Product Master Book review + B1 Product System contract and Figma Builder quality gate"
   },
   "summary": {
     "visual_design_readiness_pct": 94,
@@ -20,7 +20,7 @@
     {"id":"landingpage","title":"Main Landingpage","status":"frozen_needs_truth_pass","readiness_pct":97,"target_pct":99,"implementation":"pending","required_fix":"Pricing, verified claims, product-truth and token alignment"},
     {"id":"pilotpage","title":"Pilotpage","status":"frozen_needs_truth_pass","readiness_pct":97,"target_pct":99,"implementation":"pending","required_fix":"Claims, pilot scope and canonical product terminology"},
     {"id":"login","title":"Login","status":"frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Token and responsive acceptance only"},
-    {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"rework_required","readiness_pct":82,"target_pct":99,"implementation":"pending","required_fix":"Consolidate final variants; remove scan actions and Monitoring-only content from Assessment"},
+    {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Product/design truth frozen in B1; runtime implementation remains D6/D7 and final responsive acceptance remains C5"},
     {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"frozen_needs_truth_pass","readiness_pct":96,"target_pct":99,"implementation":"pending","required_fix":"Entitlement and BC-deeplink alignment"},
     {"id":"actions","title":"Measures / Actions — Free / Assessment / Monitoring","status":"depends_on_remediation_contract","readiness_pct":93,"target_pct":99,"implementation":"pending","required_fix":"Bind to real remediation entity; dashboard remains read-only"},
     {"id":"financial-impact","title":"Financial Impact","status":"frozen_needs_truth_pass","readiness_pct":94,"target_pct":99,"implementation":"pending","required_fix":"Estimated/Potential/Validated/Realized semantics"},
@@ -50,9 +50,10 @@
     {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
-    {"en":"The BCSentinel Product Master Book now defines BC as the operational control plane and the web dashboard as primarily read-only.","de":"Das BCSentinel Product Master Book definiert BC jetzt als operative Steuerungsebene und das Web-Dashboard als primär read-only."},
-    {"en":"A detailed A1–F1 Core Pilot Go-Live closure plan has been added, covering product truth, >=98% design freeze, missing screens, implementation and runtime acceptance.","de":"Ein detaillierter A1–F1-Core-Pilot-Go-Live-Plan wurde ergänzt: Product Truth, >=98% Design-Freeze, fehlende Screens, Umsetzung und Runtime-Abnahme."},
+    {"en":"B1 freezes Dashboard Overview product/design truth to exactly Free Entry, Assessment and Monitoring; the Figma Builder now validates those variants with a full automated quality gate.","de":"B1 friert die Product-/Design-Truth des Dashboard Overview auf exakt Free Entry, Assessment und Monitoring ein; der Figma Builder validiert diese Varianten jetzt über einen vollständigen automatisierten Quality Gate."},
+    {"en":"The BCSentinel Product Master Book defines BC as the operational control plane and the web dashboard as primarily read-only.","de":"Das BCSentinel Product Master Book definiert BC als operative Steuerungsebene und das Web-Dashboard als primär read-only."},
+    {"en":"A detailed A1–F1 Core Pilot Go-Live closure plan covers product truth, >=98% design freeze, missing screens, implementation and runtime acceptance.","de":"Ein detaillierter A1–F1-Core-Pilot-Go-Live-Plan deckt Product Truth, >=98% Design-Freeze, fehlende Screens, Umsetzung und Runtime-Abnahme ab."},
     {"en":"Remediation/Actions will become a real BC-managed entity so the high-end Actions dashboard can remain largely unchanged but truthful.","de":"Remediation/Actions wird als echte, in BC verwaltete Entität umgesetzt, damit das hochwertige Actions-Dashboard weitgehend unverändert und zugleich produktwahr bleiben kann."},
-    {"en":"Tenant-wide notification settings are planned to be authoritative in Business Central and read-only in the web dashboard.","de":"Tenantweite Benachrichtigungen sollen autoritativ in Business Central konfiguriert und im Web-Dashboard nur read-only angezeigt werden."}
+    {"en":"Tenant-wide notification settings are authoritative in Business Central and read-only in the web dashboard contract.","de":"Tenantweite Benachrichtigungen sind laut Contract autoritativ in Business Central konfiguriert und im Web-Dashboard read-only."}
   ]
 }
