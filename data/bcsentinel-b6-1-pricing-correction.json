@@ -41,6 +41,18 @@
       "runtime_pricing_service": "backend/app/services/product_pricing_service.py",
       "public_quote_api": "/pricing/quote",
       "bc_pricing_client": "bc-extension/app/src/codeunits/DHPricingMgt.Codeunit.al"
+    },
+    "core_consistency_followup": {
+      "repository": "danielwauer-maker/bcsentinel",
+      "pull_request": 58,
+      "merge_sha": "2cec1d485ef32a4c49a6e6f36e00cf0b8ff4c649",
+      "quality_gate": "PASS",
+      "scope": [
+        "scan commercials resolve Monitoring price with scan total_records/ARV",
+        "Executive Report receives the tier-correct stored commercial projection",
+        "Landing prices are explicitly rendered as Ab/From prices",
+        "generated fallback remains drift-checked"
+      ]
     }
   },
   "provider_policy": {
