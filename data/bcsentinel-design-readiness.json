@@ -5,7 +5,7 @@
   "source_of_truth": {
     "repository": "danielwauer-maker/bcsentinel-product-system",
     "design_path": "05-pages/existing-pages-product-truth-sweep.yaml",
-    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep + B3 Actions final design + B4 Settings final design"
+    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep + B3 Actions final design + B4 Settings final design + B5 Financial/Report/Monitoring semantics"
   },
   "summary": {
     "visual_design_readiness_pct": 94,
@@ -23,10 +23,10 @@
     {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Product/design truth frozen in B1; runtime implementation remains D6/D7 and final responsive acceptance remains C5"},
     {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Final global component/token alignment remains B7; entitlement gating and BC operational boundaries are fixed by B2"},
     {"id":"actions","title":"Actions — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B3 final design frozen against remediation contract; runtime Remediation entity/read API/dashboard implementation remain D1/D3/D7"},
-    {"id":"financial-impact","title":"Financial Impact","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B5 finalizes financial presentation using fin-v1 and the realized-saving gate"},
-    {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B5 finalizes report semantics; D10 later supplies one backend data contract for all report surfaces"},
+    {"id":"financial-impact","title":"Financial Impact","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B5 final semantics frozen against fin-v1 and the shared backend financial projection; runtime implementation remains D7."},
+    {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B5 final report semantics frozen; D10 later supplies one backend data contract for web, HTML and PDF without recalculating financial KPIs."},
     {"id":"scans","title":"Scans","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Read-only history/status page frozen in B2; start, rerun and scope changes remain outside the web dashboard"},
-    {"id":"monitoring","title":"Monitoring Detail","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B5 finalizes monitoring/financial semantics while scheduler configuration remains BC-owned"},
+    {"id":"monitoring","title":"Monitoring Detail","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B5 final monitoring semantics frozen: comparable-scope histories only, methodology-version aware, no summed Potential Saving and no Estimated Loss delta labeled as Realized Saving. Runtime remains D7."},
     {"id":"monitoring-locked","title":"Monitoring Locked — Free / Assessment","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Canonical Monitoring access state frozen in B2; Premium terminology is not allowed"},
     {"id":"settings-security","title":"Settings / Tenant / Security","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B4 final design frozen: only web-owned account preferences are editable; BC/Entra/Notifications remain read-only. Runtime remains D4/D8 and Auth/Onboarding C1."},
     {"id":"subscription-billing","title":"Subscription / Billing","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B6 finalizes commerce presentation; Assessment/Validation remain one-time and Monitoring recurring using canonical Product Model pricing"},
@@ -50,9 +50,9 @@
     {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
+    {"en":"B5 freezes Financial Impact, Executive Report and Monitoring Detail at 99% on one fin-v1 semantic model: shared backend projection only, no report/client recalculation, legacy roi_eur is not presented as realized ROI, and Realized Saving remains gated.","de":"B5 friert Financial Impact, Executive Report und Monitoring Detail bei 99% auf einer einheitlichen fin-v1-Semantik ein: nur gemeinsame Backend-Projektion, keine Report-/Client-Neuberechnung, Legacy roi_eur wird nicht als realisierter ROI dargestellt und Realized Saving bleibt gegated."},
     {"en":"B4 freezes Settings / Tenant / Security at 99%: only web-owned account preferences are editable; Business Central, tenant-wide Notifications and Entra/identity administration remain read-only summaries, with no secrets or duplicate Billing truth in Settings.","de":"B4 friert Settings / Tenant / Security bei 99% ein: Nur web-owned Account-Praeferenzen sind editierbar; Business Central, tenantweite Notifications und Entra-/Identity-Administration bleiben read-only Zusammenfassungen, ohne Secrets oder doppelte Billing-Wahrheit in Settings."},
     {"en":"B3 freezes Actions at 99% design readiness: real Remediation Actions only, read-only dashboard, Completion separate from Validation, and operational editing only via a safe Business Central deep link.","de":"B3 friert Actions bei 99% Design-Readiness ein: nur echte Remediation Actions, read-only Dashboard, Completion getrennt von Validation und operative Bearbeitung ausschließlich über einen sicheren Business-Central-Deep-Link."},
-    {"en":"B2 establishes a single machine-readable product-truth baseline for every existing page; every existing design-scope page is at least 98% baseline-ready.","de":"B2 etabliert eine einzige maschinenlesbare Product-Truth-Baseline für jede bestehende Seite; jede bestehende Design-Scope-Seite liegt bei mindestens 98% Baseline-Readiness."},
     {"en":"Business Central remains the operational write authority while the web dashboard is primarily read-only.","de":"Business Central bleibt die operative Write-Authority, während das Web-Dashboard primär read-only ist."}
   ]
 }
