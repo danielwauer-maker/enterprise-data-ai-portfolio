@@ -5,7 +5,7 @@
   "source_of_truth": {
     "repository": "danielwauer-maker/bcsentinel-product-system",
     "design_path": "05-pages/existing-pages-product-truth-sweep.yaml",
-    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep"
+    "audit_basis": "Finaldesign.zip + frozen mockups + A1-A6 contracts + B1 Overview freeze + B2 existing-pages product-truth sweep + B3 Actions final design"
   },
   "summary": {
     "visual_design_readiness_pct": 94,
@@ -22,7 +22,7 @@
     {"id":"login","title":"Login","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Runtime/auth implementation remains C1/D8; no further existing-page product decision required"},
     {"id":"overview","title":"Dashboard Overview — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Product/design truth frozen in B1; runtime implementation remains D6/D7 and final responsive acceptance remains C5"},
     {"id":"findings","title":"Findings — Free / Assessment / Monitoring","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"Final global component/token alignment remains B7; entitlement gating and BC operational boundaries are fixed by B2"},
-    {"id":"actions","title":"Actions — Free / Assessment / Monitoring","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B3 finalizes the Actions design against the A2 remediation contract; dashboard mutation remains forbidden"},
+    {"id":"actions","title":"Actions — Free / Assessment / Monitoring","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"B3 final design frozen against remediation contract; runtime Remediation entity/read API/dashboard implementation remain D1/D3/D7"},
     {"id":"financial-impact","title":"Financial Impact","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B5 finalizes financial presentation using fin-v1 and the realized-saving gate"},
     {"id":"executive-report","title":"Executive Summary Report — HTML + print/PDF","status":"baseline_frozen","readiness_pct":98,"target_pct":99,"implementation":"pending","required_fix":"B5 finalizes report semantics; D10 later supplies one backend data contract for all report surfaces"},
     {"id":"scans","title":"Scans","status":"frozen","readiness_pct":99,"target_pct":99,"implementation":"pending","required_fix":"Read-only history/status page frozen in B2; start, rerun and scope changes remain outside the web dashboard"},
@@ -50,9 +50,9 @@
     {"en":"Final release candidate freeze and sign-off","de":"Finaler Release-Candidate-Freeze und Sign-off"}
   ],
   "latest_developments": [
-    {"en":"B2 establishes a single machine-readable product-truth baseline for every existing page; every existing design-scope page is now at least 98% baseline-ready and remaining final design ownership is explicit in B3-B7.","de":"B2 etabliert eine einzige maschinenlesbare Product-Truth-Baseline für jede bestehende Seite; jede bestehende Design-Scope-Seite liegt jetzt bei mindestens 98% Baseline-Readiness und die verbleibende Final-Design-Verantwortung ist B3-B7 eindeutig zugeordnet."},
-    {"en":"The old June Dashboard Content and Visual specifications are superseded so Full Analysis, Premium-era wording and web-side BC operational CTAs cannot re-enter implementation as accidental product truth.","de":"Die alten Dashboard-Content- und Visual-Spezifikationen aus Juni sind superseded, damit Full Analysis, Premium-era wording und Web-seitige BC-Operations-CTAs nicht versehentlich wieder als Product Truth in die Umsetzung gelangen."},
-    {"en":"B1 freezes Dashboard Overview product/design truth to exactly Free Entry, Assessment and Monitoring; the Figma Builder validates those variants with a full automated quality gate.","de":"B1 friert die Product-/Design-Truth des Dashboard Overview auf exakt Free Entry, Assessment und Monitoring ein; der Figma Builder validiert diese Varianten über einen vollständigen automatisierten Quality Gate."},
+    {"en":"B3 freezes Actions at 99% design readiness: real Remediation Actions only, read-only dashboard, Completion separate from Validation, and operational editing only via a safe Business Central deep link.","de":"B3 friert Actions bei 99% Design-Readiness ein: nur echte Remediation Actions, read-only Dashboard, Completion getrennt von Validation und operative Bearbeitung ausschließlich über einen sicheren Business-Central-Deep-Link."},
+    {"en":"B2 establishes a single machine-readable product-truth baseline for every existing page; every existing design-scope page is at least 98% baseline-ready.","de":"B2 etabliert eine einzige maschinenlesbare Product-Truth-Baseline für jede bestehende Seite; jede bestehende Design-Scope-Seite liegt bei mindestens 98% Baseline-Readiness."},
+    {"en":"B1 freezes Dashboard Overview product/design truth to exactly Free Entry, Assessment and Monitoring.","de":"B1 friert die Product-/Design-Truth des Dashboard Overview auf exakt Free Entry, Assessment und Monitoring ein."},
     {"en":"Business Central remains the operational write authority while the web dashboard is primarily read-only.","de":"Business Central bleibt die operative Write-Authority, während das Web-Dashboard primär read-only ist."}
   ]
 }
