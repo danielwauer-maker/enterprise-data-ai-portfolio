@@ -1,7 +1,12 @@
 import { LanguageToggle } from "../components/language-toggle";
 import { ThemeToggle } from "../components/theme-toggle";
 import { loadPortfolioData } from "../lib/portfolio-data";
-import { loadHighEndControlCenter } from "../lib/high-end-control-center";
+import { BCSentinelCoreSprints } from "../components/bcsentinel-core-sprints";
+import {
+  loadBCSentinelCoreGoLivePlan,
+  loadBCSentinelPrePilotClosurePlan,
+  loadHighEndControlCenter,
+} from "../lib/high-end-control-center";
 
 export const dynamic = "force-static";
 
@@ -53,6 +58,8 @@ function deliveryClasses(tone: string): string {
 export default function Home() {
   const { portfolio, projects } = loadPortfolioData();
   const highEnd = loadHighEndControlCenter();
+  const coreGoLive = loadBCSentinelCoreGoLivePlan();
+  const prePilotClosure = loadBCSentinelPrePilotClosurePlan();
   const currentSprint =
     highEnd.sprints.find((sprint) => sprint.id === highEnd.program.current_sprint_id) ??
     highEnd.sprints[0];
@@ -60,6 +67,8 @@ export default function Home() {
   const sprintById = Object.fromEntries(highEnd.sprints.map((sprint) => [sprint.id, sprint]));
   const bcsentinelCoreIds = ["S01", "S02", "S03", "S04", "S05", "S06"];
   const bcsentinelCoreSprints = bcsentinelCoreIds.map((id) => sprintById[id]).filter(Boolean);
+  const bcsentinelCoreDeliveryIds = ["S01", "S02", "S03", "S04", "S05", "S06", "S07"];
+  const bcsentinelCoreDeliverySprints = bcsentinelCoreDeliveryIds.map((id) => sprintById[id]).filter(Boolean);
   const bcsentinelScope =
     bcsentinelCoreSprints.reduce((sum, sprint) => sum + sprint.scope_readiness_pct, 0) /
     bcsentinelCoreSprints.length;
@@ -87,14 +96,6 @@ export default function Home() {
   ].map((capability) => ({ ...capability, sprint: sprintById[capability.id] }));
 
   const phases = [
-    {
-      id: "core",
-      en: "Core Commercialization",
-      de: "Core-Kommerzialisierung",
-      copyEn: "From product hardening to pilot-ready BCSentinel Core.",
-      copyDe: "Vom Product-Hardening bis zum pilotfähigen BCSentinel Core.",
-      sprints: highEnd.sprints.filter((sprint) => Number(sprint.id.slice(1)) <= 7),
-    },
     {
       id: "intelligence",
       en: "Decision Intelligence",
@@ -194,8 +195,8 @@ export default function Home() {
             <a href="#building" className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
               <Dual en="Explore the platform" de="Plattform ansehen" />
             </a>
-            <a href={`./control-center/${currentSprint.id}/`} className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
-              <Dual en="Current sprint details" de="Aktueller Sprint im Detail" />
+            <a href="#building" className="rounded-xl border hairline bg-white/[0.035] px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
+              <Dual en="BCSentinel Core sprints" de="BCSentinel-Core-Sprints" />
             </a>
           </div>
         </div>
@@ -271,16 +272,18 @@ export default function Home() {
                 <span key={technology} className="rounded-lg bg-white/[0.04] px-2.5 py-1.5 text-xs text-slate-400">{technology}</span>
               ))}
             </div>
-            <div className="mt-7 flex flex-wrap gap-3 border-t hairline pt-6">
-              {bcsentinelProject?.repository && (
+            <BCSentinelCoreSprints
+              coreEngineering={bcsentinelCoreDeliverySprints}
+              goLive={coreGoLive}
+              prePilot={prePilotClosure}
+            />
+            {bcsentinelProject?.repository && (
+              <div className="mt-6 border-t hairline pt-5">
                 <a href={`https://github.com/${bcsentinelProject.repository}`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-cyan-200 transition hover:text-cyan-100">
-                  GitHub →
+                  GitHub Source of Truth →
                 </a>
-              )}
-              <a href="./control-center/S01/" className="text-sm font-semibold text-slate-300 transition hover:text-white">
-                <Dual en="Engineering readiness →" de="Engineering-Readiness →" />
-              </a>
-            </div>
+              </div>
+            )}
           </article>
 
           <article className="panel p-7 md:p-9">
@@ -441,7 +444,7 @@ export default function Home() {
                 {phase.sprints.map((sprint) => {
                   const label = deliveryLabel(sprint.id, currentSprint.id, sprint.status);
                   return (
-                    <a key={sprint.id} href={`./control-center/${sprint.id}/`} className="rounded-2xl border hairline bg-white/[0.02] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.04]">
+                    <div key={sprint.id} className="rounded-2xl border hairline bg-white/[0.02] p-4">
                       <div className="flex items-start justify-between gap-3">
                         <span className="text-xs font-bold text-cyan-200">{sprint.id}</span>
                         <span className={`rounded-full border px-2 py-1 text-[9px] font-semibold ${deliveryClasses(label.tone)}`}>
@@ -456,7 +459,7 @@ export default function Home() {
                       <div className="progress-track mt-3">
                         <div className="progress-fill" style={{ width: `${sprint.scope_readiness_pct}%` }} />
                       </div>
-                    </a>
+                    </div>
                   );
                 })}
               </div>
