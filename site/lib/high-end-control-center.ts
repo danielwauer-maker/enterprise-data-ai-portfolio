@@ -116,7 +116,6 @@ export type BCSentinelPrePilotClosurePlan = {
   product: string;
   purpose: string;
   official_go_live_readiness_source: string;
-  official_go_live_readiness_pct: number;
   readiness_rule: string;
   sprints: BCSentinelPrePilotClosureSprint[];
   closure_readiness_pct: number;
