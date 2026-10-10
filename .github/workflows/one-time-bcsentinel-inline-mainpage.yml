@@ -1,0 +1,34 @@
+name: One-time BCSentinel inline mainpage patch
+
+on:
+  push:
+    branches:
+      - feat/bcsentinel-core-inline-sprints
+    paths:
+      - scripts/patch_bcsentinel_mainpage_inline.py
+      - .github/workflows/one-time-bcsentinel-inline-mainpage.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-mainpage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/bcsentinel-core-inline-sprints
+          fetch-depth: 0
+      - name: Apply deterministic patch
+        run: python scripts/patch_bcsentinel_mainpage_inline.py
+      - name: Remove one-time patch machinery
+        run: |
+          rm scripts/patch_bcsentinel_mainpage_inline.py
+          rm .github/workflows/one-time-bcsentinel-inline-mainpage.yml
+      - name: Commit patched mainpage
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/app/page.tsx scripts/patch_bcsentinel_mainpage_inline.py .github/workflows/one-time-bcsentinel-inline-mainpage.yml
+          git commit -m "Portfolio: inline all BCSentinel Core sprints on mainpage"
+          git push origin HEAD:feat/bcsentinel-core-inline-sprints
