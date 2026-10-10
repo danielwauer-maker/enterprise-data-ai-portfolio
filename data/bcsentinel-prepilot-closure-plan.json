@@ -4,7 +4,6 @@
   "product": "BCSentinel",
   "purpose": "Pre-pilot product, operations and visual closure without changing official Go-Live readiness until acceptance gates pass.",
   "official_go_live_readiness_source": "data/bcsentinel-core-go-live-plan.json",
-  "official_go_live_readiness_pct": 97.5,
   "readiness_rule": "closure_readiness_pct is derived from sprint status/progress in this file and is not the official Go-Live readiness KPI.",
   "sprints": [
     {"id":"X0.1","title_en":"Multi-Tenant Accounts & Tenant Switching","title_de":"Multi-Tenant-Accounts & Tenant-Wechsel","status":"DONE","progress_pct":100,"evidence":"Core PRs #72/#75; tenant memberships, account sessions and tenant-bound switching merged and regression-tested."},
@@ -21,7 +20,7 @@
     {"id":"X0.12","title_en":"SaaS Health & Operations Readiness","title_de":"SaaS-Health & Operations-Readiness","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; operations readiness health surface."},
     {"id":"X0.13","title_en":"Release & Rollback Safety","title_de":"Release- & Rollback-Sicherheit","status":"DONE","progress_pct":100,"evidence":"Core PR #81 merged as 1f8162f; DEV → RC → PROD contract and rollback policy regression-tested."},
     {"id":"X0.14","title_en":"Deterministic Synthetic Demo Tenant","title_de":"Deterministischer synthetischer Demo-Tenant","status":"DONE","progress_pct":100,"evidence":"Core PR #81 merged as 1f8162f; synthetic Contoso dataset with canonical fin-v1 semantics and DE/EN disclaimers."},
-    {"id":"X0.15","title_en":"Product-Truth / Portfolio Reconciliation","title_de":"Product-Truth-/Portfolio-Abgleich","status":"IN_PROGRESS","progress_pct":75,"evidence":"Machine-readable X0/X1-X8 plan and derived closure page are implemented; final portfolio build/merge and stale design implementation-status cleanup remain."},
+    {"id":"X0.15","title_en":"Product-Truth / Portfolio Reconciliation","title_de":"Product-Truth-/Portfolio-Abgleich","status":"IN_PROGRESS","progress_pct":80,"evidence":"Machine-readable X0/X1-X8 plan and derived closure page are implemented; final portfolio build/merge and stale design implementation-status cleanup remain."},
     {"id":"X1","title_en":"Visual & Product Convergence","title_de":"Visual & Product Convergence","status":"PLANNED","progress_pct":0,"evidence":"Product System → normalized Figma/UI kit → React/Landing implementation → DEV visual acceptance."},
     {"id":"X2","title_en":"Remediation Closure","title_de":"Remediation Closure","status":"PLANNED","progress_pct":0,"evidence":"BC user assignment UX, workflow/audit completeness and read-only web alignment."},
     {"id":"X3","title_en":"Exception Transparency","title_de":"Exception Transparency","status":"PLANNED","progress_pct":0,"evidence":"Per-scan exception snapshots, backend read model, dashboard transparency and report appendix."},
