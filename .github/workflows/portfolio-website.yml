@@ -5,12 +5,14 @@ on:
     paths:
       - "site/**"
       - "data/**"
+      - "scripts/validate_pages_routes.py"
       - ".github/workflows/portfolio-website.yml"
   push:
     branches: [main]
     paths:
       - "site/**"
       - "data/**"
+      - "scripts/validate_pages_routes.py"
       - ".github/workflows/portfolio-website.yml"
   workflow_dispatch:
 
@@ -37,6 +39,8 @@ jobs:
       - name: Build static portfolio
         working-directory: site
         run: npm run build
+      - name: Validate exported portfolio routes
+        run: python scripts/validate_pages_routes.py
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
