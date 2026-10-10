@@ -101,6 +101,28 @@ export type BCSentinelDesignReadiness = {
   missing_design_scope: Array<Record<string, any>>;
 };
 
+export type BCSentinelPrePilotClosureSprint = {
+  id: string;
+  title_en: string;
+  title_de: string;
+  status: string;
+  progress_pct: number;
+  evidence: string;
+};
+
+export type BCSentinelPrePilotClosurePlan = {
+  schema_version: number;
+  updated_at: string;
+  product: string;
+  purpose: string;
+  official_go_live_readiness_source: string;
+  readiness_rule: string;
+  sprints: BCSentinelPrePilotClosureSprint[];
+  closure_readiness_pct: number;
+  done_count: number;
+  total_count: number;
+};
+
 function findPortfolioRoot(): string {
   let current = process.cwd();
   while (true) {
@@ -126,6 +148,23 @@ export function loadHighEndControlCenter(): HighEndControlCenter {
 
 export function loadBCSentinelDesignReadiness(): BCSentinelDesignReadiness {
   return readJson<BCSentinelDesignReadiness>(path.join("data", "bcsentinel-design-readiness.json"));
+}
+
+export function loadBCSentinelPrePilotClosurePlan(): BCSentinelPrePilotClosurePlan {
+  const source = readJson<Omit<BCSentinelPrePilotClosurePlan, "closure_readiness_pct" | "done_count" | "total_count">>(
+    path.join("data", "bcsentinel-prepilot-closure-plan.json"),
+  );
+  const totalCount = source.sprints.length;
+  const doneCount = source.sprints.filter((sprint) => sprint.status === "DONE").length;
+  const closureReadiness = totalCount
+    ? source.sprints.reduce((sum, sprint) => sum + Number(sprint.progress_pct ?? 0), 0) / totalCount
+    : 0;
+  return {
+    ...source,
+    closure_readiness_pct: Math.round(closureReadiness * 10) / 10,
+    done_count: doneCount,
+    total_count: totalCount,
+  };
 }
 
 export function loadBCSentinelCoreGoLivePlan(): CoreGoLivePlan {

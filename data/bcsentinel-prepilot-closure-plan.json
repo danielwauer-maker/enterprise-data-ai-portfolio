@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-10",
+  "product": "BCSentinel",
+  "purpose": "Pre-pilot product, operations and visual closure without changing official Go-Live readiness until acceptance gates pass.",
+  "official_go_live_readiness_source": "data/bcsentinel-core-go-live-plan.json",
+  "readiness_rule": "closure_readiness_pct is derived from sprint status/progress in this file and is not the official Go-Live readiness KPI.",
+  "sprints": [
+    {"id":"X0.1","title_en":"Multi-Tenant Accounts & Tenant Switching","title_de":"Multi-Tenant-Accounts & Tenant-Wechsel","status":"DONE","progress_pct":100,"evidence":"Core PRs #72/#75; tenant memberships, account sessions and tenant-bound switching merged and regression-tested."},
+    {"id":"X0.2","title_en":"Tenant Commercial Management & Stripe Discounts","title_de":"Tenant Commercial Management & Stripe-Rabatte","status":"DONE","progress_pct":100,"evidence":"Core PR #83 merged as d45b6596; tenant overrides, sponsored pilots, Stripe promotion codes and controlled no-stacking checkout regression-tested."},
+    {"id":"X0.3","title_en":"User, Invitation & Membership Administration","title_de":"Benutzer-, Einladungs- & Membership-Verwaltung","status":"DONE","progress_pct":100,"evidence":"Core PR #76 merged; invitation flow, tenant roles and last-admin protection regression-tested."},
+    {"id":"X0.4","title_en":"Customer & Subscription Lifecycle","title_de":"Customer- & Subscription-Lifecycle","status":"DONE","progress_pct":100,"evidence":"Core PR #77 merged; customer/commercial lifecycle separated from security lifecycle."},
+    {"id":"X0.5","title_en":"Billing Identity, VAT & B2B Profile","title_de":"Billing Identity, USt. & B2B-Profil","status":"DONE","progress_pct":100,"evidence":"Core PR #77 merged; tenant-scoped billing identity and VAT evidence model."},
+    {"id":"X0.6","title_en":"BC Connection Diagnostics & Compatibility","title_de":"BC-Verbindungsdiagnose & Kompatibilität","status":"DONE","progress_pct":100,"evidence":"Core PR #77 merged; governed compatibility policy tied to BC extension manifest."},
+    {"id":"X0.7","title_en":"Controlled Support Diagnostics","title_de":"Kontrollierte Support-Diagnostik","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; tenant-authorized diagnostics-only support access, no impersonation."},
+    {"id":"X0.8","title_en":"SaaS Audit Trail","title_de":"SaaS-Audit-Trail","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; tenant audit feed and governance events."},
+    {"id":"X0.9","title_en":"Retention, Export & Deletion Lifecycle","title_de":"Retention-, Export- & Lösch-Lifecycle","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; machine-readable policy and safe lifecycle request workflow."},
+    {"id":"X0.10","title_en":"Tenant Feature Flags","title_de":"Tenant Feature Flags","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; tenant-scoped flags that cannot bypass security or entitlements."},
+    {"id":"X0.11","title_en":"Product Telemetry","title_de":"Produkt-Telemetrie","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; privacy-conscious operational telemetry primitives."},
+    {"id":"X0.12","title_en":"SaaS Health & Operations Readiness","title_de":"SaaS-Health & Operations-Readiness","status":"DONE","progress_pct":100,"evidence":"Core PR #78 merged; operations readiness health surface."},
+    {"id":"X0.13","title_en":"Release & Rollback Safety","title_de":"Release- & Rollback-Sicherheit","status":"DONE","progress_pct":100,"evidence":"Core PR #81 merged as 1f8162f; DEV → RC → PROD contract and rollback policy regression-tested."},
+    {"id":"X0.14","title_en":"Deterministic Synthetic Demo Tenant","title_de":"Deterministischer synthetischer Demo-Tenant","status":"DONE","progress_pct":100,"evidence":"Core PR #81 merged as 1f8162f; synthetic Contoso dataset with canonical fin-v1 semantics and DE/EN disclaimers."},
+    {"id":"X0.15","title_en":"Product-Truth / Portfolio Reconciliation","title_de":"Product-Truth-/Portfolio-Abgleich","status":"IN_PROGRESS","progress_pct":85,"evidence":"Machine-readable X0/X1-X8 plan and derived closure page are implemented; final portfolio build/merge and stale legacy presentation cleanup remain."},
+    {"id":"X1","title_en":"Visual & Product Convergence","title_de":"Visual & Product Convergence","status":"IN_PROGRESS","progress_pct":20,"evidence":"Normative Product System tokens verified against Core; canonical sidebar naming and account-aware tenant switcher are being implemented in React."},
+    {"id":"X2","title_en":"Remediation Closure","title_de":"Remediation Closure","status":"PLANNED","progress_pct":0,"evidence":"BC user assignment UX, workflow/audit completeness and read-only web alignment."},
+    {"id":"X3","title_en":"Exception Transparency","title_de":"Exception Transparency","status":"PLANNED","progress_pct":0,"evidence":"Per-scan exception snapshots, backend read model, dashboard transparency and report appendix."},
+    {"id":"X4","title_en":"Notification & Email i18n","title_de":"Notification & E-Mail i18n","status":"PLANNED","progress_pct":0,"evidence":"DE/EN BC notification defaults and localized editable SaaS email templates."},
+    {"id":"X5","title_en":"Executive Report Production Polish","title_de":"Executive-Report Production Polish","status":"PLANNED","progress_pct":0,"evidence":"Branded HTML/PDF, exceptions, DE/EN and removal of legacy internal report remnants."},
+    {"id":"X6","title_en":"Legal Review Candidate","title_de":"Legal Review Candidate","status":"PLANNED","progress_pct":0,"evidence":"DDG-aligned Impressum, Privacy, Terms/EULA, AVV/DPA, TOMs and subprocessors; review candidate, not legal approval."},
+    {"id":"X7","title_en":"DEV Deployment & Acceptance Surface","title_de":"DEV-Deployment & Acceptance-Surface","status":"PLANNED","progress_pct":0,"evidence":"dev.bcsentinel.com becomes the complete pilot acceptance environment with TLS, routing, migrations, health and smoke tests."},
+    {"id":"X8","title_en":"Pre-Manual Pilot Audit","title_de":"Pre-Manual Pilot Audit","status":"PLANNED","progress_pct":0,"evidence":"Machine-readable completeness check, no phantom features and no open P0 code gaps before manual acceptance."}
+  ]
+}
