@@ -8,8 +8,8 @@ Each sprint has an explicit exit gate. Go-Live readiness requires all P0 gates c
 
 | Sprint | Scope | Exit gate | Status |
 |---|---|---|---|
-| R0 | Product foundation | Product thesis, ICP, JTBD, scope, architecture, validation gates and portfolio tracking established | IN PROGRESS |
-| R1 | Validation experience | Landing page, Early Access CTA, Connect Roblox mock, Today's Priorities, Investigation, Experiment Copilot and Weekly Brief designed/clickable | PLANNED |
+| R0 | Product foundation | Product thesis, ICP, JTBD, scope, architecture, validation gates and portfolio tracking established | DONE |
+| R1 | Validation experience | Landing page, Early Access CTA, Connect Roblox mock, Today's Priorities, Investigation, Experiment Copilot and Weekly Brief designed/clickable | IN PROGRESS |
 | R2 | SaaS foundation | Next.js app shell, FastAPI API, PostgreSQL, config, health checks, test harness and CI baseline | PLANNED |
 | R3 | Roblox data connection | Least-privilege connection, analytics query adapter, normalized metric model, fixture data and ingestion tests | PLANNED |
 | R4 | Decision Engine v1 | Baselines, segment comparisons, impact/confidence scoring, deterministic evidence bundles and recommendation contracts | PLANNED |
@@ -30,10 +30,10 @@ Each sprint has an explicit exit gate. Go-Live readiness requires all P0 gates c
 - Architecture baseline
 - Sprint plan
 - Portfolio project entry and live project page
-- New product repository scaffold prepared
+- Product repository scaffold specification prepared; remote repository creation awaits a GitHub surface that exposes repository creation
 
 ### Exit gate
-All product decisions required to start R1 can be made without reopening fundamental scope.
+All product decisions required to start R1 can be made without reopening fundamental scope. **Passed 2026-10-12.**
 
 ## Sprint R1 — Validation experience
 ### Screens
@@ -43,6 +43,9 @@ All product decisions required to start R1 can be made without reopening fundame
 4. Investigation / Evidence
 5. Experiment Copilot
 6. Weekly Growth Brief
+
+### Current implementation
+An interactive validation shell is live in the portfolio codebase with simulated data for Today's Priorities, Investigation, Experiment Copilot, Weekly Brief and Connect Roblox. Landing / Early Access remains the next R1 surface.
 
 ### Exit gate
 A Roblox developer can understand the product, value proposition and workflow in under 60 seconds using simulated but realistic data.
