@@ -10,8 +10,8 @@ Each sprint has an explicit exit gate. Go-Live readiness requires all P0 gates c
 |---|---|---|---|
 | R0 | Product foundation | Product thesis, ICP, JTBD, scope, architecture, validation gates and portfolio tracking established | DONE |
 | R1 | Validation experience | Landing page, Early Access CTA, Connect Roblox mock, Today's Priorities, Investigation, Experiment Copilot and Weekly Brief designed/clickable | IN PROGRESS |
-| R2 | SaaS foundation | Next.js app shell, FastAPI API, PostgreSQL, config, health checks, test harness and CI baseline | IN PROGRESS |
-| R3 | Roblox data connection | Least-privilege connection, analytics query adapter, normalized metric model, fixture data and ingestion tests | PLANNED |
+| R2 | SaaS foundation | Next.js app shell, FastAPI API, PostgreSQL, config, health checks, test harness and CI baseline | DONE |
+| R3 | Roblox data connection | Least-privilege connection, analytics query adapter, normalized metric model, fixture data and ingestion tests | IN PROGRESS |
 | R4 | Decision Engine v1 | Baselines, segment comparisons, impact/confidence scoring, deterministic evidence bundles and recommendation contracts | PLANNED |
 | R5 | AI Product Analyst | Grounded explanation layer, Top-3 priorities, evidence citations, safe fallbacks and hallucination tests | PLANNED |
 | R6 | Experiment Copilot | Hypothesis, control/variant suggestions, primary KPI, guardrails, audience and runtime guidance | PLANNED |
@@ -59,16 +59,18 @@ A Roblox developer can understand the product, value proposition and workflow in
 - pytest + frontend checks
 - GitHub Actions
 
-### Current implementation
+### Completed implementation
 - dedicated product repository linked
-- FastAPI app shell and health endpoint created
-- backend test baseline created
-- Next.js landing shell created
-- PostgreSQL Docker service created
-- CI pipeline created and executing on pull request
+- FastAPI app shell and health endpoint
+- typed environment configuration
+- SQLAlchemy/PostgreSQL baseline
+- Next.js landing shell
+- full Docker Compose stack for web/API/PostgreSQL
+- one-command `make dev` workflow
+- CI pipeline validating backend tests/lint and frontend build
 
 ### Exit gate
-One command starts the local stack and CI validates backend/frontend baseline.
+One command starts the local stack and CI validates backend/frontend baseline. **Passed 2026-10-12.**
 
 ## Sprint R3 — Roblox data connection
 ### Deliverables
@@ -77,6 +79,15 @@ One command starts the local stack and CI validates backend/frontend baseline.
 - metric normalization
 - test fixtures
 - ingestion history
+
+### Current implementation
+- official Roblox Analytics Query API metric client implemented
+- `x-api-key` authentication contract implemented
+- read-only `universe.analytics:read` scope documented
+- immediate and long-running operation responses supported
+- normalized metric observation contract implemented
+- unit tests cover direct response, polling, error envelopes and normalization
+- first live query awaiting a pilot Universe ID and read-only API key
 
 ### Exit gate
 A connected pilot experience can produce normalized, persisted analytics without manual transformation.
