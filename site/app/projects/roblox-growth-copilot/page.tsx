@@ -1,6 +1,6 @@
 const sprints = [
-  ["R0", "Product foundation", "IN PROGRESS"],
-  ["R1", "Validation experience", "PLANNED"],
+  ["R0", "Product foundation", "DONE"],
+  ["R1", "Validation experience", "IN PROGRESS"],
   ["R2", "SaaS foundation", "PLANNED"],
   ["R3", "Roblox data connection", "PLANNED"],
   ["R4", "Decision Engine v1", "PLANNED"],
@@ -40,14 +40,18 @@ export default function RobloxGrowthCopilotPage() {
                 <span key={item} className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs text-slate-300">{item}</span>
               ))}
             </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="/projects/roblox-growth-copilot/demo" className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">Open validation MVP</a>
+              <a href="#delivery" className="rounded-xl border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-medium text-white transition hover:bg-white/[0.07]">View sprint plan</a>
+            </div>
           </div>
 
           <aside className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
             <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Current status</div>
-            <div className="mt-3 text-3xl font-semibold text-cyan-200">Sprint R0</div>
-            <div className="mt-2 text-sm text-slate-400">Product foundation · started 12 Oct 2026</div>
-            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[8%] rounded-full bg-cyan-300" /></div>
-            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>1 / 13 sprints active</span><span>Validation</span></div>
+            <div className="mt-3 text-3xl font-semibold text-cyan-200">Sprint R1</div>
+            <div className="mt-2 text-sm text-slate-400">Validation experience · R0 foundation complete</div>
+            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[15%] rounded-full bg-cyan-300" /></div>
+            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>1 done · 1 active · 11 planned</span><span>Validation</span></div>
           </aside>
         </div>
       </section>
@@ -55,9 +59,9 @@ export default function RobloxGrowthCopilotPage() {
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-6 md:grid-cols-4">
           {[
-            ["Validation", "20%", "Product thesis + market research complete"],
-            ["Product", "10%", "V1 surfaces and JTBD defined"],
-            ["Engineering", "0%", "Implementation starts after validation shell"],
+            ["Validation", "40%", "Product thesis, research and clickable workflow underway"],
+            ["Product", "30%", "V1 workflow and decision surfaces established"],
+            ["Engineering", "10%", "Interactive validation shell implemented"],
             ["Commercial", "5%", "Pricing hypothesis only"],
           ].map(([label, value, copy]) => (
             <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
@@ -117,7 +121,7 @@ export default function RobloxGrowthCopilotPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-14 md:pb-24">
+      <section id="delivery" className="mx-auto max-w-6xl px-6 py-14 md:pb-24">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Delivery</div>
@@ -130,7 +134,7 @@ export default function RobloxGrowthCopilotPage() {
             <div key={id} className={`grid grid-cols-[70px_1fr_auto] gap-4 px-5 py-4 ${index ? "border-t border-white/10" : ""}`}>
               <div className="font-mono text-sm text-cyan-300">{id}</div>
               <div className="text-sm font-medium text-slate-200">{title}</div>
-              <div className={`rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide ${status === "IN PROGRESS" ? "bg-cyan-300/15 text-cyan-200" : "bg-white/5 text-slate-500"}`}>{status}</div>
+              <div className={`rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide ${status === "DONE" ? "bg-emerald-300/15 text-emerald-200" : status === "IN PROGRESS" ? "bg-cyan-300/15 text-cyan-200" : "bg-white/5 text-slate-500"}`}>{status}</div>
             </div>
           ))}
         </div>
