@@ -1,8 +1,8 @@
 const sprints = [
   ["R0", "Product foundation", "DONE"],
   ["R1", "Validation experience", "IN PROGRESS"],
-  ["R2", "SaaS foundation", "IN PROGRESS"],
-  ["R3", "Roblox data connection", "PLANNED"],
+  ["R2", "SaaS foundation", "DONE"],
+  ["R3", "Roblox data connection", "IN PROGRESS"],
   ["R4", "Decision Engine v1", "PLANNED"],
   ["R5", "AI Product Analyst", "PLANNED"],
   ["R6", "Experiment Copilot", "PLANNED"],
@@ -49,10 +49,10 @@ export default function RobloxDecisionEnginePage() {
 
           <aside className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
             <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Current status</div>
-            <div className="mt-3 text-3xl font-semibold text-cyan-200">R1 + R2 active</div>
-            <div className="mt-2 text-sm text-slate-400">Validation experience + SaaS foundation</div>
-            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[22%] rounded-full bg-cyan-300" /></div>
-            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>1 done · 2 active · 10 planned</span><span>Validation → Build</span></div>
+            <div className="mt-3 text-3xl font-semibold text-cyan-200">R1 + R3 active</div>
+            <div className="mt-2 text-sm text-slate-400">Validation experience + live Roblox data connection</div>
+            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[31%] rounded-full bg-cyan-300" /></div>
+            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>2 done · 2 active · 9 planned</span><span>Validation → Integration</span></div>
           </aside>
         </div>
       </section>
@@ -61,8 +61,8 @@ export default function RobloxDecisionEnginePage() {
         <div className="grid gap-6 md:grid-cols-4">
           {[
             ["Validation", "45%", "Product thesis, research and clickable workflow established"],
-            ["Product", "35%", "V1 workflow and decision surfaces established"],
-            ["Engineering", "20%", "Dedicated repo, FastAPI, Next.js, PostgreSQL and CI scaffolded"],
+            ["Product", "40%", "V1 workflow and decision surfaces established"],
+            ["Engineering", "40%", "SaaS foundation complete; Roblox analytics adapter and normalization tested"],
             ["Commercial", "5%", "Pricing hypothesis only"],
           ].map(([label, value, copy]) => (
             <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
