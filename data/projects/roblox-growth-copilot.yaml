@@ -79,7 +79,7 @@ project:
       - Observability
 
   links:
-    repository_full_name: null
+    repository_full_name: danielwauer-maker/roblox-decision-engine
     demo_url: null
     documentation_url: docs/projects/roblox-growth-copilot/PRODUCT_MASTER.md
 
