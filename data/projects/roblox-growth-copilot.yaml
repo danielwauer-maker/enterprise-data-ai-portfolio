@@ -1,0 +1,99 @@
+schema_version: 1
+project:
+  id: roblox-growth-copilot
+  name: Roblox Growth Copilot
+  full_name: Roblox Growth Copilot — AI Product & Growth Analyst for Roblox Studios
+  project_type: real_saas_product
+  environment: validation_to_pilot
+  company_context: independent_product
+
+  portfolio:
+    workstream_id: roblox-growth-copilot
+    featured: true
+    display_order: 3
+    mandatory_for_application: false
+    role: Demonstrates AI product analytics, decision intelligence, experimentation support and product-led SaaS engineering on top of Roblox Open Cloud analytics.
+
+  positioning:
+    target_roles:
+      - AI Product Engineer
+      - Data & AI Solutions Engineer
+      - Analytics Engineer
+      - SaaS Product Engineer
+    capabilities:
+      - Roblox Open Cloud
+      - Product Analytics
+      - Decision Intelligence
+      - Experimentation
+      - FastAPI
+      - PostgreSQL
+      - AI Agents
+      - SaaS Architecture
+      - Product-Led Growth
+
+  business:
+    problem: Roblox developers already have analytics, but smaller studios often lack a dedicated product analyst who can prioritize what to fix, explain evidence and propose experiments.
+    decision_questions:
+      - What should the studio fix next?
+      - Which KPI change has the highest likely business impact?
+      - Which segment or funnel explains the change?
+      - What experiment should be run next?
+      - Is acquisition ready to scale?
+    operational_outcomes:
+      - faster_product_decisions
+      - improved_retention
+      - improved_monetization
+      - reduced_wasted_ad_spend
+      - more_rigorous_experimentation
+
+  solution:
+    summary: A product-led SaaS that connects to Roblox analytics, automatically identifies the highest-impact issues and opportunities, explains the evidence and proposes grounded experiments instead of duplicating native dashboards.
+    v1_portfolio_scope:
+      - Validation landing page
+      - Connect Roblox onboarding
+      - Today's Priorities decision screen
+      - Investigation / evidence screen
+      - Experiment Copilot
+      - Weekly Growth Brief
+      - Grounded decision engine
+      - Functional Roblox analytics pilot
+      - Production-readiness evidence
+    exclusions:
+      - Building a Roblox game
+      - Replacing Roblox native analytics
+      - Building a custom event warehouse for V1
+      - Building an A/B testing engine
+
+  technology:
+    core:
+      - TypeScript / Next.js
+      - Python / FastAPI
+      - PostgreSQL
+      - Roblox Open Cloud
+      - AI reasoning layer
+      - GitHub Actions
+    portfolio_evidence_may_include:
+      - OAuth 2.0
+      - Stripe
+      - Email reporting
+      - Observability
+
+  links:
+    repository_full_name: null
+    demo_url: null
+    documentation_url: docs/projects/roblox-growth-copilot/PRODUCT_MASTER.md
+
+  evidence:
+    expected:
+      - product_validation
+      - architecture
+      - working_demo
+      - grounded_ai_decisions
+      - tests
+      - pilot_feedback
+      - release_history
+      - production_readiness
+
+  source_of_truth:
+    delivery: docs/projects/roblox-growth-copilot/SPRINT_PLAN.md
+    project_metadata: data/projects/roblox-growth-copilot.yaml
