@@ -1,6 +1,6 @@
-# Roblox Growth Copilot — Product Master
+# Roblox Decision Engine — Product Master
 
-Status: Validation / Sprint 0
+Status: Validation / R1–R2
 Start: 2026-10-12
 Owner: Daniel Wauer
 

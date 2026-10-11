@@ -1,7 +1,7 @@
 const sprints = [
   ["R0", "Product foundation", "DONE"],
   ["R1", "Validation experience", "IN PROGRESS"],
-  ["R2", "SaaS foundation", "PLANNED"],
+  ["R2", "SaaS foundation", "IN PROGRESS"],
   ["R3", "Roblox data connection", "PLANNED"],
   ["R4", "Decision Engine v1", "PLANNED"],
   ["R5", "AI Product Analyst", "PLANNED"],
@@ -23,7 +23,7 @@ const screens = [
   "Weekly Growth Brief",
 ];
 
-export default function RobloxGrowthCopilotPage() {
+export default function RobloxDecisionEnginePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
@@ -31,7 +31,7 @@ export default function RobloxGrowthCopilotPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">New SaaS / Validation</div>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.055em] text-white md:text-7xl">Roblox Growth Copilot</h1>
+            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.055em] text-white md:text-7xl">Roblox Decision Engine</h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-400">
               An AI Product & Growth Analyst for Roblox studios. Instead of duplicating Roblox Analytics, the product identifies what needs attention, shows the evidence and proposes the next experiment.
             </p>
@@ -42,16 +42,17 @@ export default function RobloxGrowthCopilotPage() {
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="/projects/roblox-growth-copilot/demo" className="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">Open validation MVP</a>
+              <a href="https://github.com/danielwauer-maker/roblox-decision-engine" target="_blank" rel="noreferrer" className="rounded-xl border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-medium text-white transition hover:bg-white/[0.07]">Product repository</a>
               <a href="#delivery" className="rounded-xl border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-medium text-white transition hover:bg-white/[0.07]">View sprint plan</a>
             </div>
           </div>
 
           <aside className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
             <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Current status</div>
-            <div className="mt-3 text-3xl font-semibold text-cyan-200">Sprint R1</div>
-            <div className="mt-2 text-sm text-slate-400">Validation experience · R0 foundation complete</div>
-            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[15%] rounded-full bg-cyan-300" /></div>
-            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>1 done · 1 active · 11 planned</span><span>Validation</span></div>
+            <div className="mt-3 text-3xl font-semibold text-cyan-200">R1 + R2 active</div>
+            <div className="mt-2 text-sm text-slate-400">Validation experience + SaaS foundation</div>
+            <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[22%] rounded-full bg-cyan-300" /></div>
+            <div className="mt-3 flex justify-between text-xs text-slate-500"><span>1 done · 2 active · 10 planned</span><span>Validation → Build</span></div>
           </aside>
         </div>
       </section>
@@ -59,9 +60,9 @@ export default function RobloxGrowthCopilotPage() {
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-6 md:grid-cols-4">
           {[
-            ["Validation", "40%", "Product thesis, research and clickable workflow underway"],
-            ["Product", "30%", "V1 workflow and decision surfaces established"],
-            ["Engineering", "10%", "Interactive validation shell implemented"],
+            ["Validation", "45%", "Product thesis, research and clickable workflow established"],
+            ["Product", "35%", "V1 workflow and decision surfaces established"],
+            ["Engineering", "20%", "Dedicated repo, FastAPI, Next.js, PostgreSQL and CI scaffolded"],
             ["Commercial", "5%", "Pricing hypothesis only"],
           ].map(([label, value, copy]) => (
             <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
@@ -76,7 +77,7 @@ export default function RobloxGrowthCopilotPage() {
       <section className="mx-auto max-w-6xl px-6 py-14">
         <div className="max-w-3xl">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">Product thesis</div>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white">Roblox tells you what happened. The copilot tells you what to do next.</h2>
+          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white">Roblox tells you what happened. The Decision Engine tells you what to do next.</h2>
           <p className="mt-5 text-base leading-8 text-slate-400">The core product is a decision layer above existing analytics: metric changes are validated, compared against baselines and segments, converted into evidence bundles and only then explained by AI.</p>
         </div>
 

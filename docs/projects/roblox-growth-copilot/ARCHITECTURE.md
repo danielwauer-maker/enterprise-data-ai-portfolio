@@ -1,4 +1,4 @@
-# Roblox Growth Copilot — Architecture Baseline
+# Roblox Decision Engine — Architecture Baseline
 
 ## Goal
 Build a thin decision-intelligence layer above Roblox analytics rather than duplicating Roblox Analytics.

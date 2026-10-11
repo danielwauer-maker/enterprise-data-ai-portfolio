@@ -1,8 +1,8 @@
 schema_version: 1
 project:
   id: roblox-growth-copilot
-  name: Roblox Growth Copilot
-  full_name: Roblox Growth Copilot — AI Product & Growth Analyst for Roblox Studios
+  name: Roblox Decision Engine
+  full_name: Roblox Decision Engine — AI Product & Growth Analyst for Roblox Studios
   project_type: real_saas_product
   environment: validation_to_pilot
   company_context: independent_product

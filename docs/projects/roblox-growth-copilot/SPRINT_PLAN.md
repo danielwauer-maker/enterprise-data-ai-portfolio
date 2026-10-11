@@ -1,4 +1,4 @@
-# Roblox Growth Copilot — Sprint Plan to Go-Live
+# Roblox Decision Engine — Sprint Plan to Go-Live
 
 Start: 2026-10-12
 Target: validation MVP in week 1; functional pilot in weeks 2–3; paid-ready SaaS V1 in weeks 4–6.
@@ -10,7 +10,7 @@ Each sprint has an explicit exit gate. Go-Live readiness requires all P0 gates c
 |---|---|---|---|
 | R0 | Product foundation | Product thesis, ICP, JTBD, scope, architecture, validation gates and portfolio tracking established | DONE |
 | R1 | Validation experience | Landing page, Early Access CTA, Connect Roblox mock, Today's Priorities, Investigation, Experiment Copilot and Weekly Brief designed/clickable | IN PROGRESS |
-| R2 | SaaS foundation | Next.js app shell, FastAPI API, PostgreSQL, config, health checks, test harness and CI baseline | PLANNED |
+| R2 | SaaS foundation | Next.js app shell, FastAPI API, PostgreSQL, config, health checks, test harness and CI baseline | IN PROGRESS |
 | R3 | Roblox data connection | Least-privilege connection, analytics query adapter, normalized metric model, fixture data and ingestion tests | PLANNED |
 | R4 | Decision Engine v1 | Baselines, segment comparisons, impact/confidence scoring, deterministic evidence bundles and recommendation contracts | PLANNED |
 | R5 | AI Product Analyst | Grounded explanation layer, Top-3 priorities, evidence citations, safe fallbacks and hallucination tests | PLANNED |
@@ -30,7 +30,7 @@ Each sprint has an explicit exit gate. Go-Live readiness requires all P0 gates c
 - Architecture baseline
 - Sprint plan
 - Portfolio project entry and live project page
-- Product repository scaffold specification prepared; remote repository creation awaits a GitHub surface that exposes repository creation
+- Dedicated product repository created and linked
 
 ### Exit gate
 All product decisions required to start R1 can be made without reopening fundamental scope. **Passed 2026-10-12.**
@@ -45,7 +45,7 @@ All product decisions required to start R1 can be made without reopening fundame
 6. Weekly Growth Brief
 
 ### Current implementation
-An interactive validation shell is live in the portfolio codebase with simulated data for Today's Priorities, Investigation, Experiment Copilot, Weekly Brief and Connect Roblox. Landing / Early Access remains the next R1 surface.
+An interactive validation shell is live in the portfolio codebase with simulated data for Today's Priorities, Investigation, Experiment Copilot, Weekly Brief and Connect Roblox. A first dedicated landing surface now also exists in the product repository.
 
 ### Exit gate
 A Roblox developer can understand the product, value proposition and workflow in under 60 seconds using simulated but realistic data.
@@ -58,6 +58,14 @@ A Roblox developer can understand the product, value proposition and workflow in
 - Docker development environment
 - pytest + frontend checks
 - GitHub Actions
+
+### Current implementation
+- dedicated product repository linked
+- FastAPI app shell and health endpoint created
+- backend test baseline created
+- Next.js landing shell created
+- PostgreSQL Docker service created
+- CI pipeline created and executing on pull request
 
 ### Exit gate
 One command starts the local stack and CI validates backend/frontend baseline.
