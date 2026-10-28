@@ -313,7 +313,7 @@
           "title": "Legacy product-code compatibility and migration closure",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S02-D07B",
@@ -327,14 +327,14 @@
           "title": "Pricing and checkout truth audit",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_PRICING_CHECKOUT_TRUTH_AUDIT.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_PRICING_CHECKOUT_TRUTH_AUDIT.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S02-D09",
           "title": "Product-model drift closure with test and evidence binding",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/product/S02_LEGACY_COMPATIBILITY_CLOSURE.md + backend/tests/test_s02_legacy_compatibility_closure.py; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         }
       ],
       "detail_done_count": 9,
@@ -402,21 +402,21 @@
           "title": "One-time expiring pilot enrollment and revocation",
           "weight": 15,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S03-D06",
           "title": "Password reset and login throttling",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S03-D07A",
           "title": "Invite reset welcome templates and SMTP retry/failure handling",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): backend/tests/test_core_public_platform_flows.py + backend/app/services/email_template_service.py; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): backend/tests/test_core_public_platform_flows.py + backend/app/services/email_template_service.py; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S03-D07B",
@@ -430,7 +430,7 @@
           "title": "Pilot lifecycle suspend reactivate and status handling",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S03_PILOT_ONBOARDING_PRE_RUNTIME.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S03-D09",
@@ -519,7 +519,7 @@
           "title": "DE EN dark light and responsive automated QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S04-D07B",
@@ -533,7 +533,7 @@
           "title": "Loading empty error and locked-state automated QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S04-D08B",
@@ -547,7 +547,7 @@
           "title": "Executive PDF automated browser and edge-case QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S04-D09B",
@@ -561,7 +561,7 @@
           "title": "Encoding large-number and formatting QA",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/S04_CUSTOMER_UX_AUTOMATED_QA.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         }
       ],
       "detail_done_count": 9,
@@ -629,28 +629,28 @@
           "title": "Claims audit against actual runtime evidence",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S05-D06",
           "title": "Security and Trust page",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/trust.html + backend/tests/test_public_claims_contract.py; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/trust.html + backend/tests/test_public_claims_contract.py; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S05-D07",
           "title": "Pilot or Design Partner page",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/pilot.html + docs/go-live/S05_PILOT_LAUNCH_SURFACE.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/pilot.html + docs/go-live/S05_PILOT_LAUNCH_SURFACE.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S05-D08A",
           "title": "Contact support legal privacy terms DPA and docs technical surfaces",
           "weight": 7,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/contact.html + legal/docs surfaces + backend /public/contact; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): landingpage_neu/contact.html + legal/docs surfaces + backend /public/contact; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S05-D08B",
@@ -664,7 +664,7 @@
           "title": "Pricing feature truth and commercial-copy audit",
           "weight": 10,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): docs/go-live/S05_PUBLIC_CLAIMS_AUDIT.md; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         }
       ],
       "detail_done_count": 9,
@@ -739,14 +739,14 @@
           "title": "Fresh BC SaaS installation runtime PASS",
           "weight": 10,
           "status": "verified",
-          "evidence": "BCSentinel verified DEV evidence (staging): quality/release/ext-50-02-fresh-installation-evidence.json; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): quality/release/ext-50-02-fresh-installation-evidence.json; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S06-D07",
           "title": "Real BC upgrade and data-preservation PASS",
           "weight": 10,
           "status": "verified",
-          "evidence": "BCSentinel verified DEV evidence (staging): quality/release/ext-50-03-upgrade-evidence.json; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): quality/release/ext-50-03-upgrade-evidence.json; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S06-D08",
@@ -760,7 +760,7 @@
           "title": "Reproducible RC build manifest with source SHA and APP SHA-256",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): .github/workflows/bc-al-compile.yml; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): .github/workflows/bc-al-compile.yml; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S06-D09B",
@@ -774,7 +774,7 @@
           "title": "Automated 50-tenant isolation and admission preflight",
           "weight": 5,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): backend/tests/test_core_pilot_50_tenant_preflight.py + quality/pilot/core-pilot-50-readiness.json; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): backend/tests/test_core_pilot_50_tenant_preflight.py + quality/pilot/core-pilot-50-readiness.json; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S06-D10B",
@@ -835,21 +835,21 @@
           "title": "Legacy PR commit and release evidence catalog",
           "weight": 20,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): quality/s07/legacy-pr-catalog.json; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): quality/s07/legacy-pr-catalog.json; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S07-D04",
           "title": "Canonical repository structure created",
           "weight": 20,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): config/canonical-repository.yaml; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): config/canonical-repository.yaml; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S07-D05",
           "title": "Legacy-to-canonical traceability mapping",
           "weight": 15,
           "status": "done",
-          "evidence": "BCSentinel verified DEV evidence (staging): quality/s07/legacy-canonical-traceability.json; authority: canonical main baseline 8cc1f560d49a; Extension 1.0.2.25; frontend e84deb14afe9; product-system b61c08d58dc0."
+          "evidence": "BCSentinel verified DEV evidence (staging): quality/s07/legacy-canonical-traceability.json; authority: canonical main baseline cc1017fd5ba2; Extension 1.0.2.25; frontend 742e3257c8db; product-system b61c08d58dc0."
         },
         {
           "id": "S07-D06",
