@@ -1,8 +1,17 @@
-schema_version: 1
-source:
-  repository: danielwauer-maker/bcsentinel
-  branch: staging
-  evidence_url: https://api.github.com/repos/danielwauer-maker/bcsentinel/contents/quality/portfolio-readiness-evidence.json?ref=staging
+schema_version: 2
+sources:
+  canonical_state:
+    role: product_authority
+    repository: danielwauer-maker/bcsentinel
+    branch: main
+    path: release/current-product-state.json
+    url: https://api.github.com/repos/danielwauer-maker/bcsentinel/contents/release/current-product-state.json?ref=main
+  dev_evidence:
+    role: dev_integration_evidence
+    repository: danielwauer-maker/bcsentinel
+    branch: staging
+    path: quality/portfolio-readiness-evidence.json
+    url: https://api.github.com/repos/danielwauer-maker/bcsentinel/contents/quality/portfolio-readiness-evidence.json?ref=staging
 
 rules:
   - fact: s02_pricing_checkout_truth_audit
